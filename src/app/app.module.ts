@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidenavComponent } from './home/sidenav/sidenav.component';
-import { PrincipalComponent } from './home/principal/principal.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { ManageIterationsComponent } from './home/manage-iterations/manage-iterations.component';
 
@@ -12,15 +11,11 @@ import { ManageIterationsComponent } from './home/manage-iterations/manage-itera
   declarations: [
     AppComponent,
     SidenavComponent,
-    PrincipalComponent,
     DashboardComponent,
-    ManageIterationsComponent
+    ManageIterationsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

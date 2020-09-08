@@ -1,3 +1,6 @@
+
+https://github.com/leolplex/Evicende-Base-Management/workflows/Node.js%20CI/badge.svg
+
 # EvicendeBaseManagement
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.

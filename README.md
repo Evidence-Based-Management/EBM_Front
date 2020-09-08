@@ -1,7 +1,7 @@
 
 
 
-![Node.js CI](https://github.com/leolplex/Evicende-Base-Management/workflows/Node.js%20CI/badge.svg)
+![Angular CI](https://github.com/leolplex/Evicende-Base-Management/workflows/Node.js%20CI/badge.svg)
 
 # EvicendeBaseManagement
 

@@ -17900,8 +17900,7 @@ a.text-darker:focus
 }
 
 .text-hide
-{
-    font: 0/0 a;
+{    
 
     color: transparent;
     border: 0; 
@@ -19151,8 +19150,7 @@ a.btn-icon-only
     cursor: pointer;
 }
 .accordion .card-header:after
-{
-    font: normal normal normal 14px/1 NucleoIcons;
+{    
     line-height: 0;
 
     position: absolute;
@@ -20282,8 +20280,7 @@ textarea[resize='horizontal']
 }
 .has-success:after,
 .has-danger:after
-{
-    font-family: 'NucleoIcons';
+{    
     font-size: 9px;
     line-height: 19px;
 
@@ -20984,8 +20981,7 @@ textarea[resize='horizontal']
 
 .navbar-horizontal .navbar-brand
 {
-    font-size: .875rem;
-    font-size: .875rem;
+    font-size: .875rem;    
     font-weight: 600;
 
     letter-spacing: .05px; 
@@ -21458,8 +21454,7 @@ textarea[resize='horizontal']
     align-items: center;
 }
 .navbar-vertical .navbar-nav .nav-link[data-toggle='collapse']:after
-{
-    font-family: 'Font Awesome 5 Free';
+{    
     font-weight: 700;
     font-style: normal;
     font-variant: normal;

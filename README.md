@@ -31,6 +31,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-# Use Angular Deploy gh-pages Actions to deploy GitHub Pages
+## Use Angular Deploy gh-pages Actions to deploy GitHub Pages
 
 To get more infor [Angular Deploy gh-pages](https://github.com/marketplace/actions/angular-deploy-gh-pages-actions).
+
+![Github Actions](https://github.com/AhsanAyaz/angular-deploy-gh-pages-actions/blob/master/assets/github-actions.png)
+
+To view the result: ![Evidence Base Management](https://leolplex.github.io/Evicende-Base-Management/)
+

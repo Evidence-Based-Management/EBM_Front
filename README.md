@@ -37,5 +37,5 @@ To get more infor [Angular Deploy gh-pages](https://github.com/marketplace/actio
 
 ![Github Actions](https://github.com/AhsanAyaz/angular-deploy-gh-pages-actions/blob/master/assets/github-actions.png)
 
-To view the result: ![Evidence Base Management](https://leolplex.github.io/Evicende-Base-Management/)
+To view the result: [Evidence Base Management](https://leolplex.github.io/Evicende-Base-Management/)
 

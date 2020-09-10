@@ -10,7 +10,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  build-and-test-and-deploy:
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,33 +25,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build-prod --if-present
-
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm install
       - run: npm run test-headless
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
-      - name: Deploy
+      - name: Deploy to Github Pages
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}           
           base_href:
           deploy_branch: master
-          angular_dist_build_folder: docs/
+          angular_dist_build_folder: docs

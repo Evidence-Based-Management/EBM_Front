@@ -45,11 +45,13 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: AhsanAyaz/angular-deploy-gh-pages-actions
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: master
-          FOLDER: docs/
+          github_access_token: ${{ secrets.GITHUB_TOKEN }} 
+          build_configuration: staging 
+          base_href:
+          deploy_branch: master
+          angular_dist_build_folder: docs/

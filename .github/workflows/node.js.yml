@@ -35,5 +35,6 @@ jobs:
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}           
-          base_href:          
+          base_href:
+          deploy_branch: gh-pages          
           angular_dist_build_folder: docs

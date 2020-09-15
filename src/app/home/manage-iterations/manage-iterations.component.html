@@ -29,7 +29,10 @@
         </div>
         <div class="card-body">
           <div class="row icon-examples">
-            <div class="col-lg-3 col-md-6">
+            <div
+              *ngFor="let iteration of iterations; index as i"
+              class="col-lg-3 col-md-6"
+            >
               <button
                 type="button"
                 class="btn-icon-clipboard"
@@ -38,49 +41,11 @@
               >
                 <div>
                   <em class="ni ni-active-40"></em>
-                  <span>Sprint 1</span>
+                  <span>{{ iteration.name }}</span>
                 </div>
               </button>
             </div>
-            <div class="col-lg-3 col-md-6">
-              <button
-                type="button"
-                class="btn-icon-clipboard"
-                data-clipboard-text="air-baloon"
-                title="Copy to clipboard"
-              >
-                <div>
-                  <em class="ni ni-air-baloon"></em>
-                  <span>Sprint 2</span>
-                </div>
-              </button>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <button
-                type="button"
-                class="btn-icon-clipboard"
-                data-clipboard-text="album-2"
-                title="Copy to clipboard"
-              >
-                <div>
-                  <em class="ni ni-album-2"></em>
-                  <span>Sprint 3</span>
-                </div>
-              </button>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <button
-                type="button"
-                class="btn-icon-clipboard"
-                data-clipboard-text="align-center"
-                title="Copy to clipboard"
-              >
-                <div>
-                  <em class="ni ni-align-center"></em>
-                  <span>Sprint 4</span>
-                </div>
-              </button>
-            </div>
+            
           </div>
         </div>
       </div>

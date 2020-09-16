@@ -10,11 +10,6 @@ describe('IterationsService', () => {
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     service = new IterationsService(httpClientSpy as any);
-
-    // TestBed.configureTestingModule({
-    //   imports: [HttpClientModule],
-    // });
-    // service = TestBed.inject(IterationsService);
   });
 
   it('Json should has values', () => {

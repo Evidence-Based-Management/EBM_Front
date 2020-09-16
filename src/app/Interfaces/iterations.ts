@@ -1,4 +1,6 @@
 export interface Iteration {
-  id: number;
-  name: string;
+  iterations: {
+    id: string;
+    name: string;
+  };
 }

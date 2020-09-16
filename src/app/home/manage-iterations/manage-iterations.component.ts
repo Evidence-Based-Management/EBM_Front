@@ -24,8 +24,10 @@ export class ManageIterationsComponent implements OnInit {
     const tempIterations: Array<Iteration> = new Array<Iteration>();
     for (let index = 0; index < 30; index++) {
       const newIteration: Iteration = {
-        id: index,
-        name: `Iteración ${index}`,
+        iterations: {
+          id: index.toString(),
+          name: `Iteración ${index}`,
+        },
       };
       tempIterations.push(newIteration);
     }

@@ -31,6 +31,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+## View sonarqube results
+To view the sonarqube result please visit:  https://sonarcloud.io/dashboard?id=evidence-base-management&branch=master
+
 ## Use Angular Deploy gh-pages Actions to deploy GitHub Pages
 
 To get more infor [Angular Deploy gh-pages](https://github.com/marketplace/actions/angular-deploy-gh-pages-actions).

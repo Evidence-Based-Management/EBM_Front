@@ -1,6 +1,8 @@
+export interface Iterations {
+  iterations: Iteration[];
+}
+
 export interface Iteration {
-  iterations: {
-    id: string;
-    name: string;
-  };
+  id: string;
+  name: string;
 }

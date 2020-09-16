@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Iteration } from 'src/app/Interfaces/iterations';
+import { Iteration, Iterations } from 'src/app/Interfaces/iterations';
+import { IterationsService } from '../services/iterations.service';
 
 @Component({
   selector: 'app-manage-iterations',
@@ -7,30 +8,34 @@ import { Iteration } from 'src/app/Interfaces/iterations';
   styleUrls: ['./manage-iterations.component.css'],
 })
 export class ManageIterationsComponent implements OnInit {
-  iterations: Array<Iteration>;
-  constructor() {
-    this.iterations = new Array<Iteration>();
-  }
+  iterationsToHtml: Iterations = { iterations: new Array<Iteration>() };
+
+  constructor(public serviceItertations: IterationsService) {}
 
   ngOnInit(): void {
-    this.setIterations();
+    this.getIterations();
   }
 
-  setIterations(): void {
-    this.iterations = this.getIterations();
+  getIterations() {
+    this.serviceItertations
+      .getJsonIterations()
+      .subscribe((iteration: Iterations) => {
+        this.setLocalIterations(iteration);
+      });
   }
 
-  getIterations(): Array<Iteration> {
-    const tempIterations: Array<Iteration> = new Array<Iteration>();
-    for (let index = 0; index < 30; index++) {
-      const newIteration: Iteration = {
-        iterations: {
-          id: index.toString(),
-          name: `Iteración ${index}`,
-        },
-      };
-      tempIterations.push(newIteration);
+  setLocalIterations(iteration: Iterations): void {
+    for (let index = 0; index < iteration.iterations.length; index++) {
+      this.iterationsToHtml.iterations.push(
+        this.newIteration(iteration, index)
+      );
     }
-    return tempIterations;
+  }
+
+  newIteration(iteration: Iterations, index: number): Iteration {
+    return {
+      id: iteration.iterations[index].id.toString(),
+      name: iteration.iterations[index].name,
+    };
   }
 }

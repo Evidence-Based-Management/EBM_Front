@@ -20,9 +20,10 @@ describe('IterationsService', () => {
     httpClientSpy.get.and.returnValue(of(expectedIterations));
 
     service.getJsonIterations().subscribe(
-      (result) => {
+      (result: Iteration[]) => {
         expect(result.length).toBeGreaterThan(0);
-        expect(result.iterations.length).toBe(1);
+        expect(result[0].iterations.id).toBe('0');
+        expect(result[0].iterations.name).toBe('Sprint 1');
       },
       (err) => console.log('HTTP Error', err)
     );

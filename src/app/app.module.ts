@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { SidenavComponent } from './home/sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageIterationsComponent } from './manage-iterations/manage-iterations.component';
+import { IterationComponent } from './manage-iterations/iteration/iteration.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ManageIterationsComponent } from './manage-iterations/manage-iterations
     SidenavComponent,
     DashboardComponent,
     ManageIterationsComponent,
+    IterationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

@@ -20,7 +20,7 @@ describe('AppComponent', () => {
   it(`should have as title 'Evidence-Based-Management'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Evidence Based Management');
+    expect(app.title).toEqual('Evidence Based Management 2');
   });
 
   it('should render router-outlet', () => {

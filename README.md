@@ -1,9 +1,9 @@
 
 
 
-![Angular CI](https://github.com/leolplex/Evicende-Base-Management/workflows/Angular%20CI/badge.svg)
+![Angular CI](https://github.com/leolplex/Evidence-Based-Management/workflows/Angular%20CI/badge.svg)
 
-# EvicendeBaseManagement
+# EvidenceBasedManagement
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
 
@@ -32,7 +32,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## View sonarqube results
-To view the sonarqube result please visit:  [Sonarqube report](https://sonarcloud.io/dashboard?id=evidence-base-management&branch=master)
+To view the sonarqube result please visit:  [Sonarqube report](https://sonarcloud.io/dashboard?id=evidence-based-management&branch=master)
 
 ## Use Angular Deploy gh-pages Actions to deploy GitHub Pages
 
@@ -40,5 +40,5 @@ To get more infor [Angular Deploy gh-pages](https://github.com/marketplace/actio
 
 ![Github Actions](https://github.com/AhsanAyaz/angular-deploy-gh-pages-actions/blob/master/assets/github-actions.png)
 
-To view the result: [Evidence Base Management](https://leolplex.github.io/Evicende-Based-Management/)
+To view the result: [Evidence Based Management](https://leolplex.github.io/Evidence-Based-Management/)
 

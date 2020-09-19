@@ -28,6 +28,8 @@ export class IterationsService {
   errorHandler(error): Observable<any> {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
+      console.log('soy instancia de ErrorEvent');
+      
       // Get client-side error
       errorMessage = error.error.message;
     } else {

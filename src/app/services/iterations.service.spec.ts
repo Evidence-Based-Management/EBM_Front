@@ -90,4 +90,24 @@ describe('IterationsService', () => {
     );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
+
+  it('should to provoke an error - getIterationById(-1) - instanceof ErrorEvent', () => {
+    const errorEventFake = {
+      error: new ErrorEvent('my type', {
+        message: 'Error Code: 404\nMessage: Not found',
+      }),
+    };
+
+    httpClientSpy.get.and.returnValue(throwError(errorEventFake));
+
+    service.getIterationById('-1').subscribe(
+      (result) => console.log('good', result),
+      (err) => {
+        console.log(err);
+
+        expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
+      }
+    );
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
 });

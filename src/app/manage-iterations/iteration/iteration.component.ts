@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Iteration } from 'src/app/Interfaces/iterations';
 
 @Component({
   selector: 'app-iteration',

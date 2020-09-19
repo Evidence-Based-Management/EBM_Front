@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-manage-iterations',
   templateUrl: './manage-iterations.component.html',
-  styleUrls: ['./manage-iterations.component.css'],
 })
 export class ManageIterationsComponent implements OnInit {
   iterationsToHtml: Iterations = { iterations: new Array<Iteration>() };

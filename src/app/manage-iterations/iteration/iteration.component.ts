@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-iteration',
   templateUrl: './iteration.component.html',
-  styleUrls: ['./iteration.component.css'],
 })
 export class IterationComponent implements OnInit {
   idIteration;

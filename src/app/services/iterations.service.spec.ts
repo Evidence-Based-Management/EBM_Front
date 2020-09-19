@@ -63,14 +63,31 @@ describe('IterationsService', () => {
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
 
-  it('should to provoke an error', () => {
+  it('should to provoke an error - getIterations', () => {
     httpClientSpy.get.and.returnValue(
       throwError({ status: 404, message: 'Not found' })
     );
 
-    service.getIterations().subscribe((err) => {
-      expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
-    });
+    service.getIterations().subscribe(
+      (result) => console.log('good', result),
+      (err) => {
+        expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
+      }
+    );
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
+
+  it('should to provoke an error - getIterationById(-1)', () => {
+    httpClientSpy.get.and.returnValue(
+      throwError({ status: 404, message: 'Not found' })
+    );
+
+    service.getIterationById('-1').subscribe(
+      (result) => console.log('good', result),
+      (err) => {
+        expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
+      }
+    );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
 });

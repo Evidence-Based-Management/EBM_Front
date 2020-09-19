@@ -21,7 +21,7 @@ export class ManageIterationsComponent implements OnInit {
 
   getIterations(): void {
     this.serviceItertations
-      .getJsonIterations()
+      .getIterations()
       .subscribe((iteration: Iterations) => {
         this.setLocalIterations(iteration);
       });

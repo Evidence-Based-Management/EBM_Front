@@ -20,7 +20,7 @@ describe('ManageIterationsComponent', () => {
         {
           provide: IterationsService,
           useValue: {
-            getJsonIterations: () =>
+            getIterations: () =>
               of({ iterations: [{ id: '-1', name: 'Fake' }] }),
           },
         },
@@ -41,7 +41,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get at least iterations', () => {
     // Arrange
-    spyOn(iterationsService, 'getJsonIterations').and.callThrough();
+    spyOn(iterationsService, 'getIterations').and.callThrough();
     fixture.detectChanges();
 
     // Assert
@@ -50,7 +50,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get empty iterations', () => {
     // Arrange
-    spyOn(iterationsService, 'getJsonIterations').and.returnValue(
+    spyOn(iterationsService, 'getIterations').and.returnValue(
       of({ iterations: new Array<Iteration>() })
     );
     fixture.detectChanges();
@@ -60,7 +60,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get empty iterations - getIterations()', () => {
     // Arrange
-    spyOn(iterationsService, 'getJsonIterations').and.returnValue(
+    spyOn(iterationsService, 'getIterations').and.returnValue(
       of({ iterations: new Array<Iteration>() })
     );
     fixture.detectChanges();

@@ -7,7 +7,7 @@ import { ManageIterationsComponent } from './manage-iterations/manage-iterations
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'iterations', component: ManageIterationsComponent },
-  { path: 'iteration', component: IterationComponent },
+  { path: 'iteration/:id', component: IterationComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Iteration, Iterations } from 'src/app/Interfaces/iterations';
 import { IterationsService } from '../services/iterations.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-iterations',
@@ -10,13 +11,16 @@ import { IterationsService } from '../services/iterations.service';
 export class ManageIterationsComponent implements OnInit {
   iterationsToHtml: Iterations = { iterations: new Array<Iteration>() };
 
-  constructor(public serviceItertations: IterationsService) {}
+  constructor(
+    public serviceItertations: IterationsService,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getIterations();
   }
 
-  getIterations() {
+  getIterations(): void {
     this.serviceItertations
       .getJsonIterations()
       .subscribe((iteration: Iterations) => {
@@ -37,5 +41,9 @@ export class ManageIterationsComponent implements OnInit {
       id: iteration.iterations[index].id.toString(),
       name: iteration.iterations[index].name,
     };
+  }
+
+  goToIterationDetails(id): void {
+    this.router.navigate(['/iteration', id]);
   }
 }

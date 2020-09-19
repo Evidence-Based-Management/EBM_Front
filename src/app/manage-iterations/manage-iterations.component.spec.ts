@@ -1,15 +1,17 @@
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 
 import { ManageIterationsComponent } from './manage-iterations.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Iteration, Iterations } from '../Interfaces/iterations';
 import { IterationsService } from '../services/iterations.service';
 import { of } from 'rxjs';
+
+import { Router } from '@angular/router';
 
 describe('ManageIterationsComponent', () => {
   let component: ManageIterationsComponent;
   let fixture: ComponentFixture<ManageIterationsComponent>;
   let iterationsService: IterationsService;
+  const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,6 +24,7 @@ describe('ManageIterationsComponent', () => {
               of({ iterations: [{ id: '-1', name: 'Fake' }] }),
           },
         },
+        { provide: Router, useValue: routerSpy },
       ],
     }).compileComponents();
   });
@@ -101,5 +104,36 @@ describe('ManageIterationsComponent', () => {
     expect(component.iterationsToHtml.iterations.length).toBe(0);
     expect(newIteration.id).toBe('-1');
     expect(newIteration.name).toBe('Fake');
+  });
+
+  it('should return a new Iteration - goToIterationDetails()', () => {
+    // Arrange
+    const fakeIterations: Iterations = {
+      iterations: [
+        { id: '-1', name: 'Fake' },
+        { id: '-2', name: 'Fake 2' },
+      ],
+    };
+
+    // Act
+    const newIteration = component.newIteration(fakeIterations, 0);
+
+    // Assert
+    expect(component.iterationsToHtml.iterations.length).toBe(0);
+    expect(newIteration.id).toBe('-1');
+    expect(newIteration.name).toBe('Fake');
+  });
+
+  it('should navigate to iteration', () => {
+    // Act
+    component.goToIterationDetails('1');
+
+    // args passed to router.navigateByUrl() spy
+    const spy = routerSpy.navigate as jasmine.Spy;
+    const navArgs = spy.calls.first().args[0];
+
+    // // Assert
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/iteration', '1']);
+    expect(navArgs).toEqual(['/iteration', '1']);
   });
 });

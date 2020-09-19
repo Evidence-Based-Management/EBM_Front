@@ -1,31 +1,35 @@
 {
     "iterations": [{
             "id": "1",
-            "name": "Sprint 1"
+            "name": "Iteración 1"
         },
         {
             "id": "2",
-            "name": "Sprint 2"
+            "name": "Iteración 2"
         },
         {
             "id": "3",
-            "name": "Sprint 3"
+            "name": "Iteración 3"
         },
         {
             "id": "4",
-            "name": "Sprint 4"
+            "name": "Iteración 4"
         },
         {
             "id": "5",
-            "name": "Sprint 5"
+            "name": "Iteración 5"
         },
         {
             "id": "6",
-            "name": "Sprint 6"
+            "name": "Iteración 6"
         },
         {
             "id": "7",
-            "name": "Sprint 7"
+            "name": "Iteración 7"
+        },
+        {
+            "id": "8",
+            "name": "Iteración 8"
         }
     ]
 }

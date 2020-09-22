@@ -1,43 +1,59 @@
-<nav
-  class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white"
-  id="sidenav-main"
+<!-- Sidebar -->
+<ul
+  class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+  id="accordionSidebar"
 >
-  <div class="scrollbar-inner">
-    <!-- Brand -->
-    <div class="sidenav-header align-items-center">
-      <a class="navbar-brand" routerLink="/">
-        <img
-          src="assets/img/brand/Vanitati.png"
-          class="navbar-brand-img"
-          alt="..."
-        />
-      </a>
+  <!-- Sidebar - Brand -->
+  <a
+    class="sidebar-brand d-flex align-items-center justify-content-center"
+    routerLink="/"
+  >
+    <div class="sidebar-brand-text mx-3">
+      <img src="assets/img/brand/Vanitati.png" class="img-fluid" alt="..." />
     </div>
-    <div class="navbar-inner">
-      <!-- Collapse -->
-      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-        <!-- Nav items -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a
-              class="nav-link active"
-              routerLink="/dashboard"
-              routerLinkActive="active"
-            >
-              <em class="ni ni-tv-2 text-primary"></em>
-              <span class="nav-link-text">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/iterations" routerLinkActive="active">
-              <em class="ni ni-planet text-orange"></em>
-              <span class="nav-link-text">Manage Iterations</span>
-            </a>
-          </li>
-        </ul>
-        <!-- Divider -->
-        <hr class="my-3" />
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0" />
+
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item active">
+    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span></a
+    >
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Iterations</div>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a
+      class="nav-link collapsed"
+      href="#"
+      data-toggle="collapse"
+      data-target="#collapseTwo"
+      aria-expanded="true"
+      aria-controls="collapseTwo"
+    >
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Iterations</span>
+    </a>
+    <div
+      id="collapseTwo"
+      class="collapse"
+      aria-labelledby="headingTwo"
+      data-parent="#accordionSidebar"
+    >
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Actions:</h6>
+        <a class="collapse-item" routerLink="/iterations">Manage</a>
       </div>
     </div>
-  </div>
-</nav>
+  </li>
+</ul>
+<!-- End of Sidebar -->

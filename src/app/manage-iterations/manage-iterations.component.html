@@ -1,53 +1,24 @@
-<!-- Header -->
-<!-- Header -->
-<div class="header bg-primary pb-6">
-  <div class="container-fluid">
-    <div class="header-body">
-      <div class="row align-items-center py-4">
-        <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Manage Iterations</h6>
-          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item">
-                <a href="#"><em class="fas fa-home"></em></a>
-              </li>
-              <li class="breadcrumb-item"><a href="#">Iterations</a></li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Manage Iterations</h1>
 </div>
-<!-- Page content -->
-<div class="container-fluid mt--6">
-  <div class="row justify-content-center">
-    <div class="col">
-      <div class="card">
-        <div class="card-header bg-transparent">
-          <h3 class="mb-0">Iterations</h3>
-        </div>
-        <div class="card-body">
-          <div class="row icon-examples">
-            <div
-              *ngFor="let iteration of iterationsToHtml.iterations; index as i"
-              class="col-lg-3 col-md-6"
-            >
-              <button
-                type="button"
-                class="btn-icon-clipboard"
-                data-clipboard-text="active-40"
-                title="Copy to clipboard"
-                (click)="goToIterationDetails(iteration.id)"
-              >
-                <div>
-                  <em class="ni ni-active-40"></em>
-                  <span>{{ iteration.name }}</span>
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
+
+<div class="row">
+  <div
+    *ngFor="let iteration of iterationsToHtml.iterations; index as i"
+    class="col-lg-6"
+  >
+    <!-- Collapsable Card Example -->
+    <div class="card shadow mb-4" (click)="goToIterationDetails(iteration.id)">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+          {{ iteration.name }}
+        </h6>
+      </div>
+      <div class="card-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ipsum et
+        nemo ipsam omnis, atque laboriosam, sint facere harum veniam eum porro
+        qui mollitia quasi, assumenda sed neque nihil corrupti?
       </div>
     </div>
   </div>

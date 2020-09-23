@@ -39,7 +39,7 @@
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.prod.ts"
                             }],
-                            "baseHref": "",
+                            "baseHref": "/Evidence-Based-Management/",
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,

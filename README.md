@@ -3,6 +3,7 @@
 
 ![Angular CI](https://github.com/leolplex/Evidence-Based-Management/workflows/Angular%20CI/badge.svg)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=alert_status)](https://sonarcloud.io/dashboard?id=evidence-based-management)
 # EvidenceBasedManagement
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.

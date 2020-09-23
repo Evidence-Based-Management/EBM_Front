@@ -1,39 +1,39 @@
 {
     "iterations": [{
             "id": "1",
-            "name": "Iteración 1"
+            "name": "Iteration 1"
         },
         {
             "id": "2",
-            "name": "Iteración 2"
+            "name": "Iteration 2"
         },
         {
             "id": "3",
-            "name": "Iteración 3"
+            "name": "Iteration 3"
         },
         {
             "id": "4",
-            "name": "Iteración 4"
+            "name": "Iteration 4"
         },
         {
             "id": "5",
-            "name": "Iteración 5"
+            "name": "Iteration 5"
         },
         {
             "id": "6",
-            "name": "Iteración 6"
+            "name": "Iteration 6"
         },
         {
             "id": "7",
-            "name": "Iteración 7"
+            "name": "Iteration 7"
         },
         {
             "id": "8",
-            "name": "Iteración 8"
+            "name": "Iteration 8"
         }, 
         {
             "id": "9",
-            "name": "Iteración 9"
+            "name": "Iteration 9"
         }
 
     ]

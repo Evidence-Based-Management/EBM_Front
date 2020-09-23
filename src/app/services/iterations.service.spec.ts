@@ -103,8 +103,6 @@ describe('IterationsService', () => {
     service.getIterationById('-1').subscribe(
       (result) => console.log('good', result),
       (err) => {
-        console.log(err);
-
         expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
       }
     );

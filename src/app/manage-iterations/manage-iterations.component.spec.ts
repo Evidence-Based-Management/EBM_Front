@@ -4,6 +4,7 @@ import { ManageIterationsComponent } from './manage-iterations.component';
 import { Iteration, Iterations } from '../Interfaces/iterations';
 import { IterationsService } from '../services/iterations.service';
 import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 import { Router } from '@angular/router';
 
@@ -135,5 +136,25 @@ describe('ManageIterationsComponent', () => {
     // // Assert
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/iteration', '1']);
     expect(navArgs).toEqual(['/iteration', '1']);
+  });
+
+  it('should has 3 html cards', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterations').and.returnValue(
+      of({
+        iterations: [
+          { id: '-1', name: 'Fake' },
+          { id: '-2', name: 'Fake 2' },
+          { id: '-3', name: 'Fake 3' },
+        ],
+      })
+    );
+    fixture.detectChanges();
+
+    // Act
+    const result = fixture.debugElement.queryAll(By.css('.card'));
+
+    // Assert
+    expect(result.length).toBe(3);
   });
 });

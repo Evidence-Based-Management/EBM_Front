@@ -10493,7 +10493,7 @@ a:focus {
     border: 0;
     font-weight: 900;
     content: '\f107';
-    font-family: 'Font Awesome 5 Free, sans-serif';
+    font-family: 'Font Awesome 5 Free', sans-serif;
   }
   .sidebar .nav-item .nav-link[data-toggle="collapse"].collapsed::after {
     content: '\f105';
@@ -10751,7 +10751,7 @@ a:focus {
   line-height: 51px;
   font-weight: 900;
   content: '\f107';
-  font-family: 'Font Awesome 5 Free, sans-serif';
+  font-family: 'Font Awesome 5 Free', sans-serif;
   color: #d1d3e2;
 }
 

@@ -34,11 +34,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## View sonarqube results
 To view the sonarqube result please visit:  [Sonarqube report](https://sonarcloud.io/dashboard?id=evidence-based-management&branch=master)
 
-## Use Angular Deploy gh-pages Actions to deploy GitHub Pages
+## Deploy to GitHub Pages
 
-To get more infor [Angular Deploy gh-pages](https://github.com/marketplace/actions/angular-deploy-gh-pages-actions).
+To get more information [Deploy to GitHub Pages gh-pages](https://github.com/marketplace/actions/deploy-to-github-pages).
 
-![Github Actions](https://github.com/AhsanAyaz/angular-deploy-gh-pages-actions/blob/master/assets/github-actions.png)
+![Github Actions](https://github.com/JamesIves/github-pages-deploy-action/raw/dev/assets/icon.png)
 
 To view the result: [Evidence Based Management](https://leolplex.github.io/Evidence-Based-Management/)
 

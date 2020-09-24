@@ -21,18 +21,16 @@ describe('IterationComponent', () => {
           provide: IterationsService,
           useValue: {
             getIterationById: () =>
-              of({
-                iterations: [
-                  {
-                    id: '-1',
-                    name: 'Fake',
-                    goal: 'sprint goal -1',
-                    startDate: '01/01/2020',
-                    endDate: '01/31/2020',
-                    status: 'Completed',
-                  },
-                ],
-              }),
+              of([
+                {
+                  id: '-1',
+                  name: 'Fake',
+                  goal: 'sprint goal -1',
+                  startDate: '01/01/2020',
+                  endDate: '01/31/2020',
+                  status: 'Completed',
+                },
+              ]),
           },
         },
       ],
@@ -84,19 +82,16 @@ describe('IterationComponent', () => {
 
   it('should get an iteration - getIterationById()', () => {
     // Arrange
-    const iterationFake = {
-      iterations: [
-        {
-          id: '-1',
-          name: 'Fake',
-          goal: 'sprint goal -1',
-          startDate: '01/01/2020',
-          endDate: '01/31/2020',
-          status: 'Completed',
-        },
-      ],
-    };
-
+    const iterationFake = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        status: 'Completed',
+      },
+    ];
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFake)
     );
@@ -106,6 +101,6 @@ describe('IterationComponent', () => {
     component.getIteration();
 
     // Assert
-    expect(component.iteration).toEqual(iterationFake.iterations[0]);
+    expect(component.iteration).toEqual(iterationFake[0]);
   });
 });

@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Iteration } from 'src/app/Interfaces/iterations';
 import { IterationsService } from 'src/app/services/iterations.service';
+import { IterationCardComponent } from '../iteration-card/iteration-card.component';
 
 import { IterationComponent } from './iteration.component';
 
@@ -14,7 +15,7 @@ describe('IterationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IterationComponent],
+      declarations: [IterationComponent, IterationCardComponent],
       imports: [AppRoutingModule],
       providers: [
         {

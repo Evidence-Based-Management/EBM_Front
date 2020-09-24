@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 import { Router } from '@angular/router';
+import { IterationCardComponent } from './iteration-card/iteration-card.component';
 
 describe('ManageIterationsComponent', () => {
   let component: ManageIterationsComponent;
@@ -16,7 +17,7 @@ describe('ManageIterationsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManageIterationsComponent],
+      declarations: [ManageIterationsComponent, IterationCardComponent],
       providers: [
         {
           provide: IterationsService,

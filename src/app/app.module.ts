@@ -9,6 +9,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageIterationsComponent } from './manage-iterations/manage-iterations.component';
 import { IterationComponent } from './manage-iterations/iteration/iteration.component';
 import { IterationCardComponent } from './manage-iterations/iteration-card/iteration-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,13 @@ import { IterationCardComponent } from './manage-iterations/iteration-card/itera
     IterationComponent,
     IterationCardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

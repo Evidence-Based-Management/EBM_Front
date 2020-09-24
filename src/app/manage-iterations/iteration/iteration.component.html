@@ -9,68 +9,293 @@
         <h6 class="m-0 font-weight-bold text-primary">Key Value Measures</h6>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
-          <table
-            class="table table-bordered"
-            id="dataTable"            
+        <mat-tab-group>
+          <mat-tab label="Current Value (CV)">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable">
+                <caption>
+                  Iterations
+                </caption>
+                <tbody>
+                  <tr>
+                    <th rowspan="6" id="name">Current Value (CV)</th>
+                  </tr>
+                  <tr>
+                    <td>Ingresos por empleado</td>
+                    <td>
+                      La relación (ingresos brutos / número de empleados) es un
+                      indicador competitivo clave dentro de una industria. Esto
+                      varía significativamente según la industria.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Relación de costo del producto</td>
+                    <td>
+                      Gastos y costos totales para los productos / sistemas que
+                      se miden, incluidos los costos operativos en comparación
+                      con los ingresos.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Satisfacción del empleado</td>
+                    <td>
+                      Alguna forma de análisis de sentimientos para ayudar a
+                      medir el compromiso, la energía y el entusiasmo de los
+                      empleados.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Satisfacción del cliente</td>
+                    <td>
+                      Alguna forma de análisis de sentimientos para ayudar a
+                      medir el compromiso y la satisfacción del cliente con el
+                      producto.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Índice de uso del cliente</td>
+                    <td>
+                      Medición del uso, por función, para ayudar a inferir el
+                      grado en que los clientes encuentran útil el producto y si
+                      el uso real cumple con las expectativas sobre el tiempo
+                      que los usuarios deberían tomar con una función
+                    </td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </mat-tab>
+          <mat-tab label="Time To Market (T2M)">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable">
+                <caption>
+                  Iterations
+                </caption>
+                <tbody>
+                  <tr>
+                    <th rowspan="8" id="name">Time To Market (T2M)</th>
+                  </tr>
+                  <tr>
+                    <td>Frecuencia de construcción e integración</td>
+                    <td>
+                      El número de compilaciones integradas y probadas por
+                      período de tiempo. Para un equipo que lanza con frecuencia
+                      o de forma continua, esta medida es reemplazada por
+                      medidas de liberación reales.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Frecuencia de lanzamiento</td>
+                    <td>
+                      El número de lanzamientos por período de tiempo, p. Ej. de
+                      forma continua, diaria, semanal, mensual, trimestral, etc.
+                      Esto ayuda a reflejar el tiempo necesario para satisfacer
+                      al cliente con productos nuevos y competitivos.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Período de estabilización de lanzamiento</td>
+                    <td>
+                      El tiempo que se dedica a corregir los problemas del
+                      producto entre el momento en que los desarrolladores dicen
+                      que está listo para su lanzamiento y el momento en que
+                      realmente se lo lanza a los clientes. Esto ayuda a
+                      representar el impacto de las malas prácticas de
+                      desarrollo y el diseño subyacente y la base del código.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Tiempo estimado o promedio para reparar</td>
+                    <td>
+                      La cantidad de tiempo promedio que transcurre desde que se
+                      detecta un error hasta que se corrige. Esto ayuda a
+                      revelar la eficiencia de una organización para corregir un
+                      error.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Tiempo de ciclo (Cycle time)</td>
+                    <td>
+                      La cantidad de tiempo desde que comienza el trabajo en un
+                      lanzamiento hasta el momento en que se libera realmente.
+                      Esta medida ayuda a reflejar la capacidad de una
+                      organización para llegar a sus clientes.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Tiempo de espera (Lead Time)</td>
+                    <td>
+                      La cantidad de tiempo desde que se propone una idea o se
+                      forma una hipótesis hasta que un cliente puede
+                      beneficiarse de esa idea. Esta medida puede variar según
+                      el cliente y el producto. Es un factor que contribuye a la
+                      satisfacción del cliente.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Tiempo de aprender (Time-To-Learn)</td>
+                    <td>
+                      El tiempo total necesario para esbozar una idea o mejora,
+                      construirla, entregarla a los usuarios y aprender de su
+                      uso.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </mat-tab>
+          <mat-tab label="Ability To Innovate (A2I)">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable">
+                <caption>
+                  Iterations
+                </caption>
+                <tbody>
+                  <tr>
+                    <th rowspan="10" id="name">Ability To Innovate (A2I)</th>
+                  </tr>
+                  <tr>
+                    <td>Índice de uso de funciones</td>
+                    <td>
+                      Medición de características del producto que se utilizan
+                      con frecuencia. Esto ayuda a capturar características que
+                      rara vez o nunca se utilizan.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Tasa de innovación</td>
+                    <td>
+                      El porcentaje de esfuerzo o costo invertido en capacidades
+                      de nuevos productos, dividido por el esfuerzo o costo
+                      total del producto. Esto proporciona información sobre la
+                      capacidad de la organización para ofrecer nuevas
+                      capacidades de productos.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Tendencias de defectos</td>
+                    <td>
+                      Medición del cambio de defectos desde la última medición.
+                      Un defecto es todo aquello que reduce el valor del
+                      producto para un cliente, un usuario o para la propia
+                      organización. Los defectos son generalmente cosas que no
+                      funcionan como se esperaba.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Índice sobre el producto</td>
+                    <td>
+                      El porcentaje de tiempo que los equipos dedican a trabajar
+                      en el producto y el valor.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Índice de versiones instaladas</td>
+                    <td>
+                      El número de versiones de un producto que se admiten
+                      actualmente. Esto refleja el esfuerzo que la organización
+                      dedica a respaldar y mantener versiones anteriores de
+                      software.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Deuda técnica</td>
+                    <td>
+                      Un concepto en programación que refleja el trabajo
+                      adicional de desarrollo y prueba que surge cuando las
+                      soluciones “rápidas y sucias” dan como resultado una
+                      reparación posterior. Crea un impacto indeseable en la
+                      entrega de valor y un aumento evitable de desperdicio y
+                      riesgo.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Tendencias de incidentes de producción</td>
+                    <td>
+                      La cantidad de veces que se interrumpió al equipo de
+                      desarrollo para solucionar un problema en un producto
+                      instalado. El número y la frecuencia de los incidentes de
+                      producción pueden ayudar a indicar la estabilidad del
+                      producto.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Ramas de código activas, tiempo dedicado a fusionar código
+                      entre ramas
+                    </td>
+                    <td>
+                      Estas medidas son como el Índice de versiones instaladas,
+                      ya que las diferentes versiones implementadas generalmente
+                      tienen ramas de código separadas.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Tiempo dedicado al cambio de contexto</td>
+                    <td>
+                      El número de reuniones por día por persona y el número de
+                      veces al día que los miembros del equipo son interrumpidos
+                      para ayudar a personas ajenas al equipo pueden dar una
+                      idea simple de la magnitud del problema.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div></mat-tab
           >
-            <caption>
-              Iterations
-            </caption>
-            <thead>
-              <tr>
-                <th id="name">Name</th>
-                <th id="position">Position</th>
-                <th id="office">Office</th>
-                <th id="age">Age</th>
-                <th id="start_date">Start date</th>
-                <th id="salay">Salary</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-              </tr>
-              <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
-              </tr>
-              <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-                <td>2009/01/12</td>
-                <td>$86,000</td>
-              </tr>
-              <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>22</td>
-                <td>2012/03/29</td>
-                <td>$433,060</td>
-              </tr>
-              <tr>
-                <td>Airi Satou</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>33</td>
-                <td>2008/11/28</td>
-                <td>$162,700</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          <mat-tab label="Unrealized Value (UV)">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable">
+                <caption>
+                  Iterations
+                </caption>
+                <tbody>
+                  <tr>
+                    <th rowspan="3" id="name">Unrealized Value (UV)</th>
+                  </tr>
+                  <tr>
+                    <td>Cuota de mercado</td>
+                    <td>
+                      El porcentaje relativo del mercado controlado por el
+                      producto.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>Brecha de satisfacción del cliente o usuario</td>
+                    <td>
+                      La relación (ingresos brutos / número de empleados) es un
+                      indicador competitivo clave dentro de una industria. Esto
+                      varía significativamente según la industria.
+                    </td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div></mat-tab
+          >
+        </mat-tab-group>
       </div>
     </div>
   </div>

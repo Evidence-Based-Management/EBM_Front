@@ -22,7 +22,18 @@ describe('ManageIterationsComponent', () => {
           provide: IterationsService,
           useValue: {
             getIterations: () =>
-              of({ iterations: [{ id: '-1', name: 'Fake' }] }),
+              of({
+                iterations: [
+                  {
+                    id: '-1',
+                    name: 'Fake',
+                    goal: 'sprint goal -1',
+                    startDate: '01/01/2020',
+                    endDate: '01/31/2020',
+                    status: 'Completed',
+                  },
+                ],
+              }),
           },
         },
         { provide: Router, useValue: routerSpy },

@@ -39,6 +39,10 @@ export class ManageIterationsComponent implements OnInit {
     return {
       id: iteration.iterations[index].id.toString(),
       name: iteration.iterations[index].name,
+      goal: iteration.iterations[index].goal,
+      startDate: iteration.iterations[index].startDate,
+      endDate: iteration.iterations[index].endDate,
+      status: iteration.iterations[index].status,
     };
   }
 

@@ -77,8 +77,22 @@ describe('ManageIterationsComponent', () => {
     // Arrange
     const fakeIterations: Iterations = {
       iterations: [
-        { id: '-1', name: 'Fake' },
-        { id: '-2', name: 'Fake 2' },
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/31/2020',
+          status: 'Completed',
+        },
+        {
+          id: '-2',
+          name: 'Fake 2',
+          goal: 'sprint goal -2',
+          startDate: '02/01/2020',
+          endDate: '02/28/2020',
+          status: 'Completed',
+        },
       ],
     };
 
@@ -93,8 +107,22 @@ describe('ManageIterationsComponent', () => {
     // Arrange
     const fakeIterations: Iterations = {
       iterations: [
-        { id: '-1', name: 'Fake' },
-        { id: '-2', name: 'Fake 2' },
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/31/2020',
+          status: 'Completed',
+        },
+        {
+          id: '-2',
+          name: 'Fake 2',
+          goal: 'sprint goal -2',
+          startDate: '01/01/2020',
+          endDate: '02/28/2020',
+          status: 'Completed',
+        },
       ],
     };
 
@@ -111,8 +139,22 @@ describe('ManageIterationsComponent', () => {
     // Arrange
     const fakeIterations: Iterations = {
       iterations: [
-        { id: '-1', name: 'Fake' },
-        { id: '-2', name: 'Fake 2' },
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/31/2020',
+          status: 'Completed',
+        },
+        {
+          id: '-2',
+          name: 'Fake 2',
+          goal: 'sprint goal -2',
+          startDate: '01/01/2020',
+          endDate: '02/28/2020',
+          status: 'Completed',
+        },
       ],
     };
 
@@ -143,9 +185,30 @@ describe('ManageIterationsComponent', () => {
     spyOn(iterationsService, 'getIterations').and.returnValue(
       of({
         iterations: [
-          { id: '-1', name: 'Fake' },
-          { id: '-2', name: 'Fake 2' },
-          { id: '-3', name: 'Fake 3' },
+          {
+            id: '-1',
+            name: 'Fake',
+            goal: 'sprint goal -1',
+            startDate: '01/01/2020',
+            endDate: '01/28/2020',
+            status: 'Completed',
+          },
+          {
+            id: '-2',
+            name: 'Fake 2',
+            goal: 'sprint goal -2',
+            startDate: '02/01/2020',
+            endDate: '02/28/2020',
+            status: 'Completed',
+          },
+          {
+            id: '-3',
+            name: 'Fake 3',
+            goal: 'sprint goal -3',
+            startDate: '03/01/2020',
+            endDate: '03/28/2020',
+            status: 'Completed',
+          },
         ],
       })
     );
@@ -156,5 +219,113 @@ describe('ManageIterationsComponent', () => {
 
     // Assert
     expect(result.length).toBe(3);
+  });
+
+  it('should have 1 html card Completed', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterations').and.returnValue(
+      of({
+        iterations: [
+          {
+            id: '-1',
+            name: 'Fake',
+            goal: 'sprint goal -1',
+            startDate: '01/01/2020',
+            endDate: '01/28/2020',
+            status: 'Completed',
+          },
+        ],
+      })
+    );
+    fixture.detectChanges();
+
+    // Act
+    const result = fixture.debugElement.queryAll(
+      By.css('.border-bottom-success')
+    );
+
+    // Assert
+    expect(result.length).toBe(1);
+  });
+
+  it('should have 1 html card Fail', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterations').and.returnValue(
+      of({
+        iterations: [
+          {
+            id: '-1',
+            name: 'Fake',
+            goal: 'sprint goal -1',
+            startDate: '01/01/2020',
+            endDate: '01/28/2020',
+            status: 'Fail',
+          },
+        ],
+      })
+    );
+    fixture.detectChanges();
+
+    // Act
+    const result = fixture.debugElement.queryAll(
+      By.css('.border-bottom-danger')
+    );
+
+    // Assert
+    expect(result.length).toBe(1);
+  });
+
+  it('should have 1 html card In_Progress', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterations').and.returnValue(
+      of({
+        iterations: [
+          {
+            id: '-1',
+            name: 'Fake',
+            goal: 'sprint goal -1',
+            startDate: '01/01/2020',
+            endDate: '01/28/2020',
+            status: 'In_Progress',
+          },
+        ],
+      })
+    );
+    fixture.detectChanges();
+
+    // Act
+    const result = fixture.debugElement.queryAll(
+      By.css('.border-bottom-warning')
+    );
+
+    // Assert
+    expect(result.length).toBe(1);
+  });
+
+  it('should have 1 html card empty status', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterations').and.returnValue(
+      of({
+        iterations: [
+          {
+            id: '-1',
+            name: 'Fake',
+            goal: 'sprint goal -1',
+            startDate: '01/01/2020',
+            endDate: '01/28/2020',
+            status: '',
+          },
+        ],
+      })
+    );
+    fixture.detectChanges();
+
+    // Act
+    const result = fixture.debugElement.queryAll(
+      By.css('.border-bottom-primary')
+    );
+
+    // Assert
+    expect(result.length).toBe(1);
   });
 });

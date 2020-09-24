@@ -1,39 +1,75 @@
 {
     "iterations": [{
             "id": "1",
-            "name": "Iteration 1"
+            "name": "Iteration 1",
+            "goal": "Set up deployment pipeline & release an empty site to production",
+            "startDate":"01/01/2020",
+            "endDate":"01/31/2020",
+            "status": "Completed"
         },
         {
             "id": "2",
-            "name": "Iteration 2"
+            "name": "Iteration 2",
+            "goal": "Show top-selling products on the homepage",
+            "startDate":"02/01/2020",
+            "endDate":"02/29/2020",
+            "status": "Fail"
         },
         {
             "id": "3",
-            "name": "Iteration 3"
+            "name": "Iteration 3",
+            "goal": "A visitor can order a product",
+            "startDate":"03/01/2020",
+            "endDate":"03/31/2020",
+            "status": "Completed"
         },
         {
             "id": "4",
-            "name": "Iteration 4"
+            "name": "Iteration 4",
+            "goal": "Extend product catalog to more products",
+            "startDate":"04/01/2020",
+            "endDate":"04/30/2020",
+            "status": "Completed"
         },
         {
             "id": "5",
-            "name": "Iteration 5"
+            "name": "Iteration 5",
+            "goal": "Secure enterprise-class quality for web client after recent customer complaints.",
+            "startDate":"05/01/2020",
+            "endDate":"05/31/2020",
+            "status": "Completed"
         },
         {
             "id": "6",
-            "name": "Iteration 6"
+            "name": "Iteration 6",
+            "goal": "Refactor our old login interface to achieve 25% better conversion rate on the",
+            "startDate":"06/01/2020",
+            "endDate":"06/30/2020",
+            "status": "Completed"
         },
         {
             "id": "7",
-            "name": "Iteration 7"
+            "name": "Iteration 7",
+            "goal": "Improve retention rate by providing a better feedback mechanism.",
+            "startDate":"07/01/2020",
+            "endDate":"07/31/2020",
+            "status": "Completed"
         },
         {
             "id": "8",
-            "name": "Iteration 8"
+            "name": "Iteration 8",
+            "goal": "Streamline purchasing process to enable an increase in conversion rates.",
+            "startDate":"08/01/2020",
+            "endDate":"08/31/2020",
+            "status": "Completed"
         }, 
         {
             "id": "9",
-            "name": "Iteration 9"
+            "name": "Iteration 9",
+            "goal": "Increase page load time by 1%.",
+            "startDate":"09/01/2020",
+            "endDate":"09/30/2020",
+            "status": "In_Progress"
         }
 
     ]

@@ -14,7 +14,16 @@ describe('IterationsService', () => {
 
   it('should get all iterations with values', () => {
     const expectedIterations: Iterations = {
-      iterations: [{ id: '0', name: 'Sprint 1' }],
+      iterations: [
+        {
+          id: '0',
+          name: 'Sprint 1',
+          goal: 'sprint goal 0',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          status: 'Completed',
+        },
+      ],
     };
     httpClientSpy.get.and.returnValue(of(expectedIterations));
 
@@ -46,9 +55,30 @@ describe('IterationsService', () => {
   it('should get a iteration by id', () => {
     const expectedIterations: Iterations = {
       iterations: [
-        { id: '0', name: 'Sprint 1' },
-        { id: '-1', name: 'Sprint -1' },
-        { id: '-2', name: 'Sprint -2' },
+        {
+          id: '0',
+          name: 'Sprint 1',
+          goal: 'sprint goal 0',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          status: 'Completed',
+        },
+        {
+          id: '-1',
+          name: 'Sprint -1',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          status: 'Completed',
+        },
+        {
+          id: '-2',
+          name: 'Sprint -2',
+          goal: 'sprint goal -2',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          status: 'Completed',
+        },
       ],
     };
     httpClientSpy.get.and.returnValue(of(expectedIterations));

@@ -1,0 +1,27 @@
+<div
+  *ngIf="iteration"
+  [className]="
+    iteration.status == 'Completed'
+      ? 'card border-bottom-success shadow h-100 py-2'
+      : iteration.status == 'Fail'
+      ? 'card border-bottom-danger shadow h-100 py-2'
+      : iteration.status == 'In_Progress'
+      ? 'card border-bottom-warning shadow h-100 py-2'
+      : 'card border-bottom-primary shadow h-100 py-2'
+  "
+  style="cursor: pointer"
+>
+  <div class="card-body">
+    <div class="row no-gutters align-items-center">
+      <div class="col mr-2">
+        <div class="h4 mb-0 font-weight-bold text-gray-800">
+          {{ iteration.name }}
+        </div>
+        <blockquote class="blockquote">
+          <p class="mb-0">Goal:</p>
+          <footer class="blockquote-footer">{{ iteration.goal }}</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,7 +31,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
-      - name: copy file
+      - name: Copy file index.html to 404.html
         uses: canastro/copy-file-action@master
         with:
           source: "docs/index.html"

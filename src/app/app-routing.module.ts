@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'iterations', component: ManageIterationsComponent },
   { path: 'iteration/:id', component: IterationComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', component: AppComponent },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({

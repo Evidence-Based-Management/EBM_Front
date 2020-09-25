@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Iteration } from 'src/app/Interfaces/iterations';
@@ -16,7 +18,7 @@ describe('IterationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [IterationComponent, IterationCardComponent],
-      imports: [AppRoutingModule],
+      imports: [AppRoutingModule, BrowserAnimationsModule, MatTabsModule],
       providers: [
         {
           provide: IterationsService,

@@ -1,239 +1,274 @@
-<div class="row">
-  <div class="col-12 mb-4">
-    <app-iteration-card [iteration]="iteration"></app-iteration-card>
+<div *ngIf="iteration">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <app-iteration-card [iteration]="iteration"></app-iteration-card>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div *ngIf="iteration" class="col-sm-12">
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h4 class="m-0 font-weight-bold text-primary">Key Value Measures</h4>
-      </div>
-      <div class="card-body">
-        <mat-tab-group>
-          <mat-tab label="Current Value (CV)">
-            <key-value-mesures
-              id="Revenue_Per_Employee"
-              name="Ingresos por empleado"
-              [value]="iteration.KVM.CV.Revenue_Per_Employee"
-              helpText="La relación (ingresos brutos / número de empleados) es un
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h4 class="m-0 font-weight-bold text-primary">Key Value Measures</h4>
+        </div>
+        <div class="card-body">
+          <mat-tab-group>
+            <mat-tab label="Current Value (CV)">
+              <key-value-mesures
+                id="Revenue_Per_Employee"
+                name="Ingresos por empleado"
+                [value]="iteration.KVM.CV.Revenue_Per_Employee"
+                helpText="La relación (ingresos brutos / número de empleados) es un
                         indicador competitivo clave dentro de una industria. Esto
-                         varía significativamente según la industria."
-            ></key-value-mesures>
+                        varía significativamente según la industria."
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Product_Cost_Ratio"
-              name="Relación de costo del producto"
-              [value]="iteration.KVM.CV.Product_Cost_Ratio"
-              helpText="Gastos y costos totales para los productos / sistemas que se miden, incluidos los costos operativos en comparación con los ingresos."
-            ></key-value-mesures>
+              <key-value-mesures
+                id="Product_Cost_Ratio"
+                name="Relación de costo del producto"
+                [value]="iteration.KVM.CV.Product_Cost_Ratio"
+                helpText="Gastos y costos totales para los productos / sistemas que se miden, incluidos los costos operativos en comparación con los ingresos."
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Employee_Satisfaction"
-              name="Satisfacción del empleado"
-              [value]="iteration.KVM.CV.Employee_Satisfaction"
-              helpText="Alguna forma de análisis de sentimientos para ayudar a medir
-                      el compromiso, la energía y el entusiasmo de los empleados."
-            ></key-value-mesures>
+              <key-value-mesures
+                id="Employee_Satisfaction"
+                name="Satisfacción del empleado"
+                [value]="iteration.KVM.CV.Employee_Satisfaction"
+                helpText="Alguna forma de análisis de sentimientos para ayudar a medir
+              el compromiso, la energía y el entusiasmo de los empleados."
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Customer_Satisfaction"
-              name="Satisfacción del cliente"
-              [value]="iteration.KVM.CV.Customer_Satisfaction"
-              helpText="Alguna forma de análisis de sentimientos para ayudar a medir
-          el compromiso y la satisfacción del cliente con el producto."
-            ></key-value-mesures>
+              <key-value-mesures
+                id="Customer_Satisfaction"
+                name="Satisfacción del cliente"
+                [value]="iteration.KVM.CV.Customer_Satisfaction"
+                helpText="Alguna forma de análisis de sentimientos para ayudar a medir
+              el compromiso y la satisfacción del cliente con el producto."
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Customer_Usage_Index"
-              name="Índice de uso del cliente"
-              [value]="iteration.KVM.CV.Customer_Usage_Index"
-              helpText="Medición del uso, por función, para ayudar a inferir el
-                  grado en que los clientes encuentran útil el producto y si
+              <key-value-mesures
+                id="Customer_Usage_Index"
+                name="Índice de uso del cliente"
+                [value]="iteration.KVM.CV.Customer_Usage_Index"
+                helpText="Medición del uso, por función, para ayudar a inferir el
+              grado en que los clientes encuentran útil el producto y si
                   el uso real cumple con las expectativas sobre el tiempo que
                   los usuarios deberían tomar con una función"
-            ></key-value-mesures>
-          </mat-tab>
-          <mat-tab label="Time To Market (T2M)">
-            <key-value-mesures
-              id="Build_And_Integration_Frequency"
-              name="Frecuencia de construcción e integración"
-              [value]="iteration.KVM.T2M.Build_And_Integration_Frequency"
-              helpText=" El número de compilaciones integradas y probadas por período
+                [status]="iteration.status"
+              ></key-value-mesures>
+            </mat-tab>
+            <mat-tab label="Time To Market (T2M)">
+              <key-value-mesures
+                id="Build_And_Integration_Frequency"
+                name="Frecuencia de construcción e integración"
+                [value]="iteration.KVM.T2M.Build_And_Integration_Frequency"
+                helpText=" El número de compilaciones integradas y probadas por período
               de tiempo. Para un equipo que lanza con frecuencia o de
               forma continua, esta medida es reemplazada por medidas de
               liberación reales."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Release_Frequency"
-              name="Frecuencia de lanzamiento"
-              [value]="iteration.KVM.T2M.Release_Frequency"
-              helpText="El número de lanzamientos por período de tiempo, p. Ej. de
+              <key-value-mesures
+                id="Release_Frequency"
+                name="Frecuencia de lanzamiento"
+                [value]="iteration.KVM.T2M.Release_Frequency"
+                helpText="El número de lanzamientos por período de tiempo, p. Ej. de
             forma continua, diaria, semanal, mensual, trimestral, etc.
             Esto ayuda a reflejar el tiempo necesario para satisfacer al
             cliente con productos nuevos y competitivos."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Release_Stabilization_Period"
-              name="Período de estabilización de lanzamiento"
-              [value]="iteration.KVM.T2M.Release_Stabilization_Period"
-              helpText=" El tiempo que se dedica a corregir los problemas del
-          producto entre el momento en que los desarrolladores dicen
+              <key-value-mesures
+                id="Release_Stabilization_Period"
+                name="Período de estabilización de lanzamiento"
+                [value]="iteration.KVM.T2M.Release_Stabilization_Period"
+                helpText=" El tiempo que se dedica a corregir los problemas del
+              producto entre el momento en que los desarrolladores dicen
           que está listo para su lanzamiento y el momento en que
           realmente se lo lanza a los clientes. Esto ayuda a
           representar el impacto de las malas prácticas de desarrollo
           y el diseño subyacente y la base del código."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Mean_Time_To_Repair"
-              name="Tiempo estimado o promedio para reparar"
-              [value]="iteration.KVM.T2M.Mean_Time_To_Repair"
-              helpText=" La cantidad de tiempo promedio que transcurre desde que se
-              detecta un error hasta que se corrige. Esto ayuda a revelar
-              la eficiencia de una organización para corregir un error."
-            ></key-value-mesures>
+              <key-value-mesures
+                id="Mean_Time_To_Repair"
+                name="Tiempo estimado o promedio para reparar"
+                [value]="iteration.KVM.T2M.Mean_Time_To_Repair"
+                helpText=" La cantidad de tiempo promedio que transcurre desde que se
+            detecta un error hasta que se corrige. Esto ayuda a revelar
+            la eficiencia de una organización para corregir un error."
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Cycle_Time"
-              name="Tiempo de ciclo (Cycle time)"
-              [value]="iteration.KVM.T2M.Cycle_Time"
-              helpText=" La cantidad de tiempo desde que comienza el trabajo en un
-            lanzamiento hasta el momento en que se libera realmente.
+              <key-value-mesures
+                id="Cycle_Time"
+                name="Tiempo de ciclo (Cycle time)"
+                [value]="iteration.KVM.T2M.Cycle_Time"
+                helpText=" La cantidad de tiempo desde que comienza el trabajo en un
+              lanzamiento hasta el momento en que se libera realmente.
             Esta medida ayuda a reflejar la capacidad de una
             organización para llegar a sus clientes."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Lead_Time"
-              name="Tiempo de espera (Lead Time)"
-              [value]="iteration.KVM.T2M.Lead_Time"
-              helpText=" La cantidad de tiempo desde que se propone una idea o se
-          forma una hipótesis hasta que un cliente puede beneficiarse
+              <key-value-mesures
+                id="Lead_Time"
+                name="Tiempo de espera (Lead Time)"
+                [value]="iteration.KVM.T2M.Lead_Time"
+                helpText=" La cantidad de tiempo desde que se propone una idea o se
+              forma una hipótesis hasta que un cliente puede beneficiarse
           de esa idea. Esta medida puede variar según el cliente y el
           producto. Es un factor que contribuye a la satisfacción del
           cliente."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Time_To_Learn"
-              name="Tiempo de aprender (Time-To-Learn)"
-              [value]="iteration.KVM.T2M.Time_To_Learn"
-              helpText=" El tiempo total necesario para esbozar una idea o mejora,
-        construirla, entregarla a los usuarios y aprender de su uso."
-            ></key-value-mesures>
-          </mat-tab>
-          <mat-tab label="Ability To Innovate (A2I)">
-            <key-value-mesures
-              id="Innovation_Rate"
-              name="Tasa de innovación"
-              [value]="iteration.KVM.A2I.Innovation_Rate"
-              helpText="El porcentaje de esfuerzo o costo invertido en capacidades de nuevos productos, 
-              dividido por el esfuerzo o costo total del producto. Esto proporciona información sobre la capacidad de la organización para ofrecer nuevas capacidades de productos."
-            ></key-value-mesures>
+              <key-value-mesures
+                id="Time_To_Learn"
+                name="Tiempo de aprender (Time-To-Learn)"
+                [value]="iteration.KVM.T2M.Time_To_Learn"
+                helpText=" El tiempo total necesario para esbozar una idea o mejora,
+              construirla, entregarla a los usuarios y aprender de su uso."
+                [status]="iteration.status"
+              ></key-value-mesures>
+            </mat-tab>
+            <mat-tab label="Ability To Innovate (A2I)">
+              <key-value-mesures
+                id="Innovation_Rate"
+                name="Tasa de innovación"
+                [value]="iteration.KVM.A2I.Innovation_Rate"
+                helpText="El porcentaje de esfuerzo o costo invertido en capacidades de nuevos productos, 
+            dividido por el esfuerzo o costo total del producto. Esto proporciona información sobre la capacidad de la organización para ofrecer nuevas capacidades de productos."
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Feature_Usage_Index"
-              name="Índice de uso de funciones"
-              [value]="iteration.KVM.A2I.Feature_Usage_Index"
-              helpText="Medición de características del producto que se utilizan
+              <key-value-mesures
+                id="Feature_Usage_Index"
+                name="Índice de uso de funciones"
+                [value]="iteration.KVM.A2I.Feature_Usage_Index"
+                helpText="Medición de características del producto que se utilizan
             con frecuencia. Esto ayuda a capturar características que
             rara vez o nunca se utilizan."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Defect_Trends"
-              name="Tendencias de defectos"
-              [value]="iteration.KVM.A2I.Defect_Trends"
-              helpText="Medición del cambio de defectos desde la última medición.
+              <key-value-mesures
+                id="Defect_Trends"
+                name="Tendencias de defectos"
+                [value]="iteration.KVM.A2I.Defect_Trends"
+                helpText="Medición del cambio de defectos desde la última medición.
               Un defecto es todo aquello que reduce el valor del
               producto para un cliente, un usuario o para la propia
               organización. Los defectos son generalmente cosas que no
               funcionan como se esperaba."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="On_Product_Index"
-              name="Índice sobre el producto"
-              [value]="iteration.KVM.A2I.On_Product_Index"
-              helpText=" El porcentaje de tiempo que los equipos dedican a trabajar
+              <key-value-mesures
+                id="On_Product_Index"
+                name="Índice sobre el producto"
+                [value]="iteration.KVM.A2I.On_Product_Index"
+                helpText=" El porcentaje de tiempo que los equipos dedican a trabajar
               en el producto y el valor."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Installed_Version_Index"
-              name="Índice de versiones instaladas"
-              [value]="iteration.KVM.A2I.Installed_Version_Index"
-              helpText="El número de versiones de un producto que se admiten
+              <key-value-mesures
+                id="Installed_Version_Index"
+                name="Índice de versiones instaladas"
+                [value]="iteration.KVM.A2I.Installed_Version_Index"
+                helpText="El número de versiones de un producto que se admiten
               actualmente. Esto refleja el esfuerzo que la organización
               dedica a respaldar y mantener versiones anteriores de
               software."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Technical_Debt"
-              name="Deuda técnica"
-              [value]="iteration.KVM.A2I.Technical_Debt"
-              helpText="Un concepto en programación que refleja el trabajo
+              <key-value-mesures
+                id="Technical_Debt"
+                name="Deuda técnica"
+                [value]="iteration.KVM.A2I.Technical_Debt"
+                helpText="Un concepto en programación que refleja el trabajo
             adicional de desarrollo y prueba que surge cuando las
             soluciones “rápidas y sucias” dan como resultado una
             reparación posterior. Crea un impacto indeseable en la
             entrega de valor y un aumento evitable de desperdicio y
             riesgo."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Production_Incident_Trends"
-              name="Tendencias de incidentes de producción"
-              [value]="iteration.KVM.A2I.Production_Incident_Trends"
-              helpText="La cantidad de veces que se interrumpió al equipo de
+              <key-value-mesures
+                id="Production_Incident_Trends"
+                name="Tendencias de incidentes de producción"
+                [value]="iteration.KVM.A2I.Production_Incident_Trends"
+                helpText="La cantidad de veces que se interrumpió al equipo de
             desarrollo para solucionar un problema en un producto
             instalado. El número y la frecuencia de los incidentes de
             producción pueden ayudar a indicar la estabilidad del
             producto."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Active_Code_Branches"
-              name="Ramas de código activas, tiempo dedicado a fusionar código entre ramas"
-              [value]="iteration.KVM.A2I.Active_Code_Branches"
-              helpText=" Estas medidas son como el Índice de versiones instaladas,
+              <key-value-mesures
+                id="Active_Code_Branches"
+                name="Ramas de código activas, tiempo dedicado a fusionar código entre ramas"
+                [value]="iteration.KVM.A2I.Active_Code_Branches"
+                helpText=" Estas medidas son como el Índice de versiones instaladas,
               ya que las diferentes versiones implementadas generalmente
               tienen ramas de código separadas."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Time_Spent_Context_Switching"
-              name="Tiempo dedicado al cambio de contexto"
-              [value]="iteration.KVM.A2I.Time_Spent_Context_Switching"
-              helpText="El número de reuniones por día por persona y el número de
+              <key-value-mesures
+                id="Time_Spent_Context_Switching"
+                name="Tiempo dedicado al cambio de contexto"
+                [value]="iteration.KVM.A2I.Time_Spent_Context_Switching"
+                helpText="El número de reuniones por día por persona y el número de
               veces al día que los miembros del equipo son interrumpidos
               para ayudar a personas ajenas al equipo pueden dar una
               idea simple de la magnitud del problema."
-            ></key-value-mesures>
-          </mat-tab>
-          <mat-tab label="Unrealized Value (UV)">
-            <key-value-mesures
-              id="Market_Share"
-              name="Cuota de mercado"
-              [value]="iteration.KVM.UV.Market_Share"
-              helpText=" El porcentaje relativo del mercado controlado por el
-            producto."
-            ></key-value-mesures>
+                [status]="iteration.status"
+              ></key-value-mesures>
+            </mat-tab>
+            <mat-tab label="Unrealized Value (UV)">
+              <key-value-mesures
+                id="Market_Share"
+                name="Cuota de mercado"
+                [value]="iteration.KVM.UV.Market_Share"
+                helpText=" El porcentaje relativo del mercado controlado por el
+              producto."
+                [status]="iteration.status"
+              ></key-value-mesures>
 
-            <key-value-mesures
-              id="Customer_Or_User_Satisfaction_Gap"
-              name="Brecha de satisfacción del cliente o usuario"
-              [value]="iteration.KVM.UV.Customer_Or_User_Satisfaction_Gap"
-              helpText=" La relación (ingresos brutos / número de empleados) es un
-          indicador competitivo clave dentro de una industria. Esto
+              <key-value-mesures
+                id="Customer_Or_User_Satisfaction_Gap"
+                name="Brecha de satisfacción del cliente o usuario"
+                [value]="iteration.KVM.UV.Customer_Or_User_Satisfaction_Gap"
+                helpText=" La relación (ingresos brutos / número de empleados) es un
+              indicador competitivo clave dentro de una industria. Esto
           varía significativamente según la industria."
-            ></key-value-mesures>
-          </mat-tab>
-        </mat-tab-group>
+                [status]="iteration.status"
+              ></key-value-mesures>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="iteration.status == 'In_Progress'" class="row">
+    <div class="container-fluid">
+      <div class="col-12">
+        <button type="button" class="btn btn-success btn-lg btn-block">
+          Save
+        </button>
       </div>
     </div>
   </div>

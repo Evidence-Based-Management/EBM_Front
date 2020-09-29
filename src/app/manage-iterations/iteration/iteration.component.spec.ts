@@ -52,7 +52,7 @@ describe('IterationComponent', () => {
     Customer_Or_User_Satisfaction_Gap: '5/10',
   };
 
-  const iterationFake = [
+  let iterationFake = [
     {
       id: '-1',
       name: 'Fake',
@@ -330,10 +330,9 @@ describe('IterationComponent', () => {
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-
       const Feature_Usage_Index = fixture.debugElement.queryAll(
         By.css('#input_Feature_Usage_Index')
-      );      
+      );
       const Innovation_Rate = fixture.debugElement.queryAll(
         By.css('#input_Innovation_Rate')
       );
@@ -358,7 +357,6 @@ describe('IterationComponent', () => {
       const Time_Spent_Context_Switching = fixture.debugElement.queryAll(
         By.css('#input_Time_Spent_Context_Switching')
       );
-
 
       // Assert
       expect(Feature_Usage_Index[0].nativeElement.value).toEqual(
@@ -426,16 +424,148 @@ describe('IterationComponent', () => {
     fixture.whenStable().then(() => {
       const Market_Share = fixture.debugElement.queryAll(
         By.css('#input_Market_Share')
-      );   
+      );
       const Customer_Or_User_Satisfaction_Gap = fixture.debugElement.queryAll(
         By.css('#input_Customer_Or_User_Satisfaction_Gap')
-      );   
+      );
 
       // Assert
       expect(Market_Share[0].nativeElement.value).toEqual('3%');
-      expect(Customer_Or_User_Satisfaction_Gap[0].nativeElement.value).toEqual('5/10');
+      expect(Customer_Or_User_Satisfaction_Gap[0].nativeElement.value).toEqual(
+        '5/10'
+      );
     });
 
     expect(KVMComponent_UV.length).toBeGreaterThan(1);
+  });
+
+  it('should exist a button when the iteration is In_Progress', () => {
+    // Arrange
+    iterationFake = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        status: 'In_Progress',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+    ];
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    // Act
+    fixture.detectChanges();
+    const buttonSave = fixture.debugElement.queryAll(By.css('button'));   
+
+    // Assert
+    expect(buttonSave.length).toBe(1);
+  });
+
+  it('should not exist a button when the iteration is Completed', () => {
+    // Arrange
+    iterationFake = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        status: 'Completed',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+    ];
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    // Act
+    fixture.detectChanges();
+
+    const buttonSave = fixture.debugElement.queryAll(By.css('button'));
+
+    // Assert
+    expect(buttonSave.length).toBe(0);
+  });
+
+  it('should not exist a button when the iteration is Fail', () => {
+    // Arrange
+    iterationFake = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        status: 'Fail',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+    ];
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    // Act
+    fixture.detectChanges();
+
+    const buttonSave = fixture.debugElement.queryAll(By.css('button'));
+
+    // Assert
+    expect(buttonSave.length).toBe(0);
+  });
+
+  it('should not exist a button when the iteration is empty', () => {
+    // Arrange
+    iterationFake = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        status: '',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+    ];
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    // Act
+    fixture.detectChanges();
+    const buttonSave = fixture.debugElement.queryAll(By.css('button'));
+
+    // Assert
+    expect(buttonSave.length).toBe(0);
   });
 });

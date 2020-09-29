@@ -10,6 +10,7 @@ export class KeyValueMesuresComponent implements OnInit {
   @Input() name: string;
   @Input() value: string;
   @Input() helpText: string;
+  @Input() status:string;
   
   constructor() { }
 

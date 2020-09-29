@@ -335,7 +335,7 @@ describe('IterationComponent', () => {
       By.css('.mat-ripple.mat-tab-label.mat-focus-indicator')
     );
 
-    tabsUV[2].triggerEventHandler('click', null);
+    tabsUV[3].triggerEventHandler('click', null);
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {

@@ -103,7 +103,7 @@ describe('IterationComponent', () => {
 
     // Act
     const result = fixture.debugElement.queryAll(
-      By.css('.border-bottom-success')
+      By.css('.card.border-bottom-success')
     );
 
     const name = fixture.debugElement.queryAll(
@@ -465,7 +465,7 @@ describe('IterationComponent', () => {
     );
     // Act
     fixture.detectChanges();
-    const buttonSave = fixture.debugElement.queryAll(By.css('button'));   
+    const buttonSave = fixture.debugElement.queryAll(By.css('button'));
 
     // Assert
     expect(buttonSave.length).toBe(1);

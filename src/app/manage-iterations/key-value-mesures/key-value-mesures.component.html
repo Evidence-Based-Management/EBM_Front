@@ -1,0 +1,21 @@
+<div class="container-fluid pt-3">
+  <div class="form-group row">
+    <div class="col-sm-3">
+      <label for="input_{{id}}" class="col-form-label">
+        {{ name }}
+      </label>
+    </div>
+    <div class="col-sm-9">
+      <input
+        type="text"
+        class="form-control"
+        id="input_{{id}}"
+        attr.aria-describedby="{{id}}_HelpBlock"
+        [(value)]="value"
+      />
+      <small id="{{id}}_HelpBlock" class="form-text text-muted">
+        {{ helpText }}
+      </small>
+    </div>
+  </div>
+</div>

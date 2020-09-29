@@ -10,6 +10,7 @@ import { IterationCardComponent } from '../iteration-card/iteration-card.compone
 
 import { IterationComponent } from './iteration.component';
 import { CV, T2M, A2I } from '../../Interfaces/iterations';
+import { KeyValueMesuresComponent } from '../key-value-mesures/key-value-mesures.component';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;
@@ -73,7 +74,11 @@ describe('IterationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IterationComponent, IterationCardComponent],
+      declarations: [
+        IterationComponent,
+        IterationCardComponent,
+        KeyValueMesuresComponent,
+      ],
       imports: [AppRoutingModule, BrowserAnimationsModule, MatTabsModule],
       providers: [
         {
@@ -144,7 +149,7 @@ describe('IterationComponent', () => {
     expect(component.iteration).toEqual(iterationFake[0]);
   });
 
-  it('should exist a table CV at HTML Tabs', () => {
+  it('should exist 5 KeyValueMesuresComponent CV at first HTML Tabs', () => {
     // Arrange
 
     spyOn(iterationsService, 'getIterationById').and.returnValue(
@@ -152,12 +157,14 @@ describe('IterationComponent', () => {
     );
     // Act
     fixture.detectChanges();
-    const tableCV = fixture.debugElement.queryAll(By.css('#CV'));
+    const KVMComponent_CV = fixture.debugElement.queryAll(
+      By.directive(KeyValueMesuresComponent)
+    );
     // Assert
-    expect(tableCV.length).toEqual(1);
+    expect(KVMComponent_CV.length).toEqual(5);
   });
 
-  it('should exist data for CV table at HTML Tabs', () => {
+  it('should exist data for CV at input HTML Tabs', () => {
     // Arrange
 
     spyOn(iterationsService, 'getIterationById').and.returnValue(
@@ -165,19 +172,64 @@ describe('IterationComponent', () => {
     );
     // Act
     fixture.detectChanges();
-    const tableCV = fixture.debugElement.queryAll(By.css('#CV td'));
+    const Revenue_Per_Employee = fixture.debugElement.queryAll(
+      By.css('#input_Revenue_Per_Employee')
+    );
+    const Product_Cost_Ratio = fixture.debugElement.queryAll(
+      By.css('#input_Product_Cost_Ratio')
+    );
+    const Employee_Satisfaction = fixture.debugElement.queryAll(
+      By.css('#input_Employee_Satisfaction')
+    );
+    const Customer_Satisfaction = fixture.debugElement.queryAll(
+      By.css('#input_Customer_Satisfaction')
+    );
+    const Customer_Usage_Index = fixture.debugElement.queryAll(
+      By.css('#input_Customer_Usage_Index')
+    );
 
     // Assert
-    expect(tableCV[2].nativeElement.innerHTML).toEqual('2.500.000 COP');
-    expect(tableCV[5].nativeElement.innerHTML).toEqual(
+    expect(Revenue_Per_Employee[0].nativeElement.value).toEqual(
+      '2.500.000 COP'
+    );
+    expect(Product_Cost_Ratio[0].nativeElement.value).toEqual(
       '500.000.000 - 100.000.000 COP'
     );
-    expect(tableCV[8].nativeElement.innerHTML).toEqual('4/5');
-    expect(tableCV[11].nativeElement.innerHTML).toEqual('3/5');
-    expect(tableCV[14].nativeElement.innerHTML).toEqual('50/180 min');
+    expect(Employee_Satisfaction[0].nativeElement.value).toEqual('4/5');
+    expect(Customer_Satisfaction[0].nativeElement.value).toEqual('3/5');
+    expect(Customer_Usage_Index[0].nativeElement.value).toEqual('50/180 min');
   });
 
-  it('should exist a table T2M at HTML Tabs', () => {
+  it('should exist 7 KeyValueMesuresComponent T2M at second HTML Tabs', () => {
+    // Arrange
+
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    // Act
+    fixture.detectChanges();
+
+    const KVMComponent_T2M = fixture.debugElement.queryAll(
+      By.css('.mat-ripple.mat-tab-label.mat-focus-indicator')
+    );
+
+    KVMComponent_T2M[1].triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      const KVMComponents_T2M = fixture.debugElement.queryAll(
+        By.directive(KeyValueMesuresComponent)
+      );
+
+      // Assert (5 from CV + 7 from T2M)
+      const totalKeyValueMesuresComponent = 7 + 5;
+
+      expect(KVMComponents_T2M.length).toEqual(totalKeyValueMesuresComponent);
+    });
+    expect(KVMComponent_T2M.length).toBeGreaterThan(1);
+  });
+
+  it('should exist data for T2M at inputs HTML Tabs', () => {
     // Arrange
 
     spyOn(iterationsService, 'getIterationById').and.returnValue(
@@ -194,15 +246,46 @@ describe('IterationComponent', () => {
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      const tableT2M = fixture.debugElement.queryAll(By.css('#T2M'));
+      const Build_And_Integration_Frequency = fixture.debugElement.queryAll(
+        By.css('#input_Build_And_Integration_Frequency')
+      );
+      const Release_Frequency = fixture.debugElement.queryAll(
+        By.css('#input_Release_Frequency')
+      );
+      const Release_Stabilization_Period = fixture.debugElement.queryAll(
+        By.css('#input_Release_Stabilization_Period')
+      );
+      const Mean_Time_To_Repair = fixture.debugElement.queryAll(
+        By.css('#input_Mean_Time_To_Repair')
+      );
+      const Cycle_Time = fixture.debugElement.queryAll(
+        By.css('#input_Cycle_Time')
+      );
+      const Lead_Time = fixture.debugElement.queryAll(
+        By.css('#input_Lead_Time')
+      );
+      const Time_To_Learn = fixture.debugElement.queryAll(
+        By.css('#input_Time_To_Learn')
+      );
 
       // Assert
-      expect(tableT2M.length).toEqual(1);
+      expect(Build_And_Integration_Frequency[0].nativeElement.value).toEqual(
+        '10 by week'
+      );
+      expect(Release_Frequency[0].nativeElement.value).toEqual('Monthly');
+      expect(Release_Stabilization_Period[0].nativeElement.value).toEqual(
+        '3 days'
+      );
+      expect(Mean_Time_To_Repair[0].nativeElement.value).toEqual('3/5');
+      expect(Cycle_Time[0].nativeElement.value).toEqual('1 month');
+      expect(Lead_Time[0].nativeElement.value).toEqual('3 months');
+      expect(Time_To_Learn[0].nativeElement.value).toEqual('1 months');
     });
+
     expect(tabsT2M.length).toBeGreaterThan(1);
   });
 
-  it('should exist data for T2M table at HTML Tabs', () => {
+  it('should exist 8 KeyValueMesuresComponent A2I at third HTML Tabs', () => {
     // Arrange
 
     spyOn(iterationsService, 'getIterationById').and.returnValue(
@@ -211,30 +294,26 @@ describe('IterationComponent', () => {
     // Act
     fixture.detectChanges();
 
-    const tabsT2M = fixture.debugElement.queryAll(
+    const KVMComponent_A2I = fixture.debugElement.queryAll(
       By.css('.mat-ripple.mat-tab-label.mat-focus-indicator')
     );
 
-    tabsT2M[1].triggerEventHandler('click', null);
+    KVMComponent_A2I[2].triggerEventHandler('click', null);
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      const tableT2M = fixture.debugElement.queryAll(By.css('#T2M td'));
+      const KVMComponents_A2I = fixture.debugElement.queryAll(
+        By.directive(KeyValueMesuresComponent)
+      );
 
-      // Assert
-      expect(tableT2M[2].nativeElement.innerHTML).toEqual('10 by week');
-      expect(tableT2M[5].nativeElement.innerHTML).toEqual('Monthly');
-      expect(tableT2M[8].nativeElement.innerHTML).toEqual('3 days');
-      expect(tableT2M[11].nativeElement.innerHTML).toEqual('3/5');
-      expect(tableT2M[14].nativeElement.innerHTML).toEqual('1 month');
-      expect(tableT2M[17].nativeElement.innerHTML).toEqual('3 months');
-      expect(tableT2M[20].nativeElement.innerHTML).toEqual('1 months');
+      // Assert (5 from CV +  8 from A2I)
+      const totalKeyValueMesuresComponent = 5 + 9;
+      expect(KVMComponents_A2I.length).toEqual(totalKeyValueMesuresComponent);
     });
-
-    expect(tabsT2M.length).toBeGreaterThan(1);
+    expect(KVMComponent_A2I.length).toBeGreaterThan(1);
   });
 
-  it('should exist a table A2I at HTML Tabs', () => {
+  it('should exist data for A2I at inputs HTML Tabs', () => {
     // Arrange
 
     spyOn(iterationsService, 'getIterationById').and.returnValue(
@@ -243,61 +322,64 @@ describe('IterationComponent', () => {
     // Act
     fixture.detectChanges();
 
-    const tabsA2I = fixture.debugElement.queryAll(
+    const KVMComponent_A2I = fixture.debugElement.queryAll(
       By.css('.mat-ripple.mat-tab-label.mat-focus-indicator')
     );
 
-    tabsA2I[2].triggerEventHandler('click', null);
+    KVMComponent_A2I[2].triggerEventHandler('click', null);
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      const tableA2I = fixture.debugElement.queryAll(By.css('#A2I'));
+
+      const Feature_Usage_Index = fixture.debugElement.queryAll(
+        By.css('#input_Feature_Usage_Index')
+      );      
+      const Innovation_Rate = fixture.debugElement.queryAll(
+        By.css('#input_Innovation_Rate')
+      );
+      const Defect_Trends = fixture.debugElement.queryAll(
+        By.css('#input_Defect_Trends')
+      );
+      const On_Product_Index = fixture.debugElement.queryAll(
+        By.css('#input_On_Product_Index')
+      );
+      const Installed_Version_Index = fixture.debugElement.queryAll(
+        By.css('#input_Installed_Version_Index')
+      );
+      const Technical_Debt = fixture.debugElement.queryAll(
+        By.css('#input_Technical_Debt')
+      );
+      const Production_Incident_Trends = fixture.debugElement.queryAll(
+        By.css('#input_Production_Incident_Trends')
+      );
+      const Active_Code_Branches = fixture.debugElement.queryAll(
+        By.css('#input_Active_Code_Branches')
+      );
+      const Time_Spent_Context_Switching = fixture.debugElement.queryAll(
+        By.css('#input_Time_Spent_Context_Switching')
+      );
+
 
       // Assert
-      expect(tableA2I.length).toEqual(1);
-    });
-    expect(tabsA2I.length).toBeGreaterThan(1);
-  });
-
-  it('should exist data for A2I table at HTML Tabs', () => {
-    // Arrange
-
-    spyOn(iterationsService, 'getIterationById').and.returnValue(
-      of(iterationFake)
-    );
-    // Act
-    fixture.detectChanges();
-
-    const tabsA2I = fixture.debugElement.queryAll(
-      By.css('.mat-ripple.mat-tab-label.mat-focus-indicator')
-    );
-
-    tabsA2I[2].triggerEventHandler('click', null);
-    fixture.detectChanges();
-
-    fixture.whenStable().then(() => {
-      const tableA2I = fixture.debugElement.queryAll(By.css('#A2I td'));
-
-      // Assert
-      expect(tableA2I[2].nativeElement.innerHTML).toEqual(
+      expect(Feature_Usage_Index[0].nativeElement.value).toEqual(
         '30 min by day,5 min by day,60 min by day'
       );
-      expect(tableA2I[5].nativeElement.innerHTML).toEqual('0.33');
-      expect(tableA2I[8].nativeElement.innerHTML).toEqual('+60');
-      expect(tableA2I[11].nativeElement.innerHTML).toEqual('80%');
-      expect(tableA2I[14].nativeElement.innerHTML).toEqual('2');
-      expect(tableA2I[17].nativeElement.innerHTML).toEqual('2 month');
-      expect(tableA2I[20].nativeElement.innerHTML).toEqual(
+      expect(Innovation_Rate[0].nativeElement.value).toEqual('0.33');
+      expect(Defect_Trends[0].nativeElement.value).toEqual('+60');
+      expect(On_Product_Index[0].nativeElement.value).toEqual('80%');
+      expect(Installed_Version_Index[0].nativeElement.value).toEqual('2');
+      expect(Technical_Debt[0].nativeElement.value).toEqual('2 month');
+      expect(Production_Incident_Trends[0].nativeElement.value).toEqual(
         '3 times by iteration'
       );
-      expect(tableA2I[23].nativeElement.innerHTML).toEqual('5 hours');
-      expect(tableA2I[26].nativeElement.innerHTML).toEqual('3');
+      expect(Active_Code_Branches[0].nativeElement.value).toEqual('5 hours');
+      expect(Time_Spent_Context_Switching[0].nativeElement.value).toEqual('3');
     });
 
-    expect(tabsA2I.length).toBeGreaterThan(1);
+    expect(KVMComponent_A2I.length).toBeGreaterThan(1);
   });
 
-  it('should exist a table UV at HTML Tabs', () => {
+  it('should exist 2 KeyValueMesuresComponent UV at second HTML Tabs', () => {
     // Arrange
 
     spyOn(iterationsService, 'getIterationById').and.returnValue(
@@ -306,23 +388,26 @@ describe('IterationComponent', () => {
     // Act
     fixture.detectChanges();
 
-    const tabsUV = fixture.debugElement.queryAll(
+    const KVMComponent_UV = fixture.debugElement.queryAll(
       By.css('.mat-ripple.mat-tab-label.mat-focus-indicator')
     );
 
-    tabsUV[3].triggerEventHandler('click', null);
+    KVMComponent_UV[3].triggerEventHandler('click', null);
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      const tableUV = fixture.debugElement.queryAll(By.css('#UV'));
+      const KVMComponents_UV = fixture.debugElement.queryAll(
+        By.directive(KeyValueMesuresComponent)
+      );
 
-      // Assert
-      expect(tableUV.length).toEqual(1);
+      // Assert (5 from CV +  2 from UV)
+      const totalKeyValueMesuresComponent = 5 + 2;
+      expect(KVMComponents_UV.length).toEqual(totalKeyValueMesuresComponent);
     });
-    expect(tabsUV.length).toBeGreaterThan(1);
+    expect(KVMComponent_UV.length).toBeGreaterThan(1);
   });
 
-  it('should exist data for UV table at HTML Tabs', () => {
+  it('should exist data for UV at inputs HTML Tabs', () => {
     // Arrange
 
     spyOn(iterationsService, 'getIterationById').and.returnValue(
@@ -331,21 +416,26 @@ describe('IterationComponent', () => {
     // Act
     fixture.detectChanges();
 
-    const tabsUV = fixture.debugElement.queryAll(
+    const KVMComponent_UV = fixture.debugElement.queryAll(
       By.css('.mat-ripple.mat-tab-label.mat-focus-indicator')
     );
 
-    tabsUV[3].triggerEventHandler('click', null);
+    KVMComponent_UV[3].triggerEventHandler('click', null);
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      const tableUV = fixture.debugElement.queryAll(By.css('#UV td'));
+      const Market_Share = fixture.debugElement.queryAll(
+        By.css('#input_Market_Share')
+      );   
+      const Customer_Or_User_Satisfaction_Gap = fixture.debugElement.queryAll(
+        By.css('#input_Customer_Or_User_Satisfaction_Gap')
+      );   
 
       // Assert
-      expect(tableUV[2].nativeElement.innerHTML).toEqual('3%');
-      expect(tableUV[5].nativeElement.innerHTML).toEqual('5/10');
+      expect(Market_Share[0].nativeElement.value).toEqual('3%');
+      expect(Customer_Or_User_Satisfaction_Gap[0].nativeElement.value).toEqual('5/10');
     });
 
-    expect(tabsUV.length).toBeGreaterThan(1);
+    expect(KVMComponent_UV.length).toBeGreaterThan(1);
   });
 });

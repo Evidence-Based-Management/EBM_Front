@@ -12,6 +12,7 @@ import { IterationCardComponent } from './manage-iterations/iteration-card/itera
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTabsModule } from '@angular/material/tabs';
+import { KeyValueMesuresComponent } from './manage-iterations/key-value-mesures/key-value-mesures.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     ManageIterationsComponent,
     IterationComponent,
     IterationCardComponent,
+    KeyValueMesuresComponent,
   ],
   imports: [
     BrowserModule,

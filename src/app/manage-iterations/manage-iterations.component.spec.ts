@@ -1,7 +1,14 @@
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 
 import { ManageIterationsComponent } from './manage-iterations.component';
-import { Iteration, Iterations } from '../Interfaces/iterations';
+import {
+  A2I,
+  CV,
+  Iteration,
+  Iterations,
+  T2M,
+  UV,
+} from '../Interfaces/iterations';
 import { IterationsService } from '../services/iterations.service';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
@@ -14,6 +21,41 @@ describe('ManageIterationsComponent', () => {
   let fixture: ComponentFixture<ManageIterationsComponent>;
   let iterationsService: IterationsService;
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+
+  const CVFake: CV = {
+    Revenue_Per_Employee: '2.500.000 COP',
+    Product_Cost_Ratio: '500.000.000 - 100.000.000 COP',
+    Employee_Satisfaction: '4/5',
+    Customer_Satisfaction: '3/5',
+    Customer_Usage_Index: '50/180 min',
+  };
+
+  const T2MFake: T2M = {
+    Build_And_Integration_Frequency: '10 by week',
+    Release_Frequency: 'Monthly',
+    Release_Stabilization_Period: '3 days',
+    Mean_Time_To_Repair: '3/5',    
+    Cycle_Time: '1 month',
+    Lead_Time: '3 months',
+    Time_To_Learn: '1 months',
+  };
+
+  const A2IFake: A2I = {
+    Feature_Usage_Index: ['30 min by day', '5 min by day', '60 min by day'],
+    Innovation_Rate: '0.33',
+    Defect_Trends: '+60',
+    On_Product_Index: '80%',
+    Installed_Version_Index: '2',
+    Technical_Debt: '2 month',
+    Production_Incident_Trends: '3 times by iteration',
+    Active_Code_Branches: '5 hours',
+    Time_Spent_Context_Switching: '3',
+  };
+
+  const UVFake: UV = {
+    Market_Share: '3%',
+    Customer_Or_User_Satisfaction_Gap: '5/10',
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -32,6 +74,12 @@ describe('ManageIterationsComponent', () => {
                     startDate: '01/01/2020',
                     endDate: '01/31/2020',
                     status: 'Completed',
+                    KVM: {
+                      CV: CVFake,
+                      T2M: T2MFake,
+                      A2I: A2IFake,
+                      UV: UVFake,
+                    },
                   },
                 ],
               }),
@@ -96,6 +144,15 @@ describe('ManageIterationsComponent', () => {
           startDate: '01/01/2020',
           endDate: '01/31/2020',
           status: 'Completed',
+          KVM: {
+            CV: CVFake,
+
+            T2M: T2MFake,
+
+            A2I: A2IFake,
+
+            UV: UVFake,
+          },
         },
         {
           id: '-2',
@@ -104,6 +161,15 @@ describe('ManageIterationsComponent', () => {
           startDate: '02/01/2020',
           endDate: '02/28/2020',
           status: 'Completed',
+          KVM: {
+            CV: CVFake,
+
+            T2M: T2MFake,
+
+            A2I: A2IFake,
+
+            UV: UVFake,
+          },
         },
       ],
     };
@@ -126,6 +192,15 @@ describe('ManageIterationsComponent', () => {
           startDate: '01/01/2020',
           endDate: '01/31/2020',
           status: 'Completed',
+          KVM: {
+            CV: CVFake,
+
+            T2M: T2MFake,
+
+            A2I: A2IFake,
+
+            UV: UVFake,
+          },
         },
         {
           id: '-2',
@@ -134,6 +209,15 @@ describe('ManageIterationsComponent', () => {
           startDate: '01/01/2020',
           endDate: '02/28/2020',
           status: 'Completed',
+          KVM: {
+            CV: CVFake,
+
+            T2M: T2MFake,
+
+            A2I: A2IFake,
+
+            UV: UVFake,
+          },
         },
       ],
     };
@@ -158,6 +242,15 @@ describe('ManageIterationsComponent', () => {
           startDate: '01/01/2020',
           endDate: '01/31/2020',
           status: 'Completed',
+          KVM: {
+            CV: CVFake,
+
+            T2M: T2MFake,
+
+            A2I: A2IFake,
+
+            UV: UVFake,
+          },
         },
         {
           id: '-2',
@@ -166,6 +259,15 @@ describe('ManageIterationsComponent', () => {
           startDate: '01/01/2020',
           endDate: '02/28/2020',
           status: 'Completed',
+          KVM: {
+            CV: CVFake,
+
+            T2M: T2MFake,
+
+            A2I: A2IFake,
+
+            UV: UVFake,
+          },
         },
       ],
     };
@@ -204,6 +306,15 @@ describe('ManageIterationsComponent', () => {
             startDate: '01/01/2020',
             endDate: '01/28/2020',
             status: 'Completed',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
           },
           {
             id: '-2',
@@ -212,6 +323,15 @@ describe('ManageIterationsComponent', () => {
             startDate: '02/01/2020',
             endDate: '02/28/2020',
             status: 'Completed',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
           },
           {
             id: '-3',
@@ -220,6 +340,15 @@ describe('ManageIterationsComponent', () => {
             startDate: '03/01/2020',
             endDate: '03/28/2020',
             status: 'Completed',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
           },
         ],
       })
@@ -245,6 +374,15 @@ describe('ManageIterationsComponent', () => {
             startDate: '01/01/2020',
             endDate: '01/28/2020',
             status: 'Completed',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
           },
         ],
       })
@@ -272,6 +410,15 @@ describe('ManageIterationsComponent', () => {
             startDate: '01/01/2020',
             endDate: '01/28/2020',
             status: 'Fail',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
           },
         ],
       })
@@ -299,6 +446,15 @@ describe('ManageIterationsComponent', () => {
             startDate: '01/01/2020',
             endDate: '01/28/2020',
             status: 'In_Progress',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
           },
         ],
       })
@@ -326,6 +482,15 @@ describe('ManageIterationsComponent', () => {
             startDate: '01/01/2020',
             endDate: '01/28/2020',
             status: '',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
           },
         ],
       })

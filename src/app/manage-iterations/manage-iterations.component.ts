@@ -43,6 +43,12 @@ export class ManageIterationsComponent implements OnInit {
       startDate: iteration.iterations[index].startDate,
       endDate: iteration.iterations[index].endDate,
       status: iteration.iterations[index].status,
+      KVM: {
+        CV: iteration.iterations[index].KVM.CV,
+        T2M: iteration.iterations[index].KVM.T2M,
+        A2I: iteration.iterations[index].KVM.A2I,
+        UV: iteration.iterations[index].KVM.UV,
+      },
     };
   }
 

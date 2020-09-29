@@ -2,7 +2,7 @@
   <div class="col-12 mb-4">
     <app-iteration-card [iteration]="iteration"></app-iteration-card>
   </div>
-  <div class="col-12">
+  <div *ngIf="iteration" class="col-12">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -12,7 +12,7 @@
         <mat-tab-group>
           <mat-tab label="Current Value (CV)">
             <div class="table-responsive mt-4 mb-4">
-              <table class="table table-bordered" id="dataTable">
+              <table class="table table-bordered" id="CV">
                 <caption>
                   Iterations
                 </caption>
@@ -27,7 +27,7 @@
                       indicador competitivo clave dentro de una industria. Esto
                       varía significativamente según la industria.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.CV.Revenue_Per_Employee }}</td>
                   </tr>
                   <tr>
                     <td>Relación de costo del producto</td>
@@ -36,7 +36,7 @@
                       se miden, incluidos los costos operativos en comparación
                       con los ingresos.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.CV.Product_Cost_Ratio }}</td>
                   </tr>
                   <tr>
                     <td>Satisfacción del empleado</td>
@@ -45,7 +45,7 @@
                       medir el compromiso, la energía y el entusiasmo de los
                       empleados.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.CV.Employee_Satisfaction }}</td>
                   </tr>
                   <tr>
                     <td>Satisfacción del cliente</td>
@@ -54,7 +54,7 @@
                       medir el compromiso y la satisfacción del cliente con el
                       producto.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.CV.Customer_Satisfaction }}</td>
                   </tr>
                   <tr>
                     <td>Índice de uso del cliente</td>
@@ -64,7 +64,7 @@
                       el uso real cumple con las expectativas sobre el tiempo
                       que los usuarios deberían tomar con una función
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.CV.Customer_Usage_Index }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -72,7 +72,7 @@
           </mat-tab>
           <mat-tab label="Time To Market (T2M)">
             <div class="table-responsive mt-4 mb-4">
-              <table class="table table-bordered" id="dataTable">
+              <table class="table table-bordered" id="T2M">
                 <caption>
                   Iterations
                 </caption>
@@ -88,7 +88,7 @@
                       o de forma continua, esta medida es reemplazada por
                       medidas de liberación reales.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.T2M.Build_And_Integration_Frequency }}</td>
                   </tr>
                   <tr>
                     <td>Frecuencia de lanzamiento</td>
@@ -98,7 +98,7 @@
                       Esto ayuda a reflejar el tiempo necesario para satisfacer
                       al cliente con productos nuevos y competitivos.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.T2M.Release_Frequency }}</td>
                   </tr>
                   <tr>
                     <td>Período de estabilización de lanzamiento</td>
@@ -110,7 +110,7 @@
                       representar el impacto de las malas prácticas de
                       desarrollo y el diseño subyacente y la base del código.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.T2M.Release_Stabilization_Period }}</td>
                   </tr>
                   <tr>
                     <td>Tiempo estimado o promedio para reparar</td>
@@ -120,7 +120,7 @@
                       revelar la eficiencia de una organización para corregir un
                       error.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.T2M.Mean_Time_To_Repair }}</td>
                   </tr>
                   <tr>
                     <td>Tiempo de ciclo (Cycle time)</td>
@@ -130,7 +130,7 @@
                       Esta medida ayuda a reflejar la capacidad de una
                       organización para llegar a sus clientes.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.T2M.Cycle_Time }}</td>
                   </tr>
                   <tr>
                     <td>Tiempo de espera (Lead Time)</td>
@@ -141,7 +141,7 @@
                       el cliente y el producto. Es un factor que contribuye a la
                       satisfacción del cliente.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.T2M.Lead_Time }}</td>
                   </tr>
                   <tr>
                     <td>Tiempo de aprender (Time-To-Learn)</td>
@@ -150,7 +150,7 @@
                       construirla, entregarla a los usuarios y aprender de su
                       uso.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.T2M.Time_To_Learn }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -158,7 +158,7 @@
           </mat-tab>
           <mat-tab label="Ability To Innovate (A2I)">
             <div class="table-responsive mt-4 mb-4">
-              <table class="table table-bordered" id="dataTable">
+              <table class="table table-bordered" id="A2I">
                 <caption>
                   Iterations
                 </caption>
@@ -173,7 +173,7 @@
                       con frecuencia. Esto ayuda a capturar características que
                       rara vez o nunca se utilizan.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.Feature_Usage_Index }}</td>
                   </tr>
                   <tr>
                     <td>Tasa de innovación</td>
@@ -184,7 +184,7 @@
                       capacidad de la organización para ofrecer nuevas
                       capacidades de productos.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.Innovation_Rate }}</td>
                   </tr>
                   <tr>
                     <td>Tendencias de defectos</td>
@@ -195,7 +195,7 @@
                       organización. Los defectos son generalmente cosas que no
                       funcionan como se esperaba.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.Defect_Trends }}</td>
                   </tr>
                   <tr>
                     <td>Índice sobre el producto</td>
@@ -203,7 +203,7 @@
                       El porcentaje de tiempo que los equipos dedican a trabajar
                       en el producto y el valor.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.On_Product_Index }}</td>
                   </tr>
                   <tr>
                     <td>Índice de versiones instaladas</td>
@@ -213,7 +213,7 @@
                       dedica a respaldar y mantener versiones anteriores de
                       software.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.Installed_Version_Index }}</td>
                   </tr>
                   <tr>
                     <td>Deuda técnica</td>
@@ -225,7 +225,7 @@
                       entrega de valor y un aumento evitable de desperdicio y
                       riesgo.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.Technical_Debt }}</td>
                   </tr>
                   <tr>
                     <td>Tendencias de incidentes de producción</td>
@@ -236,7 +236,7 @@
                       producción pueden ayudar a indicar la estabilidad del
                       producto.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.Production_Incident_Trends }}</td>
                   </tr>
                   <tr>
                     <td>
@@ -248,7 +248,7 @@
                       ya que las diferentes versiones implementadas generalmente
                       tienen ramas de código separadas.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.Active_Code_Branches }}</td>
                   </tr>
                   <tr>
                     <td>Tiempo dedicado al cambio de contexto</td>
@@ -258,7 +258,7 @@
                       para ayudar a personas ajenas al equipo pueden dar una
                       idea simple de la magnitud del problema.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.A2I.Time_Spent_Context_Switching }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -266,7 +266,7 @@
           >
           <mat-tab label="Unrealized Value (UV)">
             <div class="table-responsive mt-4 mb-4">
-              <table class="table table-bordered" id="dataTable">
+              <table class="table table-bordered" id="UV">
                 <caption>
                   Iterations
                 </caption>
@@ -280,7 +280,7 @@
                       El porcentaje relativo del mercado controlado por el
                       producto.
                     </td>
-                    <td>0</td>
+                    <td>{{ iteration.KVM.UV.Market_Share }}</td>
                   </tr>
                   <tr>
                     <td>Brecha de satisfacción del cliente o usuario</td>
@@ -289,7 +289,9 @@
                       indicador competitivo clave dentro de una industria. Esto
                       varía significativamente según la industria.
                     </td>
-                    <td>0</td>
+                    <td>
+                      {{ iteration.KVM.UV.Customer_Or_User_Satisfaction_Gap }}
+                    </td>
                   </tr>
                 </tbody>
               </table>

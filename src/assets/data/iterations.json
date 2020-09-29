@@ -3,73 +3,460 @@
             "id": "1",
             "name": "Iteration 1",
             "goal": "Set up deployment pipeline & release an empty site to production",
-            "startDate":"01/01/2020",
-            "endDate":"01/31/2020",
-            "status": "Completed"
+            "startDate": "01/01/2020",
+            "endDate": "01/31/2020",
+            "status": "Completed",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.500.000 COP",
+                    "Product_Cost_Ratio": "500.000.000 - 100.000.000 COP",
+                    "Employee_Satisfaction": "4/5",
+                    "Customer_Satisfaction": "3/5",
+                    "Customer_Usage_Index": "50/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "10 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "3 days",
+                    "Mean_Time_To_Repair": "3/5",
+                    "Customer_Usage_Index": "8 hours",
+                    "Cycle_Time": "1 month",
+                    "Lead_Time": "3 months",
+                    "Time_To_Learn": "1 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "30 min by day",
+                        "Feature_2": "5 min by day",
+                        "Feature_3": "60 min by day"
+                    },
+                    "Innovation_Rate": "0.33",
+                    "Defect_Trends": "+60",
+                    "On_Product_Index": "80%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "2 month",
+                    "Production_Incident_Trends": "3 times by iteration",
+                    "Active_Code_Branches": "5 hours",
+                    "Time_Spent_Context_Switching": "3"
+                },
+
+                "UV": {
+                    "Market_Share": "3%",
+                    "Customer_Or_User_Satisfaction_Gap": "5/10"
+                }
+
+            }
         },
         {
             "id": "2",
             "name": "Iteration 2",
             "goal": "Show top-selling products on the homepage",
-            "startDate":"02/01/2020",
-            "endDate":"02/29/2020",
-            "status": "Fail"
+            "startDate": "02/01/2020",
+            "endDate": "02/29/2020",
+            "status": "Fail",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.600.000 COP",
+                    "Product_Cost_Ratio": "600.000.000 - 200.000.000 COP",
+                    "Employee_Satisfaction": "1/5",
+                    "Customer_Satisfaction": "1/5",
+                    "Customer_Usage_Index": "60/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "13 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "2 days",
+                    "Mean_Time_To_Repair": "1/5",
+                    "Customer_Usage_Index": "6 hours",
+                    "Cycle_Time": "2 month",
+                    "Lead_Time": "2 months",
+                    "Time_To_Learn": "2 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "20 min by day",
+                        "Feature_2": "3 min by day",
+                        "Feature_3": "40 min by day"
+                    },
+                    "Innovation_Rate": "0.4",
+                    "Defect_Trends": "+40",
+                    "On_Product_Index": "83%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "3 month",
+                    "Production_Incident_Trends": "4 times by iteration",
+                    "Active_Code_Branches": "7 hours",
+                    "Time_Spent_Context_Switching": "4"
+                },
+
+                "UV": {
+                    "Market_Share": "4%",
+                    "Customer_Or_User_Satisfaction_Gap": "4/10"
+                }
+
+            }
         },
         {
             "id": "3",
             "name": "Iteration 3",
             "goal": "A visitor can order a product",
-            "startDate":"03/01/2020",
-            "endDate":"03/31/2020",
-            "status": "Completed"
+            "startDate": "03/01/2020",
+            "endDate": "03/31/2020",
+            "status": "Completed",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.500.000 COP",
+                    "Product_Cost_Ratio": "500.000.000 - 100.000.000 COP",
+                    "Employee_Satisfaction": "4/5",
+                    "Customer_Satisfaction": "3/5",
+                    "Customer_Usage_Index": "50/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "10 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "3 days",
+                    "Mean_Time_To_Repair": "3/5",
+                    "Customer_Usage_Index": "8 hours",
+                    "Cycle_Time": "1 month",
+                    "Lead_Time": "3 months",
+                    "Time_To_Learn": "1 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "30 min by day",
+                        "Feature_2": "5 min by day",
+                        "Feature_3": "60 min by day"
+                    },
+                    "Innovation_Rate": "0.33",
+                    "Defect_Trends": "+60",
+                    "On_Product_Index": "80%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "2 month",
+                    "Production_Incident_Trends": "3 times by iteration",
+                    "Active_Code_Branches": "5 hours",
+                    "Time_Spent_Context_Switching": "3"
+                },
+
+                "UV": {
+                    "Market_Share": "3%",
+                    "Customer_Or_User_Satisfaction_Gap": "5/10"
+                }
+
+            }
         },
         {
             "id": "4",
             "name": "Iteration 4",
             "goal": "Extend product catalog to more products",
-            "startDate":"04/01/2020",
-            "endDate":"04/30/2020",
-            "status": "Completed"
+            "startDate": "04/01/2020",
+            "endDate": "04/30/2020",
+            "status": "Completed",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.500.000 COP",
+                    "Product_Cost_Ratio": "500.000.000 - 100.000.000 COP",
+                    "Employee_Satisfaction": "4/5",
+                    "Customer_Satisfaction": "3/5",
+                    "Customer_Usage_Index": "50/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "10 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "3 days",
+                    "Mean_Time_To_Repair": "3/5",
+                    "Customer_Usage_Index": "8 hours",
+                    "Cycle_Time": "1 month",
+                    "Lead_Time": "3 months",
+                    "Time_To_Learn": "1 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "30 min by day",
+                        "Feature_2": "5 min by day",
+                        "Feature_3": "60 min by day"
+                    },
+                    "Innovation_Rate": "0.33",
+                    "Defect_Trends": "+60",
+                    "On_Product_Index": "80%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "2 month",
+                    "Production_Incident_Trends": "3 times by iteration",
+                    "Active_Code_Branches": "5 hours",
+                    "Time_Spent_Context_Switching": "3"
+                },
+
+                "UV": {
+                    "Market_Share": "3%",
+                    "Customer_Or_User_Satisfaction_Gap": "5/10"
+                }
+
+            }
         },
         {
             "id": "5",
             "name": "Iteration 5",
             "goal": "Secure enterprise-class quality for web client after recent customer complaints.",
-            "startDate":"05/01/2020",
-            "endDate":"05/31/2020",
-            "status": "Completed"
+            "startDate": "05/01/2020",
+            "endDate": "05/31/2020",
+            "status": "Completed",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.500.000 COP",
+                    "Product_Cost_Ratio": "500.000.000 - 100.000.000 COP",
+                    "Employee_Satisfaction": "4/5",
+                    "Customer_Satisfaction": "3/5",
+                    "Customer_Usage_Index": "50/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "10 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "3 days",
+                    "Mean_Time_To_Repair": "3/5",
+                    "Customer_Usage_Index": "8 hours",
+                    "Cycle_Time": "1 month",
+                    "Lead_Time": "3 months",
+                    "Time_To_Learn": "1 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "30 min by day",
+                        "Feature_2": "5 min by day",
+                        "Feature_3": "60 min by day"
+                    },
+                    "Innovation_Rate": "0.33",
+                    "Defect_Trends": "+60",
+                    "On_Product_Index": "80%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "2 month",
+                    "Production_Incident_Trends": "3 times by iteration",
+                    "Active_Code_Branches": "5 hours",
+                    "Time_Spent_Context_Switching": "3"
+                },
+
+                "UV": {
+                    "Market_Share": "3%",
+                    "Customer_Or_User_Satisfaction_Gap": "5/10"
+                }
+
+            }
         },
         {
             "id": "6",
             "name": "Iteration 6",
             "goal": "Refactor our old login interface to achieve 25% better conversion rate on the",
-            "startDate":"06/01/2020",
-            "endDate":"06/30/2020",
-            "status": "Completed"
+            "startDate": "06/01/2020",
+            "endDate": "06/30/2020",
+            "status": "Completed",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.500.000 COP",
+                    "Product_Cost_Ratio": "500.000.000 - 100.000.000 COP",
+                    "Employee_Satisfaction": "4/5",
+                    "Customer_Satisfaction": "3/5",
+                    "Customer_Usage_Index": "50/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "10 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "3 days",
+                    "Mean_Time_To_Repair": "3/5",
+                    "Customer_Usage_Index": "8 hours",
+                    "Cycle_Time": "1 month",
+                    "Lead_Time": "3 months",
+                    "Time_To_Learn": "1 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "30 min by day",
+                        "Feature_2": "5 min by day",
+                        "Feature_3": "60 min by day"
+                    },
+                    "Innovation_Rate": "0.33",
+                    "Defect_Trends": "+60",
+                    "On_Product_Index": "80%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "2 month",
+                    "Production_Incident_Trends": "3 times by iteration",
+                    "Active_Code_Branches": "5 hours",
+                    "Time_Spent_Context_Switching": "3"
+                },
+
+                "UV": {
+                    "Market_Share": "3%",
+                    "Customer_Or_User_Satisfaction_Gap": "5/10"
+                }
+
+            }
         },
         {
             "id": "7",
             "name": "Iteration 7",
             "goal": "Improve retention rate by providing a better feedback mechanism.",
-            "startDate":"07/01/2020",
-            "endDate":"07/31/2020",
-            "status": "Completed"
+            "startDate": "07/01/2020",
+            "endDate": "07/31/2020",
+            "status": "Completed",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.500.000 COP",
+                    "Product_Cost_Ratio": "500.000.000 - 100.000.000 COP",
+                    "Employee_Satisfaction": "4/5",
+                    "Customer_Satisfaction": "3/5",
+                    "Customer_Usage_Index": "50/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "10 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "3 days",
+                    "Mean_Time_To_Repair": "3/5",
+                    "Customer_Usage_Index": "8 hours",
+                    "Cycle_Time": "1 month",
+                    "Lead_Time": "3 months",
+                    "Time_To_Learn": "1 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "30 min by day",
+                        "Feature_2": "5 min by day",
+                        "Feature_3": "60 min by day"
+                    },
+                    "Innovation_Rate": "0.33",
+                    "Defect_Trends": "+60",
+                    "On_Product_Index": "80%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "2 month",
+                    "Production_Incident_Trends": "3 times by iteration",
+                    "Active_Code_Branches": "5 hours",
+                    "Time_Spent_Context_Switching": "3"
+                },
+
+                "UV": {
+                    "Market_Share": "3%",
+                    "Customer_Or_User_Satisfaction_Gap": "5/10"
+                }
+
+            }
         },
         {
             "id": "8",
             "name": "Iteration 8",
             "goal": "Streamline purchasing process to enable an increase in conversion rates.",
-            "startDate":"08/01/2020",
-            "endDate":"08/31/2020",
-            "status": "Completed"
-        }, 
+            "startDate": "08/01/2020",
+            "endDate": "08/31/2020",
+            "status": "Completed",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.500.000 COP",
+                    "Product_Cost_Ratio": "500.000.000 - 100.000.000 COP",
+                    "Employee_Satisfaction": "4/5",
+                    "Customer_Satisfaction": "3/5",
+                    "Customer_Usage_Index": "50/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "10 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "3 days",
+                    "Mean_Time_To_Repair": "3/5",
+                    "Customer_Usage_Index": "8 hours",
+                    "Cycle_Time": "1 month",
+                    "Lead_Time": "3 months",
+                    "Time_To_Learn": "1 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "30 min by day",
+                        "Feature_2": "5 min by day",
+                        "Feature_3": "60 min by day"
+                    },
+                    "Innovation_Rate": "0.33",
+                    "Defect_Trends": "+60",
+                    "On_Product_Index": "80%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "2 month",
+                    "Production_Incident_Trends": "3 times by iteration",
+                    "Active_Code_Branches": "5 hours",
+                    "Time_Spent_Context_Switching": "3"
+                },
+
+                "UV": {
+                    "Market_Share": "3%",
+                    "Customer_Or_User_Satisfaction_Gap": "5/10"
+                }
+
+            }
+        },
         {
             "id": "9",
             "name": "Iteration 9",
             "goal": "Increase page load time by 1%.",
-            "startDate":"09/01/2020",
-            "endDate":"09/30/2020",
-            "status": "In_Progress"
+            "startDate": "09/01/2020",
+            "endDate": "09/30/2020",
+            "status": "In_Progress",
+            "KVM": {
+
+                "CV": {
+                    "Revenue_Per_Employee": "2.500.000 COP",
+                    "Product_Cost_Ratio": "500.000.000 - 100.000.000 COP",
+                    "Employee_Satisfaction": "4/5",
+                    "Customer_Satisfaction": "3/5",
+                    "Customer_Usage_Index": "50/180 min"
+                },
+
+                "T2M": {
+                    "Build_And_Integration_Frequency": "10 by week",
+                    "Release_Frequency": "Monthly",
+                    "Release_Stabilization_Period": "3 days",
+                    "Mean_Time_To_Repair": "3/5",
+                    "Customer_Usage_Index": "8 hours",
+                    "Cycle_Time": "1 month",
+                    "Lead_Time": "3 months",
+                    "Time_To_Learn": "1 months"
+                },
+
+                "A2I": {
+                    "Feature_Usage_Index": {
+                        "Feature_1": "30 min by day",
+                        "Feature_2": "5 min by day",
+                        "Feature_3": "60 min by day"
+                    },
+                    "Innovation_Rate": "0.33",
+                    "Defect_Trends": "+60",
+                    "On_Product_Index": "80%",
+                    "Installed_Version_Index": "2",
+                    "Technical_Debt": "2 month",
+                    "Production_Incident_Trends": "3 times by iteration",
+                    "Active_Code_Branches": "5 hours",
+                    "Time_Spent_Context_Switching": "3"
+                },
+
+                "UV": {
+                    "Market_Share": "3%",
+                    "Customer_Or_User_Satisfaction_Gap": "5/10"
+                }
+
+            }
         }
 
     ]

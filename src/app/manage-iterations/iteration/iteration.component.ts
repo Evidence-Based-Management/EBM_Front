@@ -20,7 +20,7 @@ export class IterationComponent implements OnInit {
     this.getIteration();
   }
 
-  getIteration() {
+  getIteration(): void {
     this.serviceItertations
       .getIterationById(this.idIteration)
       .subscribe((response: Iteration) => {

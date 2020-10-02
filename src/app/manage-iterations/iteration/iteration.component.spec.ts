@@ -111,13 +111,6 @@ describe('IterationComponent', () => {
 
     const goal = fixture.debugElement.queryAll(By.css('.blockquote-footer'));
 
-    fixture.whenStable().then(() => {
-      const result = fixture.debugElement.queryAll(
-        By.css('.card.border-bottom-success.shadow.h-100.py-2')
-      );
-      expect(result.length).toBe(1);
-    });
-
     // Assert
     expect(name[0].nativeElement.innerHTML).toBe(' Fake ');
     expect(goal[0].nativeElement.innerHTML).toBe('sprint goal -1');

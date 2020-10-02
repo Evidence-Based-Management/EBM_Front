@@ -34,7 +34,7 @@ describe('ManageIterationsComponent', () => {
     Build_And_Integration_Frequency: '10 by week',
     Release_Frequency: 'Monthly',
     Release_Stabilization_Period: '3 days',
-    Mean_Time_To_Repair: '3/5',    
+    Mean_Time_To_Repair: '3/5',
     Cycle_Time: '1 month',
     Lead_Time: '3 months',
     Time_To_Learn: '1 months',
@@ -501,6 +501,84 @@ describe('ManageIterationsComponent', () => {
     const result = fixture.debugElement.queryAll(
       By.css('.border-bottom-primary')
     );
+
+    // Assert
+    expect(result.length).toBe(1);
+  });
+
+  it('should have 3 badges', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterations').and.returnValue(
+      of({
+        iterations: [
+          {
+            id: '-1',
+            name: 'Fake',
+            goal: 'sprint goal -1',
+            startDate: '01/01/2020',
+            endDate: '01/28/2020',
+            status: '',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
+          },
+        ],
+      })
+    );
+    fixture.detectChanges();
+
+    // Act
+    const result = fixture.debugElement.queryAll(By.css('.badge'));
+    const badgeDanger = fixture.debugElement.queryAll(By.css('.badge-danger'));
+    const badgewarning = fixture.debugElement.queryAll(
+      By.css('.badge-warning')
+    );
+    const badgesuccess = fixture.debugElement.queryAll(
+      By.css('.badge-success')
+    );
+
+    // Assert
+    expect(result.length).toBe(3);
+    expect(badgeDanger.length).toBe(1);
+    expect(badgewarning.length).toBe(1);
+    expect(badgesuccess.length).toBe(1);
+  });
+
+  it('should have 1 button to create a new Iteration', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterations').and.returnValue(
+      of({
+        iterations: [
+          {
+            id: '-1',
+            name: 'Fake',
+            goal: 'sprint goal -1',
+            startDate: '01/01/2020',
+            endDate: '01/28/2020',
+            status: '',
+            KVM: {
+              CV: CVFake,
+
+              T2M: T2MFake,
+
+              A2I: A2IFake,
+
+              UV: UVFake,
+            },
+          },
+        ],
+      })
+    );
+    fixture.detectChanges();
+
+    // Act
+    const result = fixture.debugElement.queryAll(By.css('button'));
 
     // Assert
     expect(result.length).toBe(1);

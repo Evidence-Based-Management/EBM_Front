@@ -601,6 +601,6 @@ describe('IterationComponent', () => {
     component.saveUpdateIteration();
 
     // Assert
-    // expect(buttonSave.length).toBe(0);
+    expect(component.iteration).toBe(iterationFake[0]);    
   });
 });

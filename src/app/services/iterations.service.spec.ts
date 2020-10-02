@@ -11,7 +11,7 @@ import {
 import { IterationsService } from './iterations.service';
 
 describe('IterationsService', () => {
-  let httpClientSpy: { get: jasmine.Spy };
+  let httpClientSpy: { get: jasmine.Spy; put: jasmine.Spy };
   let service: IterationsService;
 
   const CVFake: CV = {
@@ -50,7 +50,7 @@ describe('IterationsService', () => {
   };
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'put']);
     service = new IterationsService(httpClientSpy as any);
   });
 
@@ -203,5 +203,71 @@ describe('IterationsService', () => {
       }
     );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
+
+  it('should update an iteration', () => {
+    const expectedIterations: Iterations = {
+      iterations: [
+        {
+          id: '0',
+          name: 'Sprint 1',
+          goal: 'sprint goal 0',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          status: 'Completed',
+          KVM: {
+            CV: CVFake,
+            T2M: T2MFake,
+            A2I: A2IFake,
+            UV: UVFake,
+          },
+        },
+      ],
+    };
+
+    httpClientSpy.put.and.returnValue(
+      of({ status: 200, iteration: expectedIterations.iterations[0] })
+    );
+
+    service.updateIteration(expectedIterations.iterations[0]).subscribe(
+      (result) => {
+        expect(result.iteration).toEqual(expectedIterations.iterations[0]);
+      },
+      (err) => console.log('HTTP Error', err)
+    );
+    expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
+  });
+
+  it('should to provoke an error - updateIteration', () => {
+    const expectedIterations: Iterations = {
+      iterations: [
+        {
+          id: '0',
+          name: 'Sprint 1',
+          goal: 'sprint goal 0',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          status: 'Completed',
+          KVM: {
+            CV: CVFake,
+            T2M: T2MFake,
+            A2I: A2IFake,
+            UV: UVFake,
+          },
+        },
+      ],
+    };
+
+    httpClientSpy.put.and.returnValue(
+      throwError({ status: 404, message: 'Not found' })
+    );
+
+    service.updateIteration(expectedIterations.iterations[0]).subscribe(
+      (result) => console.log('good', result),
+      (err) => {
+        expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
+      }
+    );
+    expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
   });
 });

@@ -265,7 +265,11 @@
 <div *ngIf="iteration?.status == 'In_Progress'" class="row">
   <div class="container-fluid">
     <div class="col-12">
-      <button type="button" class="btn btn-success btn-lg btn-block">
+      <button
+        type="button"
+        class="btn btn-success btn-lg btn-block"
+        (click)="saveUpdateIteration()"
+      >
         Save
       </button>
     </div>

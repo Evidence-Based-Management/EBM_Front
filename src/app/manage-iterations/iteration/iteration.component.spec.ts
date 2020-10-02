@@ -85,6 +85,8 @@ describe('IterationComponent', () => {
           provide: IterationsService,
           useValue: {
             getIterationById: () => of(iterationFake),
+            updateIteration: () =>
+              of({ status: 200, iteration: iterationFake[0] }),
           },
         },
       ],
@@ -102,9 +104,6 @@ describe('IterationComponent', () => {
     fixture.detectChanges();
 
     // Act
-    const result = fixture.debugElement.queryAll(
-      By.css('.card.border-bottom-success')
-    );
 
     const name = fixture.debugElement.queryAll(
       By.css('.h4.mb-0.font-weight-bold.text-gray-800')
@@ -112,8 +111,14 @@ describe('IterationComponent', () => {
 
     const goal = fixture.debugElement.queryAll(By.css('.blockquote-footer'));
 
+    fixture.whenStable().then(() => {
+      const result = fixture.debugElement.queryAll(
+        By.css('.card.border-bottom-success.shadow.h-100.py-2')
+      );
+      expect(result.length).toBe(1);
+    });
+
     // Assert
-    expect(result.length).toBe(1);
     expect(name[0].nativeElement.innerHTML).toBe(' Fake ');
     expect(goal[0].nativeElement.innerHTML).toBe('sprint goal -1');
 
@@ -567,5 +572,42 @@ describe('IterationComponent', () => {
 
     // Assert
     expect(buttonSave.length).toBe(0);
+  });
+
+  it('should update an iteration', () => {
+    // Arrange
+    iterationFake = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        status: '',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+    ];
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    spyOn(iterationsService, 'updateIteration').and.returnValue(
+      of({ status: 200, iteration: iterationFake[0] })
+    );
+    // Act
+    fixture.detectChanges();
+
+    // Act
+    component.saveUpdateIteration();
+
+    // Assert
+    // expect(buttonSave.length).toBe(0);
   });
 });

@@ -27,4 +27,13 @@ export class IterationComponent implements OnInit {
         this.iteration = response[0];
       });
   }
+
+  saveUpdateIteration(): void {
+    this.serviceItertations
+      .updateIteration(this.iteration)
+      .subscribe((response: any) => {
+        // this.iteration = response[0];
+        // console.log(response);
+      });
+  }
 }

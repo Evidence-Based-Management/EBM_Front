@@ -4,6 +4,12 @@
 ![Angular CI](https://github.com/leolplex/Evidence-Based-Management/workflows/Angular%20CI/badge.svg)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=alert_status)](https://sonarcloud.io/dashboard?id=evidence-based-management)
+[![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=bugs)](https://sonarcloud.io/dashboard?id=evidence-based-management)
+[![SonarCloud Code Smells](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=code_smells)](https://sonarcloud.io/dashboard?id=evidence-based-management)
+[![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=coverage)](https://sonarcloud.io/dashboard?id=evidence-based-management)
+[![SonarCloud Duplicated Lines](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=evidence-based-management)
+[![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=evidence-based-management)
+
 # EvidenceBasedManagement
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.

@@ -64,25 +64,23 @@ describe('ManageIterationsComponent', () => {
         {
           provide: IterationsService,
           useValue: {
-            getIterations: () =>
-              of({
-                iterations: [
-                  {
-                    id: '-1',
-                    name: 'Fake',
-                    goal: 'sprint goal -1',
-                    startDate: '01/01/2020',
-                    endDate: '01/31/2020',
-                    status: 'Completed',
-                    KVM: {
-                      CV: CVFake,
-                      T2M: T2MFake,
-                      A2I: A2IFake,
-                      UV: UVFake,
-                    },
+            getIterationsByTeam: (idTeam: number) =>
+              of([
+                {
+                  id: '-1',
+                  name: 'Fake',
+                  goal: 'sprint goal -1',
+                  startDate: '01/01/2020',
+                  endDate: '01/31/2020',
+                  state: 'Completed',
+                  KVM: {
+                    CV: CVFake,
+                    T2M: T2MFake,
+                    A2I: A2IFake,
+                    UV: UVFake,
                   },
-                ],
-              }),
+                },
+              ]),
           },
         },
         { provide: Router, useValue: routerSpy },
@@ -102,7 +100,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get at least iterations', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.callThrough();
+    spyOn(iterationsService, 'getIterationsByTeam').and.callThrough();
     fixture.detectChanges();
 
     // Assert
@@ -111,7 +109,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get empty iterations', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
       of({ iterations: new Array<Iteration>() })
     );
     fixture.detectChanges();
@@ -121,7 +119,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get empty iterations - getIterations()', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
       of({ iterations: new Array<Iteration>() })
     );
     fixture.detectChanges();
@@ -135,15 +133,199 @@ describe('ManageIterationsComponent', () => {
 
   it('should has 2 iterations when call setLocalIterations()', () => {
     // Arrange
-    const fakeIterations: Iterations = {
-      iterations: [
+    const fakeIterations = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        state: 'Completed',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+      {
+        id: '-2',
+        name: 'Fake 2',
+        goal: 'sprint goal -2',
+        startDate: '02/01/2020',
+        endDate: '02/28/2020',
+        state: 'Completed',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+    ];
+    // Act
+    component.setLocalIterations(fakeIterations);
+
+    // Assert
+    expect(component.iterationsToHtml.iterations.length).toBe(2);
+  });
+
+  it('should return a new Iteration - newIteration()', () => {
+    // Arrange
+    const fakeIterations = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        state: 'Completed',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+      {
+        id: '-2',
+        name: 'Fake 2',
+        goal: 'sprint goal -2',
+        startDate: '01/01/2020',
+        endDate: '02/28/2020',
+        state: 'Completed',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+    ];
+
+    // Act
+    const newIteration = component.newIteration(fakeIterations, 0);
+
+    // Assert
+    expect(component.iterationsToHtml.iterations.length).toBe(0);
+    expect(newIteration.id).toBe('-1');
+    expect(newIteration.name).toBe('Fake');
+  });
+
+  it('should return a new Iteration - goToIterationDetails()', () => {
+    // Arrange
+    const fakeIterations = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        state: 'Completed',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+      {
+        id: '-2',
+        name: 'Fake 2',
+        goal: 'sprint goal -2',
+        startDate: '01/01/2020',
+        endDate: '02/28/2020',
+        state: 'Completed',
+        KVM: {
+          CV: CVFake,
+
+          T2M: T2MFake,
+
+          A2I: A2IFake,
+
+          UV: UVFake,
+        },
+      },
+    ];
+
+    // Act
+    const newIteration = component.newIteration(fakeIterations, 0);
+
+    // Assert
+    expect(component.iterationsToHtml.iterations.length).toBe(0);
+    expect(newIteration.id).toBe('-1');
+    expect(newIteration.name).toBe('Fake');
+  });
+
+  it('should return a new Iteration - goToIterationDetails() without KVM', () => {
+    // Arrange
+    const fakeIterations = [
+      {
+        id: '-1',
+        name: 'Fake',
+        goal: 'sprint goal -1',
+        startDate: '01/01/2020',
+        endDate: '01/31/2020',
+        state: 'Completed'
+      },
+      {
+        id: '-2',
+        name: 'Fake 2',
+        goal: 'sprint goal -2',
+        startDate: '01/01/2020',
+        endDate: '02/28/2020',
+        state: 'Completed'
+      },
+    ];
+
+    // Act
+    const newIteration = component.newIteration(fakeIterations, 0);
+
+    // Assert
+    expect(component.iterationsToHtml.iterations.length).toBe(0);
+    expect(newIteration.id).toBe('-1');
+    expect(newIteration.name).toBe('Fake');
+  });
+
+  it('should navigate to iteration', () => {
+    // Act
+    component.goToIterationDetails('1');
+
+    // args passed to router.navigateByUrl() spy
+    const spy = routerSpy.navigate as jasmine.Spy;
+    const navArgs = spy.calls.first().args[0];
+
+    // // Assert
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/iteration', '1']);
+    expect(navArgs).toEqual(['/iteration', '1']);
+  });
+
+  it('should has 3 html cards', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+      of([
         {
           id: '-1',
           name: 'Fake',
           goal: 'sprint goal -1',
           startDate: '01/01/2020',
-          endDate: '01/31/2020',
-          status: 'Completed',
+          endDate: '01/28/2020',
+          state: 'Completed',
           KVM: {
             CV: CVFake,
 
@@ -171,27 +353,13 @@ describe('ManageIterationsComponent', () => {
             UV: UVFake,
           },
         },
-      ],
-    };
-
-    // Act
-    component.setLocalIterations(fakeIterations);
-
-    // Assert
-    expect(component.iterationsToHtml.iterations.length).toBe(2);
-  });
-
-  it('should return a new Iteration - newIteration()', () => {
-    // Arrange
-    const fakeIterations: Iterations = {
-      iterations: [
         {
-          id: '-1',
-          name: 'Fake',
-          goal: 'sprint goal -1',
-          startDate: '01/01/2020',
-          endDate: '01/31/2020',
-          status: 'Completed',
+          id: '-3',
+          name: 'Fake 3',
+          goal: 'sprint goal -3',
+          startDate: '03/01/2020',
+          endDate: '03/28/2020',
+          state: 'Completed',
           KVM: {
             CV: CVFake,
 
@@ -202,156 +370,7 @@ describe('ManageIterationsComponent', () => {
             UV: UVFake,
           },
         },
-        {
-          id: '-2',
-          name: 'Fake 2',
-          goal: 'sprint goal -2',
-          startDate: '01/01/2020',
-          endDate: '02/28/2020',
-          status: 'Completed',
-          KVM: {
-            CV: CVFake,
-
-            T2M: T2MFake,
-
-            A2I: A2IFake,
-
-            UV: UVFake,
-          },
-        },
-      ],
-    };
-
-    // Act
-    const newIteration = component.newIteration(fakeIterations, 0);
-
-    // Assert
-    expect(component.iterationsToHtml.iterations.length).toBe(0);
-    expect(newIteration.id).toBe('-1');
-    expect(newIteration.name).toBe('Fake');
-  });
-
-  it('should return a new Iteration - goToIterationDetails()', () => {
-    // Arrange
-    const fakeIterations: Iterations = {
-      iterations: [
-        {
-          id: '-1',
-          name: 'Fake',
-          goal: 'sprint goal -1',
-          startDate: '01/01/2020',
-          endDate: '01/31/2020',
-          status: 'Completed',
-          KVM: {
-            CV: CVFake,
-
-            T2M: T2MFake,
-
-            A2I: A2IFake,
-
-            UV: UVFake,
-          },
-        },
-        {
-          id: '-2',
-          name: 'Fake 2',
-          goal: 'sprint goal -2',
-          startDate: '01/01/2020',
-          endDate: '02/28/2020',
-          status: 'Completed',
-          KVM: {
-            CV: CVFake,
-
-            T2M: T2MFake,
-
-            A2I: A2IFake,
-
-            UV: UVFake,
-          },
-        },
-      ],
-    };
-
-    // Act
-    const newIteration = component.newIteration(fakeIterations, 0);
-
-    // Assert
-    expect(component.iterationsToHtml.iterations.length).toBe(0);
-    expect(newIteration.id).toBe('-1');
-    expect(newIteration.name).toBe('Fake');
-  });
-
-  it('should navigate to iteration', () => {
-    // Act
-    component.goToIterationDetails('1');
-
-    // args passed to router.navigateByUrl() spy
-    const spy = routerSpy.navigate as jasmine.Spy;
-    const navArgs = spy.calls.first().args[0];
-
-    // // Assert
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/iteration', '1']);
-    expect(navArgs).toEqual(['/iteration', '1']);
-  });
-
-  it('should has 3 html cards', () => {
-    // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
-      of({
-        iterations: [
-          {
-            id: '-1',
-            name: 'Fake',
-            goal: 'sprint goal -1',
-            startDate: '01/01/2020',
-            endDate: '01/28/2020',
-            status: 'Completed',
-            KVM: {
-              CV: CVFake,
-
-              T2M: T2MFake,
-
-              A2I: A2IFake,
-
-              UV: UVFake,
-            },
-          },
-          {
-            id: '-2',
-            name: 'Fake 2',
-            goal: 'sprint goal -2',
-            startDate: '02/01/2020',
-            endDate: '02/28/2020',
-            status: 'Completed',
-            KVM: {
-              CV: CVFake,
-
-              T2M: T2MFake,
-
-              A2I: A2IFake,
-
-              UV: UVFake,
-            },
-          },
-          {
-            id: '-3',
-            name: 'Fake 3',
-            goal: 'sprint goal -3',
-            startDate: '03/01/2020',
-            endDate: '03/28/2020',
-            status: 'Completed',
-            KVM: {
-              CV: CVFake,
-
-              T2M: T2MFake,
-
-              A2I: A2IFake,
-
-              UV: UVFake,
-            },
-          },
-        ],
-      })
+      ])
     );
     fixture.detectChanges();
 
@@ -364,28 +383,26 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 html card Completed', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
-      of({
-        iterations: [
-          {
-            id: '-1',
-            name: 'Fake',
-            goal: 'sprint goal -1',
-            startDate: '01/01/2020',
-            endDate: '01/28/2020',
-            status: 'Completed',
-            KVM: {
-              CV: CVFake,
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+      of([
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: 'Completed',
+          KVM: {
+            CV: CVFake,
 
-              T2M: T2MFake,
+            T2M: T2MFake,
 
-              A2I: A2IFake,
+            A2I: A2IFake,
 
-              UV: UVFake,
-            },
+            UV: UVFake,
           },
-        ],
-      })
+        },
+      ])
     );
     fixture.detectChanges();
 
@@ -400,28 +417,26 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 html card Fail', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
-      of({
-        iterations: [
-          {
-            id: '-1',
-            name: 'Fake',
-            goal: 'sprint goal -1',
-            startDate: '01/01/2020',
-            endDate: '01/28/2020',
-            status: 'Fail',
-            KVM: {
-              CV: CVFake,
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+      of([
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: 'Fail',
+          KVM: {
+            CV: CVFake,
 
-              T2M: T2MFake,
+            T2M: T2MFake,
 
-              A2I: A2IFake,
+            A2I: A2IFake,
 
-              UV: UVFake,
-            },
+            UV: UVFake,
           },
-        ],
-      })
+        },
+      ])
     );
     fixture.detectChanges();
 
@@ -436,28 +451,26 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 html card In_Progress', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
-      of({
-        iterations: [
-          {
-            id: '-1',
-            name: 'Fake',
-            goal: 'sprint goal -1',
-            startDate: '01/01/2020',
-            endDate: '01/28/2020',
-            status: 'In_Progress',
-            KVM: {
-              CV: CVFake,
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+      of([
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: 'In_Progress',
+          KVM: {
+            CV: CVFake,
 
-              T2M: T2MFake,
+            T2M: T2MFake,
 
-              A2I: A2IFake,
+            A2I: A2IFake,
 
-              UV: UVFake,
-            },
+            UV: UVFake,
           },
-        ],
-      })
+        },
+      ])
     );
     fixture.detectChanges();
 
@@ -472,28 +485,26 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 html card empty status', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
-      of({
-        iterations: [
-          {
-            id: '-1',
-            name: 'Fake',
-            goal: 'sprint goal -1',
-            startDate: '01/01/2020',
-            endDate: '01/28/2020',
-            status: '',
-            KVM: {
-              CV: CVFake,
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+      of([
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: '',
+          KVM: {
+            CV: CVFake,
 
-              T2M: T2MFake,
+            T2M: T2MFake,
 
-              A2I: A2IFake,
+            A2I: A2IFake,
 
-              UV: UVFake,
-            },
+            UV: UVFake,
           },
-        ],
-      })
+        },
+      ])
     );
     fixture.detectChanges();
 
@@ -508,28 +519,26 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 3 badges', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
-      of({
-        iterations: [
-          {
-            id: '-1',
-            name: 'Fake',
-            goal: 'sprint goal -1',
-            startDate: '01/01/2020',
-            endDate: '01/28/2020',
-            status: '',
-            KVM: {
-              CV: CVFake,
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+      of([
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: '',
+          KVM: {
+            CV: CVFake,
 
-              T2M: T2MFake,
+            T2M: T2MFake,
 
-              A2I: A2IFake,
+            A2I: A2IFake,
 
-              UV: UVFake,
-            },
+            UV: UVFake,
           },
-        ],
-      })
+        },
+      ])
     );
     fixture.detectChanges();
 
@@ -552,28 +561,26 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 button to create a new Iteration', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterations').and.returnValue(
-      of({
-        iterations: [
-          {
-            id: '-1',
-            name: 'Fake',
-            goal: 'sprint goal -1',
-            startDate: '01/01/2020',
-            endDate: '01/28/2020',
-            status: '',
-            KVM: {
-              CV: CVFake,
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+      of([
+        {
+          id: '-1',
+          name: 'Fake',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: '',
+          KVM: {
+            CV: CVFake,
 
-              T2M: T2MFake,
+            T2M: T2MFake,
 
-              A2I: A2IFake,
+            A2I: A2IFake,
 
-              UV: UVFake,
-            },
+            UV: UVFake,
           },
-        ],
-      })
+        },
+      ])
     );
     fixture.detectChanges();
 

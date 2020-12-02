@@ -23,14 +23,12 @@ export class ManageIterationsComponent implements OnInit {
     this.serviceItertations
       .getIterationsByTeam(2)
       .subscribe((iteration: any) => {
-        console.log(iteration);
 
         this.setLocalIterations(iteration);
       });
   }
 
   setLocalIterations(iteration: any): void {
-    console.log(iteration.length);
 
     for (let index = 0; index < iteration.length; index++) {
       this.iterationsToHtml.iterations.push(
@@ -40,6 +38,7 @@ export class ManageIterationsComponent implements OnInit {
   }
 
   newIteration(iteration: any, index: number): Iteration {
+    
     return {
       id: iteration[index].id.toString(),
       name: iteration[index].name,

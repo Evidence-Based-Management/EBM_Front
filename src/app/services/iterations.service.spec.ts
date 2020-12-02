@@ -63,7 +63,7 @@ describe('IterationsService', () => {
           goal: 'sprint goal 0',
           startDate: '01/01/2020',
           endDate: '01/28/2020',
-          status: 'Completed',
+          state: 'Completed',
           KVM: {
             CV: CVFake,
             T2M: T2MFake,
@@ -75,7 +75,7 @@ describe('IterationsService', () => {
     };
     httpClientSpy.get.and.returnValue(of(expectedIterations));
 
-    service.getIterations().subscribe(
+    service.getIterationsByTeam(1).subscribe(
       (result: Iterations) => {
         expect(result.iterations.length).toBeGreaterThan(0);
         expect(result.iterations[0].id).toBe('0');
@@ -91,7 +91,7 @@ describe('IterationsService', () => {
 
     httpClientSpy.get.and.returnValue(of(expectedIterations));
 
-    service.getIterations().subscribe(
+    service.getIterationsByTeam(1).subscribe(
       (result: Iterations[]) => {
         expect(result).toEqual(Array<Iterations>());
       },
@@ -109,7 +109,7 @@ describe('IterationsService', () => {
           goal: 'sprint goal 0',
           startDate: '01/01/2020',
           endDate: '01/28/2020',
-          status: 'Completed',
+          state: 'Completed',
           KVM: {
             CV: CVFake,
             T2M: T2MFake,
@@ -123,7 +123,7 @@ describe('IterationsService', () => {
           goal: 'sprint goal -1',
           startDate: '01/01/2020',
           endDate: '01/28/2020',
-          status: 'Completed',
+          state: 'Completed',
           KVM: {
             CV: CVFake,
             T2M: T2MFake,
@@ -137,7 +137,7 @@ describe('IterationsService', () => {
           goal: 'sprint goal -2',
           startDate: '01/01/2020',
           endDate: '01/28/2020',
-          status: 'Completed',
+          state: 'Completed',
           KVM: {
             CV: CVFake,
             T2M: T2MFake,
@@ -164,7 +164,7 @@ describe('IterationsService', () => {
       throwError({ status: 404, message: 'Not found' })
     );
 
-    service.getIterations().subscribe(
+    service.getIterationsByTeam(1).subscribe(
       (result) => console.log('good', result),
       (err) => {
         expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
@@ -214,7 +214,7 @@ describe('IterationsService', () => {
           goal: 'sprint goal 0',
           startDate: '01/01/2020',
           endDate: '01/28/2020',
-          status: 'Completed',
+          state: 'Completed',
           KVM: {
             CV: CVFake,
             T2M: T2MFake,
@@ -247,7 +247,7 @@ describe('IterationsService', () => {
           goal: 'sprint goal 0',
           startDate: '01/01/2020',
           endDate: '01/28/2020',
-          status: 'Completed',
+          state: 'Completed',
           KVM: {
             CV: CVFake,
             T2M: T2MFake,

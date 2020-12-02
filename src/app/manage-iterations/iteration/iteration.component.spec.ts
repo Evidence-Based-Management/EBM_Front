@@ -59,7 +59,7 @@ describe('IterationComponent', () => {
       goal: 'sprint goal -1',
       startDate: '01/01/2020',
       endDate: '01/31/2020',
-      status: 'Completed',
+      state: 'Completed',
       KVM: {
         CV: CVFake,
 
@@ -446,7 +446,7 @@ describe('IterationComponent', () => {
         goal: 'sprint goal -1',
         startDate: '01/01/2020',
         endDate: '01/31/2020',
-        status: 'In_Progress',
+        state: 'In_Progress',
         KVM: {
           CV: CVFake,
 
@@ -478,7 +478,7 @@ describe('IterationComponent', () => {
         goal: 'sprint goal -1',
         startDate: '01/01/2020',
         endDate: '01/31/2020',
-        status: 'Completed',
+        state: 'Completed',
         KVM: {
           CV: CVFake,
 
@@ -511,7 +511,7 @@ describe('IterationComponent', () => {
         goal: 'sprint goal -1',
         startDate: '01/01/2020',
         endDate: '01/31/2020',
-        status: 'Fail',
+        state: 'Fail',
         KVM: {
           CV: CVFake,
 
@@ -544,7 +544,7 @@ describe('IterationComponent', () => {
         goal: 'sprint goal -1',
         startDate: '01/01/2020',
         endDate: '01/31/2020',
-        status: '',
+        state: '',
         KVM: {
           CV: CVFake,
 
@@ -576,7 +576,7 @@ describe('IterationComponent', () => {
         goal: 'sprint goal -1',
         startDate: '01/01/2020',
         endDate: '01/31/2020',
-        status: '',
+        state: '',
         KVM: {
           CV: CVFake,
 

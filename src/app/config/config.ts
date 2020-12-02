@@ -1,2 +1,2 @@
   
-export const URL_SERVICE = 'http://evidence-based-management.herokuapp.com/ebm/api/';
+export const URL_SERVICE = 'https://evidence-based-management.herokuapp.com/ebm/api/';

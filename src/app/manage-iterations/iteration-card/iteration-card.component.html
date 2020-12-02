@@ -1,10 +1,10 @@
 <div
   [className]="
-    iteration?.status == 'Completed'
+    iteration?.state == 'Completed'
       ? 'card border-bottom-success shadow h-100 py-2'
-      : iteration?.status == 'Fail'
+      : iteration?.state == 'Fail'
       ? 'card border-bottom-danger shadow h-100 py-2'
-      : iteration?.status == 'In_Progress'
+      : iteration?.state == 'In_Progress'
       ? 'card border-bottom-warning shadow h-100 py-2'
       : 'card border-bottom-primary shadow h-100 py-2'
   "

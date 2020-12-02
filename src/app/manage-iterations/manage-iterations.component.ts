@@ -21,33 +21,37 @@ export class ManageIterationsComponent implements OnInit {
 
   getIterations(): void {
     this.serviceItertations
-      .getIterations()
-      .subscribe((iteration: Iterations) => {
+      .getIterationsByTeam(2)
+      .subscribe((iteration: any) => {
+        console.log(iteration);
+
         this.setLocalIterations(iteration);
       });
   }
 
-  setLocalIterations(iteration: Iterations): void {
-    for (let index = 0; index < iteration.iterations.length; index++) {
+  setLocalIterations(iteration: any): void {
+    console.log(iteration.length);
+
+    for (let index = 0; index < iteration.length; index++) {
       this.iterationsToHtml.iterations.push(
         this.newIteration(iteration, index)
       );
     }
   }
 
-  newIteration(iteration: Iterations, index: number): Iteration {
+  newIteration(iteration: any, index: number): Iteration {
     return {
-      id: iteration.iterations[index].id.toString(),
-      name: iteration.iterations[index].name,
-      goal: iteration.iterations[index].goal,
-      startDate: iteration.iterations[index].startDate,
-      endDate: iteration.iterations[index].endDate,
-      status: iteration.iterations[index].status,
+      id: iteration[index].id.toString(),
+      name: iteration[index].name,
+      goal: iteration[index].goal,
+      startDate: iteration[index].startDate,
+      endDate: iteration[index].endDate,
+      state: iteration[index].state,
       KVM: {
-        CV: iteration.iterations[index].KVM.CV,
-        T2M: iteration.iterations[index].KVM.T2M,
-        A2I: iteration.iterations[index].KVM.A2I,
-        UV: iteration.iterations[index].KVM.UV,
+        CV: iteration[index].KVM ? iteration[index].KVM.CV : '',
+        T2M: iteration[index].KVM ? iteration[index].KVM.T2M : '',
+        A2I: iteration[index].KVM ? iteration[index].KVM.A2I : '',
+        UV: iteration[index].KVM ? iteration[index].KVM.UV : '',
       },
     };
   }

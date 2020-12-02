@@ -3,18 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Iteration } from '../Interfaces/iterations';
+import { URL_SERVICE } from '../config/config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IterationsService {
-  jsonUrl = 'assets/data/iterations.json';
+  jsonUrl = URL_SERVICE + 'iterations/byTeam/';
 
   constructor(private http: HttpClient) {}
 
-  getIterations(): Observable<any> {
+  getIterationsByTeam(idTeam: number): Observable<any> {
     return this.http
-      .get(this.jsonUrl, { responseType: 'json' })
+      .get(this.jsonUrl + idTeam, { responseType: 'json' })
       .pipe(catchError(this.errorHandler));
   }
   getIterationById(id: string): Observable<any> {

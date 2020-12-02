@@ -8,7 +8,7 @@ export interface Iteration {
   goal: string;
   startDate: string;
   endDate: string;
-  status: string;
+  state: string;
   KVM: KVM;
 }
 

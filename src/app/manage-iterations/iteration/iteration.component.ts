@@ -39,80 +39,80 @@ export class IterationComponent implements OnInit {
         state: response.state ? response.state : '',
         KVM: {
           A2I: {
-            Active_Code_Branches: response.kva
+            Active_Code_Branches: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate
                   .activeCodeBranchesTimeSpentMergingCodeBetweenBranches
               : '',
-            Defect_Trends: response.kva
+            Defect_Trends: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate.defectTrends
               : '',
-            Feature_Usage_Index: response.kva
+            Feature_Usage_Index: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate.featureUsageIndex
               : [],
-            Innovation_Rate: response.kva
+            Innovation_Rate: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate.innovationRate
               : '',
-            Installed_Version_Index: response.kva
+            Installed_Version_Index: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate.installedVersionIndex
               : '',
-            On_Product_Index: response.kva
+            On_Product_Index: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate.onProductIndex
               : '',
-            Production_Incident_Trends: response.kva
+            Production_Incident_Trends: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate.productionIncidentTrends
               : '',
-            Technical_Debt: response.kva
+            Technical_Debt: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate.technicalDebt
               : '',
-            Time_Spent_Context_Switching: response.kva
+            Time_Spent_Context_Switching: response.kva.kvaAbilityToInnovate
               ? response.kva.kvaAbilityToInnovate.timeSpentContextSwitching
               : '',
           },
           CV: {
-            Customer_Satisfaction: response.kva
+            Customer_Satisfaction: response.kva.kvaCurrentValue
               ? response.kva.kvaCurrentValue.customerSatisfaction
               : '',
-            Customer_Usage_Index: response.kva
+            Customer_Usage_Index: response.kva.kvaCurrentValue
               ? response.kva.kvaCurrentValue.customerUsageIndex
               : '',
-            Employee_Satisfaction: response.kva
+            Employee_Satisfaction: response.kva.kvaCurrentValue
               ? response.kva.kvaCurrentValue.employeeSatisfaction
               : '',
-            Product_Cost_Ratio: response.kva
+            Product_Cost_Ratio: response.kva.kvaCurrentValue
               ? response.kva.kvaCurrentValue.productCostRatio
               : '',
-            Revenue_Per_Employee: response.kva
+            Revenue_Per_Employee: response.kva.kvaCurrentValue
               ? response.kva.kvaCurrentValue.revenuePerEmployee
               : '',
           },
           T2M: {
-            Build_And_Integration_Frequency: response.kva
+            Build_And_Integration_Frequency: response.kva.kvaTimeToMarket
               ? response.kva.kvaTimeToMarket.buildAndIntegrationFrequency
               : '',
-            Cycle_Time: response.kva
+            Cycle_Time: response.kva.kvaTimeToMarket
               ? response.kva.kvaTimeToMarket.cycleTime
               : '',
-            Lead_Time: response.kva
+            Lead_Time: response.kva.kvaTimeToMarket
               ? response.kva.kvaTimeToMarket.leadTime
               : '',
-            Mean_Time_To_Repair: response.kva
+            Mean_Time_To_Repair: response.kva.kvaTimeToMarket
               ? response.kva.kvaTimeToMarket.meanTimeToRepair
               : '',
-            Release_Frequency: response.kva
+            Release_Frequency: response.kva.kvaTimeToMarket
               ? response.kva.kvaTimeToMarket.releaseFrequency
               : '',
-            Release_Stabilization_Period: response.kva
+            Release_Stabilization_Period: response.kva.kvaTimeToMarket
               ? response.kva.kvaTimeToMarket.releaseStabilizationPeriod
               : '',
-            Time_To_Learn: response.kva
+            Time_To_Learn: response.kva.kvaTimeToMarket
               ? response.kva.kvaTimeToMarket.timeToLearn
               : '',
           },
           UV: {
-            Customer_Or_User_Satisfaction_Gap: response.kva
+            Customer_Or_User_Satisfaction_Gap: response.kva.kvaUnrealizedValue
               ? response.kva.kvaUnrealizedValue.customerSatisfactionGap
               : '',
-            Market_Share: response.kva
+            Market_Share: response.kva.kvaUnrealizedValue
               ? response.kva.kvaUnrealizedValue.marketShare
               : '',
           },

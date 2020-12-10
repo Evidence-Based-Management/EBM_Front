@@ -23,22 +23,21 @@ export class ManageIterationsComponent implements OnInit {
     this.serviceItertations
       .getIterationsByTeam(2)
       .subscribe((iteration: any) => {
-
         this.setLocalIterations(iteration);
       });
   }
 
   setLocalIterations(iteration: any): void {
-
-    for (let index = 0; index < iteration.length; index++) {
-      this.iterationsToHtml.iterations.push(
-        this.newIteration(iteration, index)
-      );
+    if ('iterations' in iteration) {
+      for (let index = 0; index < iteration.iterations.length; index++) {
+        this.iterationsToHtml.iterations.push(
+          this.newIteration(iteration.iterations, index)
+        );
+      }
     }
   }
 
   newIteration(iteration: any, index: number): Iteration {
-    
     return {
       id: iteration[index].id.toString(),
       name: iteration[index].name,
@@ -47,10 +46,10 @@ export class ManageIterationsComponent implements OnInit {
       endDate: iteration[index].endDate,
       state: iteration[index].state,
       KVM: {
-        CV: iteration[index].KVM ? iteration[index].KVM.CV : '',
-        T2M: iteration[index].KVM ? iteration[index].KVM.T2M : '',
-        A2I: iteration[index].KVM ? iteration[index].KVM.A2I : '',
-        UV: iteration[index].KVM ? iteration[index].KVM.UV : '',
+        CV: iteration[index].kva ? iteration[index].kva.CV : '',
+        T2M: iteration[index].kva ? iteration[index].kva.T2M : '',
+        A2I: iteration[index].kva ? iteration[index].kva.A2I : '',
+        UV: iteration[index].kva ? iteration[index].kva.UV : '',
       },
     };
   }

@@ -17,61 +17,53 @@ describe('IterationComponent', () => {
   let fixture: ComponentFixture<IterationComponent>;
   let iterationsService: IterationsService;
 
-  const CVFake: CV = {
-    Revenue_Per_Employee: '2.500.000 COP',
-    Product_Cost_Ratio: '500.000.000 - 100.000.000 COP',
-    Employee_Satisfaction: '4/5',
-    Customer_Satisfaction: '3/5',
-    Customer_Usage_Index: '50/180 min',
-  };
-
-  const T2MFake: T2M = {
-    Build_And_Integration_Frequency: '10 by week',
-    Release_Frequency: 'Monthly',
-    Release_Stabilization_Period: '3 days',
-    Mean_Time_To_Repair: '3/5',
-    Cycle_Time: '1 month',
-    Lead_Time: '3 months',
-    Time_To_Learn: '1 months',
-  };
-
-  const A2IFake: A2I = {
-    Feature_Usage_Index: ['30 min by day', '5 min by day', '60 min by day'],
-    Innovation_Rate: '0.33',
-    Defect_Trends: '+60',
-    On_Product_Index: '80%',
-    Installed_Version_Index: '2',
-    Technical_Debt: '2 month',
-    Production_Incident_Trends: '3 times by iteration',
-    Active_Code_Branches: '5 hours',
-    Time_Spent_Context_Switching: '3',
-  };
-
-  const UVFake: UV = {
-    Market_Share: '3%',
-    Customer_Or_User_Satisfaction_Gap: '5/10',
-  };
-
-  let iterationFake = [
-    {
-      id: '-1',
-      name: 'Fake',
-      goal: 'sprint goal -1',
-      startDate: '01/01/2020',
-      endDate: '01/31/2020',
-      state: 'Completed',
-      KVM: {
-        CV: CVFake,
-
-        T2M: T2MFake,
-
-        A2I: A2IFake,
-
-        UV: UVFake,
+  let iterationFake = {
+    id: '-1',
+    name: 'Fake',
+    goal: 'sprint goal -1',
+    startDate: '01/01/2020',
+    endDate: '01/31/2020',
+    state: 'Completed',
+    kva: {
+      kvaUnrealizedValue: {
+        id: 1,
+        marketShare: '3%',
+        customerSatisfactionGap: '5/10',
+        idTeam: 2,
+        idIteration: 2,
+      },
+      kvaCurrentValue: {
+        id: 1,
+        revenuePerEmployee: '8.500.000 COP',
+        productCostRatio: '500.000.000 - 100.000.000 COP',
+        employeeSatisfaction: '4/5',
+        customerSatisfaction: '3/5',
+        customerUsageIndex: '50/180 min',
+      },
+      kvaAbilityToInnovate: {
+        id: 2,
+        featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+        innovationRate: '0.33',
+        defectTrends: '+60',
+        onProductIndex: '80%',
+        installedVersionIndex: '2',
+        technicalDebt: '2 month',
+        productionIncidentTrends: '3 times by iteration',
+        activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+        timeSpentContextSwitching: '3',
+      },
+      kvaTimeToMarket: {
+        id: 1,
+        buildAndIntegrationFrequency: '10 by week',
+        releaseFrequency: 'Monthly',
+        releaseStabilizationPeriod: '3 days',
+        meanTimeToRepair: '3/5',
+        cycleTime: '1 month',
+        leadTime: '3 months',
+        timeToLearn: '1 months',
       },
     },
-  ];
-
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -86,7 +78,7 @@ describe('IterationComponent', () => {
           useValue: {
             getIterationById: () => of(iterationFake),
             updateIteration: () =>
-              of({ status: 200, iteration: iterationFake[0] }),
+              of({ status: 200, iteration: iterationFake }),
           },
         },
       ],
@@ -120,9 +112,7 @@ describe('IterationComponent', () => {
 
   it('should get empty iterations - getIterationById()', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationById').and.returnValue(
-      of({ iterations: new Array<Iteration>() })
-    );
+    spyOn(iterationsService, 'getIterationById').and.returnValue(of({}));
     fixture.detectChanges();
 
     // Act
@@ -144,7 +134,8 @@ describe('IterationComponent', () => {
     component.getIteration();
 
     // Assert
-    expect(component.iteration).toEqual(iterationFake[0]);
+
+    expect(component.iteration.name).toEqual(iterationFake.name);
   });
 
   it('should exist 5 KeyValueMesuresComponent CV at first HTML Tabs', () => {
@@ -188,7 +179,7 @@ describe('IterationComponent', () => {
 
     // Assert
     expect(Revenue_Per_Employee[0].nativeElement.value).toEqual(
-      '2.500.000 COP'
+      '8.500.000 COP'
     );
     expect(Product_Cost_Ratio[0].nativeElement.value).toEqual(
       '500.000.000 - 100.000.000 COP'
@@ -439,25 +430,53 @@ describe('IterationComponent', () => {
 
   it('should exist a button when the iteration is In_Progress', () => {
     // Arrange
-    iterationFake = [
-      {
-        id: '-1',
-        name: 'Fake',
-        goal: 'sprint goal -1',
-        startDate: '01/01/2020',
-        endDate: '01/31/2020',
-        state: 'In_Progress',
-        KVM: {
-          CV: CVFake,
-
-          T2M: T2MFake,
-
-          A2I: A2IFake,
-
-          UV: UVFake,
+    iterationFake = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: 'In_Progress',
+      kva: {
+        kvaUnrealizedValue: {
+          id: 1,
+          marketShare: '3%',
+          customerSatisfactionGap: '5/10',
+          idTeam: 2,
+          idIteration: 2,
+        },
+        kvaCurrentValue: {
+          id: 1,
+          revenuePerEmployee: '8.500.000 COP',
+          productCostRatio: '500.000.000 - 100.000.000 COP',
+          employeeSatisfaction: '4/5',
+          customerSatisfaction: '3/5',
+          customerUsageIndex: '50/180 min',
+        },
+        kvaAbilityToInnovate: {
+          id: 2,
+          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          innovationRate: '0.33',
+          defectTrends: '+60',
+          onProductIndex: '80%',
+          installedVersionIndex: '2',
+          technicalDebt: '2 month',
+          productionIncidentTrends: '3 times by iteration',
+          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+          timeSpentContextSwitching: '3',
+        },
+        kvaTimeToMarket: {
+          id: 1,
+          buildAndIntegrationFrequency: '10 by week',
+          releaseFrequency: 'Monthly',
+          releaseStabilizationPeriod: '3 days',
+          meanTimeToRepair: '3/5',
+          cycleTime: '1 month',
+          leadTime: '3 months',
+          timeToLearn: '1 months',
         },
       },
-    ];
+    };
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFake)
     );
@@ -471,25 +490,53 @@ describe('IterationComponent', () => {
 
   it('should not exist a button when the iteration is Completed', () => {
     // Arrange
-    iterationFake = [
-      {
-        id: '-1',
-        name: 'Fake',
-        goal: 'sprint goal -1',
-        startDate: '01/01/2020',
-        endDate: '01/31/2020',
-        state: 'Completed',
-        KVM: {
-          CV: CVFake,
-
-          T2M: T2MFake,
-
-          A2I: A2IFake,
-
-          UV: UVFake,
+    iterationFake = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: 'Completed',
+      kva: {
+        kvaUnrealizedValue: {
+          id: 1,
+          marketShare: '3%',
+          customerSatisfactionGap: '5/10',
+          idTeam: 2,
+          idIteration: 2,
+        },
+        kvaCurrentValue: {
+          id: 1,
+          revenuePerEmployee: '8.500.000 COP',
+          productCostRatio: '500.000.000 - 100.000.000 COP',
+          employeeSatisfaction: '4/5',
+          customerSatisfaction: '3/5',
+          customerUsageIndex: '50/180 min',
+        },
+        kvaAbilityToInnovate: {
+          id: 2,
+          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          innovationRate: '0.33',
+          defectTrends: '+60',
+          onProductIndex: '80%',
+          installedVersionIndex: '2',
+          technicalDebt: '2 month',
+          productionIncidentTrends: '3 times by iteration',
+          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+          timeSpentContextSwitching: '3',
+        },
+        kvaTimeToMarket: {
+          id: 1,
+          buildAndIntegrationFrequency: '10 by week',
+          releaseFrequency: 'Monthly',
+          releaseStabilizationPeriod: '3 days',
+          meanTimeToRepair: '3/5',
+          cycleTime: '1 month',
+          leadTime: '3 months',
+          timeToLearn: '1 months',
         },
       },
-    ];
+    };
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFake)
     );
@@ -504,25 +551,53 @@ describe('IterationComponent', () => {
 
   it('should not exist a button when the iteration is Fail', () => {
     // Arrange
-    iterationFake = [
-      {
-        id: '-1',
-        name: 'Fake',
-        goal: 'sprint goal -1',
-        startDate: '01/01/2020',
-        endDate: '01/31/2020',
-        state: 'Fail',
-        KVM: {
-          CV: CVFake,
-
-          T2M: T2MFake,
-
-          A2I: A2IFake,
-
-          UV: UVFake,
+    iterationFake = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: 'Fail',
+      kva: {
+        kvaUnrealizedValue: {
+          id: 1,
+          marketShare: '3%',
+          customerSatisfactionGap: '5/10',
+          idTeam: 2,
+          idIteration: 2,
+        },
+        kvaCurrentValue: {
+          id: 1,
+          revenuePerEmployee: '8.500.000 COP',
+          productCostRatio: '500.000.000 - 100.000.000 COP',
+          employeeSatisfaction: '4/5',
+          customerSatisfaction: '3/5',
+          customerUsageIndex: '50/180 min',
+        },
+        kvaAbilityToInnovate: {
+          id: 2,
+          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          innovationRate: '0.33',
+          defectTrends: '+60',
+          onProductIndex: '80%',
+          installedVersionIndex: '2',
+          technicalDebt: '2 month',
+          productionIncidentTrends: '3 times by iteration',
+          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+          timeSpentContextSwitching: '3',
+        },
+        kvaTimeToMarket: {
+          id: 1,
+          buildAndIntegrationFrequency: '10 by week',
+          releaseFrequency: 'Monthly',
+          releaseStabilizationPeriod: '3 days',
+          meanTimeToRepair: '3/5',
+          cycleTime: '1 month',
+          leadTime: '3 months',
+          timeToLearn: '1 months',
         },
       },
-    ];
+    };
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFake)
     );
@@ -537,25 +612,53 @@ describe('IterationComponent', () => {
 
   it('should not exist a button when the iteration is empty', () => {
     // Arrange
-    iterationFake = [
-      {
-        id: '-1',
-        name: 'Fake',
-        goal: 'sprint goal -1',
-        startDate: '01/01/2020',
-        endDate: '01/31/2020',
-        state: '',
-        KVM: {
-          CV: CVFake,
-
-          T2M: T2MFake,
-
-          A2I: A2IFake,
-
-          UV: UVFake,
+    iterationFake = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: '',
+      kva: {
+        kvaUnrealizedValue: {
+          id: 1,
+          marketShare: '3%',
+          customerSatisfactionGap: '5/10',
+          idTeam: 2,
+          idIteration: 2,
+        },
+        kvaCurrentValue: {
+          id: 1,
+          revenuePerEmployee: '8.500.000 COP',
+          productCostRatio: '500.000.000 - 100.000.000 COP',
+          employeeSatisfaction: '4/5',
+          customerSatisfaction: '3/5',
+          customerUsageIndex: '50/180 min',
+        },
+        kvaAbilityToInnovate: {
+          id: 2,
+          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          innovationRate: '0.33',
+          defectTrends: '+60',
+          onProductIndex: '80%',
+          installedVersionIndex: '2',
+          technicalDebt: '2 month',
+          productionIncidentTrends: '3 times by iteration',
+          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+          timeSpentContextSwitching: '3',
+        },
+        kvaTimeToMarket: {
+          id: 1,
+          buildAndIntegrationFrequency: '10 by week',
+          releaseFrequency: 'Monthly',
+          releaseStabilizationPeriod: '3 days',
+          meanTimeToRepair: '3/5',
+          cycleTime: '1 month',
+          leadTime: '3 months',
+          timeToLearn: '1 months',
         },
       },
-    ];
+    };
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFake)
     );
@@ -569,30 +672,58 @@ describe('IterationComponent', () => {
 
   it('should update an iteration', () => {
     // Arrange
-    iterationFake = [
-      {
-        id: '-1',
-        name: 'Fake',
-        goal: 'sprint goal -1',
-        startDate: '01/01/2020',
-        endDate: '01/31/2020',
-        state: '',
-        KVM: {
-          CV: CVFake,
-
-          T2M: T2MFake,
-
-          A2I: A2IFake,
-
-          UV: UVFake,
+    iterationFake = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: '',
+      kva: {
+        kvaUnrealizedValue: {
+          id: 1,
+          marketShare: '3%',
+          customerSatisfactionGap: '5/10',
+          idTeam: 2,
+          idIteration: 2,
+        },
+        kvaCurrentValue: {
+          id: 1,
+          revenuePerEmployee: '8.500.000 COP',
+          productCostRatio: '500.000.000 - 100.000.000 COP',
+          employeeSatisfaction: '4/5',
+          customerSatisfaction: '3/5',
+          customerUsageIndex: '50/180 min',
+        },
+        kvaAbilityToInnovate: {
+          id: 2,
+          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          innovationRate: '0.33',
+          defectTrends: '+60',
+          onProductIndex: '80%',
+          installedVersionIndex: '2',
+          technicalDebt: '2 month',
+          productionIncidentTrends: '3 times by iteration',
+          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+          timeSpentContextSwitching: '3',
+        },
+        kvaTimeToMarket: {
+          id: 1,
+          buildAndIntegrationFrequency: '10 by week',
+          releaseFrequency: 'Monthly',
+          releaseStabilizationPeriod: '3 days',
+          meanTimeToRepair: '3/5',
+          cycleTime: '1 month',
+          leadTime: '3 months',
+          timeToLearn: '1 months',
         },
       },
-    ];
+    };
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFake)
     );
     spyOn(iterationsService, 'updateIteration').and.returnValue(
-      of({ status: 200, iteration: iterationFake[0] })
+      of({ status: 200, iteration: iterationFake })
     );
     // Act
     fixture.detectChanges();
@@ -601,6 +732,6 @@ describe('IterationComponent', () => {
     component.saveUpdateIteration();
 
     // Assert
-    expect(component.iteration).toBe(iterationFake[0]);    
+    expect(component.iteration.name).toBe(iterationFake.name);
   });
 });

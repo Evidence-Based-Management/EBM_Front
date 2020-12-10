@@ -734,4 +734,24 @@ describe('IterationComponent', () => {
     // Assert
     expect(component.iteration.name).toBe(iterationFake.name);
   });
+
+  it('should has a iteration without kva', () => {
+    // Arrange
+    const iterationFakewoKva = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: '',
+    };
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFakewoKva)
+    );
+
+     // Act
+     fixture.detectChanges();
+     
+    expect(component.iteration).toBeDefined();
+  });
 });

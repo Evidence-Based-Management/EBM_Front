@@ -150,9 +150,9 @@ describe('IterationsService', () => {
     httpClientSpy.get.and.returnValue(of(expectedIterations));
 
     service.getIterationById('-1').subscribe(
-      (result: Iteration[]) => {
-        expect(result[0].id).toBe('-1');
-        expect(result[0].name).toBe('Sprint -1');
+      (result: any) => {
+        expect(result.iterations[0].id).toBe('0');
+        expect(result.iterations[0].name).toBe('Sprint 1');
       },
       (err) => console.log('HTTP Error getIterationById', err)
     );

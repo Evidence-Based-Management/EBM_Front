@@ -29,14 +29,14 @@ export class IterationComponent implements OnInit {
   }
 
   mapIteration(response: any): void {
-    if ('id' in response) {
+    if ('id' in response && 'kva' in response) {
       this.iteration = {
-        id: response.id ? response.id : '',
-        name: response.name ? response.name : '',
-        goal: response.goal ? response.goal : '',
-        startDate: response.startDate ? response.startDate : '',
-        endDate: response.endDate ? response.endDate : '',
-        state: response.state ? response.state : '',
+        id: response.id,
+        name: response.name,
+        goal: response.goal,
+        startDate: response.startDate,
+        endDate: response.endDate,
+        state: response.state,
         KVM: {
           A2I: {
             Active_Code_Branches: response.kva.kvaAbilityToInnovate

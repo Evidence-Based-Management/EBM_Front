@@ -744,14 +744,15 @@ describe('IterationComponent', () => {
       startDate: '01/01/2020',
       endDate: '01/31/2020',
       state: '',
+      kva: {},
     };
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFakewoKva)
     );
 
-     // Act
-     fixture.detectChanges();
-     
+    // Act
+    fixture.detectChanges();
+
     expect(component.iteration).toBeDefined();
   });
 });

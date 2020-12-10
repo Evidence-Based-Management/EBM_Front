@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Iteration } from '../Interfaces/iterations';
 import { URL_SERVICE } from '../config/config';
 
@@ -20,12 +20,14 @@ export class IterationsService {
       .pipe(catchError(this.errorHandler));
   }
   getIterationById(id: string): Observable<any> {
-    return this.http.get(this.jsonUrlIteration + id, { responseType: 'json' }).pipe(
-      // map((iterations: any) => {
-      //   return iterations.iterations.filter((iteration) => iteration.id === id);
-      // }),
-      catchError(this.errorHandler)
-    );
+    return this.http
+      .get(this.jsonUrlIteration + id, { responseType: 'json' })
+      .pipe(
+        // map((iterations: any) => {
+        //   return iterations.iterations.filter((iteration) => iteration.id === id);
+        // }),
+        catchError(this.errorHandler)
+      );
   }
 
   updateIteration(iteration: Iteration): Observable<any> {

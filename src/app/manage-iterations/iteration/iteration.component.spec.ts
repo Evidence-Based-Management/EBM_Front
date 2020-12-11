@@ -119,7 +119,7 @@ describe('IterationComponent', () => {
     component.getIteration();
 
     // Assert
-    expect(component.iteration).toBeUndefined();
+    expect(component.iteration).toBeDefined();
   });
 
   it('should get an iteration - getIterationById()', () => {
@@ -748,6 +748,20 @@ describe('IterationComponent', () => {
       state: '',
       kva: {},
     };
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFakewoKva)
+    );
+
+    // Act
+    fixture.detectChanges();
+
+    expect(component.iteration).toBeDefined();
+  });
+
+
+  it('should has a iteration null', () => {
+    // Arrange
+    const iterationFakewoKva = null;
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFakewoKva)
     );

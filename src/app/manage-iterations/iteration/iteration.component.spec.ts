@@ -177,6 +177,8 @@ describe('IterationComponent', () => {
       By.css('#input_Customer_Usage_Index')
     );
 
+    fixture.whenStable().then(() => {});
+
     // Assert
     expect(Revenue_Per_Employee[0].nativeElement.value).toEqual(
       '8.500.000 COP'

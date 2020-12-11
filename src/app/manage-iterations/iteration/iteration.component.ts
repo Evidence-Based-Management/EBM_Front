@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Iteration } from 'src/app/Interfaces/iterations';
 import { IterationsService } from 'src/app/services/iterations.service';
 import { Router } from '@angular/router';
-import { CV, T2M, A2I, UV } from '../../Interfaces/iterations';
 
 @Component({
   selector: 'app-iteration',

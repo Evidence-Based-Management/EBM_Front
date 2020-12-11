@@ -11,7 +11,7 @@ import {
 import { IterationsService } from './iterations.service';
 
 describe('IterationsService', () => {
-  let httpClientSpy: { get: jasmine.Spy; put: jasmine.Spy };
+  let httpClientSpy: { get: jasmine.Spy; post: jasmine.Spy };
   let service: IterationsService;
 
   const CVFake: CV = {
@@ -50,7 +50,7 @@ describe('IterationsService', () => {
   };
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'put']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
     service = new IterationsService(httpClientSpy as any);
   });
 
@@ -225,17 +225,17 @@ describe('IterationsService', () => {
       ],
     };
 
-    httpClientSpy.put.and.returnValue(
+    httpClientSpy.post.and.returnValue(
       of({ status: 200, iteration: expectedIterations.iterations[0] })
     );
 
-    service.updateIteration(expectedIterations.iterations[0]).subscribe(
+    service.save(expectedIterations.iterations[0]).subscribe(
       (result) => {
         expect(result.iteration).toEqual(expectedIterations.iterations[0]);
       },
       (err) => console.log('HTTP Error', err)
     );
-    expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
+    expect(httpClientSpy.post.calls.count()).toBe(1, 'one call');
   });
 
   it('should to provoke an error - updateIteration', () => {
@@ -258,16 +258,16 @@ describe('IterationsService', () => {
       ],
     };
 
-    httpClientSpy.put.and.returnValue(
+    httpClientSpy.post.and.returnValue(
       throwError({ status: 404, message: 'Not found' })
     );
 
-    service.updateIteration(expectedIterations.iterations[0]).subscribe(
+    service.save(expectedIterations.iterations[0]).subscribe(
       (result) => console.log('good', result),
       (err) => {
         expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
       }
     );
-    expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
+    expect(httpClientSpy.post.calls.count()).toBe(1, 'one call');
   });
 });

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Iteration } from 'src/app/Interfaces/iterations';
 import { IterationsService } from 'src/app/services/iterations.service';
+import { Router } from '@angular/router';
+import { CV, T2M, A2I, UV } from '../../Interfaces/iterations';
 
 @Component({
   selector: 'app-iteration',
@@ -12,23 +14,69 @@ export class IterationComponent implements OnInit {
   iteration: Iteration;
   constructor(
     public serviceItertations: IterationsService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
     this.idIteration = this.route.snapshot.paramMap.get('id');
-    this.getIteration();
+
+    if (this.idIteration) {
+      this.getIteration();
+    } else {
+      this.iteration = {
+        id: null,
+        name: null,
+        goal: null,
+        state: 'newIteration',
+        startDate: null,
+        endDate: null,
+        KVM: {
+          CV: {
+            Customer_Satisfaction: null,
+            Customer_Usage_Index: null,
+            Employee_Satisfaction: null,
+            Product_Cost_Ratio: null,
+            Revenue_Per_Employee: null,
+          },
+          T2M: {
+            Build_And_Integration_Frequency: null,
+            Cycle_Time: null,
+            Lead_Time: null,
+            Mean_Time_To_Repair: null,
+            Release_Frequency: null,
+            Release_Stabilization_Period: null,
+            Time_To_Learn: null,
+          },
+          A2I: {
+            Active_Code_Branches: null,
+            Defect_Trends: null,
+            Feature_Usage_Index: null,
+            Innovation_Rate: null,
+            Installed_Version_Index: null,
+            On_Product_Index: null,
+            Production_Incident_Trends: null,
+            Technical_Debt: null,
+            Time_Spent_Context_Switching: null,
+          },
+          UV: {
+            Customer_Or_User_Satisfaction_Gap: null,
+            Market_Share: null,
+          },
+        },
+      };
+    }
   }
 
   getIteration(): void {
     this.serviceItertations
       .getIterationById(this.idIteration)
       .subscribe((response: any) => {
-        this.mapIteration(response);
+        this.mapToIteration(response);
       });
   }
 
-  mapIteration(response: any): void {
+  mapToIteration(response: any): void {
     this.iteration = {
       id: response?.id ? response.id : '',
       name: response?.name ? response.name : '',
@@ -119,12 +167,22 @@ export class IterationComponent implements OnInit {
     };
   }
 
-  saveUpdateIteration(): void {
+  mapFromIteration(iteration: Iteration): any {
+    return {
+      goal: iteration.goal,
+      name: iteration.name,
+      startDate: iteration.startDate,
+      endDate: iteration.endDate,
+      state: 'In_Progress',
+      idTeam: 2,
+    };
+  }
+
+  saveIteration(): void {
     this.serviceItertations
-      .updateIteration(this.iteration)
+      .save(this.mapFromIteration(this.iteration))
       .subscribe((response: any) => {
-        // this.iteration = response[0];
-        // console.log(response);
+        this.router.navigate(['/iterations']);
       });
   }
 }

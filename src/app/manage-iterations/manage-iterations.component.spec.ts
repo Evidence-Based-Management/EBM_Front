@@ -991,7 +991,7 @@ describe('ManageIterationsComponent', () => {
     fixture.detectChanges();
 
     // Act
-    const result = fixture.debugElement.queryAll(By.css('button'));
+    const result = fixture.debugElement.queryAll(By.css('a'));
 
     // Assert
     expect(result.length).toBe(1);

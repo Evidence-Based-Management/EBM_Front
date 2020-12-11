@@ -9,7 +9,7 @@ import { URL_SERVICE } from '../config/config';
   providedIn: 'root',
 })
 export class IterationsService {
-  jsonUrlIteration = URL_SERVICE + 'iterations/iteration/';
+  jsonUrlIteration = URL_SERVICE + 'iterations/';
   jsonUrlTeam = URL_SERVICE + 'teams/team/';
 
   constructor(private http: HttpClient) {}
@@ -21,18 +21,13 @@ export class IterationsService {
   }
   getIterationById(id: string): Observable<any> {
     return this.http
-      .get(this.jsonUrlIteration + id, { responseType: 'json' })
-      .pipe(
-        // map((iterations: any) => {
-        //   return iterations.iterations.filter((iteration) => iteration.id === id);
-        // }),
-        catchError(this.errorHandler)
-      );
+      .get(this.jsonUrlIteration + 'iteration/' + id, { responseType: 'json' })
+      .pipe(catchError(this.errorHandler));
   }
 
-  updateIteration(iteration: Iteration): Observable<any> {
+  save(iteration: any): Observable<any> {
     return this.http
-      .put(this.jsonUrlIteration, iteration, { responseType: 'json' })
+      .post(this.jsonUrlIteration + 'save', iteration, { responseType: 'json' })
       .pipe(catchError(this.errorHandler));
   }
 

@@ -1,20 +1,20 @@
 <div class="container-fluid pt-3">
   <div class="form-group row">
     <div class="col-sm-3">
-      <label for="input_{{id}}" class="col-form-label">
+      <label for="input_{{ id }}" class="col-form-label">
         {{ name }}
       </label>
     </div>
     <div class="col-sm-9">
       <input
-        [readonly]="status=='In_Progress'?false:true"
+        [readonly]="status == 'In_Progress' || status == 'newIteration' ? false : true"
         type="text"
         class="form-control"
-        id="input_{{id}}"
-        attr.aria-describedby="{{id}}_HelpBlock"
-        [(value)]="value"
+        id="input_{{ id }}"
+        attr.aria-describedby="{{ id }}_HelpBlock"
+        [(value)]="status == 'newIteration' ? '..To Be Define..' : value"
       />
-      <small id="{{id}}_HelpBlock" class="form-text text-muted">
+      <small id="{{ id }}_HelpBlock" class="form-text text-muted">
         {{ helpText }}
       </small>
     </div>

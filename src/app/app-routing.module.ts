@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'iterations', component: ManageIterationsComponent },
   { path: 'iteration/:id', component: IterationComponent },
+  { path: 'addIteration', component: IterationComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/' },
 ];

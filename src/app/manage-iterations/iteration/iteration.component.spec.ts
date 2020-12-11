@@ -11,11 +11,14 @@ import { IterationCardComponent } from '../iteration-card/iteration-card.compone
 import { IterationComponent } from './iteration.component';
 import { CV, T2M, A2I } from '../../Interfaces/iterations';
 import { KeyValueMesuresComponent } from '../key-value-mesures/key-value-mesures.component';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;
   let fixture: ComponentFixture<IterationComponent>;
   let iterationsService: IterationsService;
+  let activatedRoute: ActivatedRoute;
 
   let iterationFake = {
     id: '-1',
@@ -64,6 +67,7 @@ describe('IterationComponent', () => {
       },
     },
   };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -71,14 +75,28 @@ describe('IterationComponent', () => {
         IterationCardComponent,
         KeyValueMesuresComponent,
       ],
-      imports: [AppRoutingModule, BrowserAnimationsModule, MatTabsModule],
+      imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatTabsModule,
+        FormsModule,
+      ],
       providers: [
         {
           provide: IterationsService,
           useValue: {
             getIterationById: () => of(iterationFake),
-            updateIteration: () =>
-              of({ status: 200, iteration: iterationFake }),
+            save: () => of(iterationFake),
+          },
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: () => '1',
+              },
+            },
           },
         },
       ],
@@ -89,9 +107,10 @@ describe('IterationComponent', () => {
     fixture = TestBed.createComponent(IterationComponent);
     component = fixture.componentInstance;
     iterationsService = TestBed.inject(IterationsService);
+    activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
-  it('should create', () => {
+  it('should create with idIteration', () => {
     // Arrange
     fixture.detectChanges();
 
@@ -106,6 +125,75 @@ describe('IterationComponent', () => {
     // Assert
     expect(name[0].nativeElement.innerHTML).toBe(' Fake ');
     expect(goal[0].nativeElement.innerHTML).toBe('sprint goal -1');
+
+    expect(component).toBeTruthy();
+  });
+
+  it('should create without idIteration', () => {
+    spyOn(activatedRoute.snapshot.paramMap, 'get').and.returnValue(null);
+
+    // Arrange
+    fixture.detectChanges();
+
+    // Act
+    const iterationName = fixture.debugElement.queryAll(
+      By.css('#iterationName')
+    );
+    const iteratioGoal = fixture.debugElement.queryAll(By.css('#iteratioGoal'));
+    const iteratioStartDate = fixture.debugElement.queryAll(
+      By.css('#iteratioStartDate')
+    );
+    const iteratioEndDate = fixture.debugElement.queryAll(
+      By.css('#iteratioEndDate')
+    );
+
+    // Assert
+    expect(iterationName[0].nativeElement.placeholder).toBe('Iteration Name');
+    expect(iteratioGoal[0].nativeElement.placeholder).toBe('Iteration Goal');
+    expect(iteratioStartDate[0].nativeElement.placeholder).toBe('Start Date');
+    expect(iteratioEndDate[0].nativeElement.placeholder).toBe('End Date');
+
+    expect(component.iteration).toEqual({
+      id: null,
+      name: null,
+      goal: null,
+      state: 'newIteration',
+      startDate: null,
+      endDate: null,
+      KVM: {
+        CV: {
+          Customer_Satisfaction: null,
+          Customer_Usage_Index: null,
+          Employee_Satisfaction: null,
+          Product_Cost_Ratio: null,
+          Revenue_Per_Employee: null,
+        },
+        T2M: {
+          Build_And_Integration_Frequency: null,
+          Cycle_Time: null,
+          Lead_Time: null,
+          Mean_Time_To_Repair: null,
+          Release_Frequency: null,
+          Release_Stabilization_Period: null,
+          Time_To_Learn: null,
+        },
+        A2I: {
+          Active_Code_Branches: null,
+          Defect_Trends: null,
+          Feature_Usage_Index: null,
+          Innovation_Rate: null,
+          Installed_Version_Index: null,
+          On_Product_Index: null,
+          Production_Incident_Trends: null,
+          Technical_Debt: null,
+          Time_Spent_Context_Switching: null,
+        },
+        UV: {
+          Customer_Or_User_Satisfaction_Gap: null,
+          Market_Share: null,
+        },
+      },
+    });
 
     expect(component).toBeTruthy();
   });
@@ -724,14 +812,12 @@ describe('IterationComponent', () => {
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFake)
     );
-    spyOn(iterationsService, 'updateIteration').and.returnValue(
-      of({ status: 200, iteration: iterationFake })
-    );
+    spyOn(iterationsService, 'save').and.returnValue(of(iterationFake));
     // Act
     fixture.detectChanges();
 
     // Act
-    component.saveUpdateIteration();
+    component.saveIteration();
 
     // Assert
     expect(component.iteration.name).toBe(iterationFake.name);
@@ -757,7 +843,6 @@ describe('IterationComponent', () => {
 
     expect(component.iteration).toBeDefined();
   });
-
 
   it('should has a iteration null', () => {
     // Arrange

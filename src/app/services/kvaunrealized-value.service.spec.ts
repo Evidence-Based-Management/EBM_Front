@@ -69,7 +69,7 @@ describe('KVAUnrealizedValueService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('should to provoke an error - update', () => {
+  it('should to provoke an error - update', () => {
     httpClientSpy.put.and.returnValue(
       throwError({ status: 404, message: 'Not found' })
     );

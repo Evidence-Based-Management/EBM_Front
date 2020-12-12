@@ -82,4 +82,22 @@ describe('KVAUnrealizedValueService', () => {
     );
     expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
   });
+
+  it('should to provoke an error - update(-1) - instanceof ErrorEvent', () => {
+    const errorEventFake = {
+      error: new ErrorEvent('my type', {
+        message: 'Error Code: 404\nMessage: Not found',
+      }),
+    };
+
+    httpClientSpy.put.and.returnValue(throwError(errorEventFake));
+
+    service.update('-1', {}).subscribe(
+      (result) => console.log('good', result),
+      (err) => {
+        expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
+      }
+    );
+    expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
+  });
 });

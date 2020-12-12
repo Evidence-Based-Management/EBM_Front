@@ -208,27 +208,20 @@ export class IterationComponent implements OnInit {
   }
 
   saveUnrealizedValue(): void {
-    console.log(this.iteration.KVM);
-    console.log(this.iteration.KVM.UV);
-
-    if (this.iteration?.KVM?.UV?.id === '') {
-      console.log('save');
-      console.log(this.mapToKVAUnrealizedValue(this.iteration));
-
+    if (this.iteration.KVM.UV.id === '') {
       this.serviceKVAUnrealizedValue
         .save(this.mapToKVAUnrealizedValue(this.iteration))
         .subscribe(() => {
-          this.router.navigate(['/iteration/', this.iteration.id]);
+          this.router.navigate(['/iterations']);
         });
     } else {
-      console.log('update');
       this.serviceKVAUnrealizedValue
         .update(
           this.iteration.KVM.UV.id,
           this.mapToKVAUnrealizedValue(this.iteration)
         )
         .subscribe(() => {
-          this.router.navigate(['/iteration/', this.iteration.id]);
+          this.router.navigate(['/iterations']);
         });
     }
   }

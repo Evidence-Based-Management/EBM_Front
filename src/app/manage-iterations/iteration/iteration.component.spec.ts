@@ -31,14 +31,14 @@ describe('IterationComponent', () => {
     state: 'Completed',
     kva: {
       kvaUnrealizedValue: {
-        id: 1,
+        id: '1',
         marketShare: '3%',
         customerSatisfactionGap: '5/10',
         idTeam: 2,
         idIteration: 2,
       },
       kvaCurrentValue: {
-        id: 1,
+        id: '1',
         revenuePerEmployee: '8.500.000 COP',
         productCostRatio: '500.000.000 - 100.000.000 COP',
         employeeSatisfaction: '4/5',
@@ -46,7 +46,7 @@ describe('IterationComponent', () => {
         customerUsageIndex: '50/180 min',
       },
       kvaAbilityToInnovate: {
-        id: 2,
+        id: '1',
         featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
         innovationRate: '0.33',
         defectTrends: '+60',
@@ -58,7 +58,7 @@ describe('IterationComponent', () => {
         timeSpentContextSwitching: '3',
       },
       kvaTimeToMarket: {
-        id: 1,
+        id: '1',
         buildAndIntegrationFrequency: '10 by week',
         releaseFrequency: 'Monthly',
         releaseStabilizationPeriod: '3 days',
@@ -543,14 +543,14 @@ describe('IterationComponent', () => {
       state: 'In_Progress',
       kva: {
         kvaUnrealizedValue: {
-          id: 1,
+          id: '1',
           marketShare: '3%',
           customerSatisfactionGap: '5/10',
           idTeam: 2,
           idIteration: 2,
         },
         kvaCurrentValue: {
-          id: 1,
+          id: '1',
           revenuePerEmployee: '8.500.000 COP',
           productCostRatio: '500.000.000 - 100.000.000 COP',
           employeeSatisfaction: '4/5',
@@ -558,7 +558,7 @@ describe('IterationComponent', () => {
           customerUsageIndex: '50/180 min',
         },
         kvaAbilityToInnovate: {
-          id: 2,
+          id: '1',
           featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
           innovationRate: '0.33',
           defectTrends: '+60',
@@ -570,7 +570,7 @@ describe('IterationComponent', () => {
           timeSpentContextSwitching: '3',
         },
         kvaTimeToMarket: {
-          id: 1,
+          id: '1',
           buildAndIntegrationFrequency: '10 by week',
           releaseFrequency: 'Monthly',
           releaseStabilizationPeriod: '3 days',
@@ -603,14 +603,14 @@ describe('IterationComponent', () => {
       state: 'Completed',
       kva: {
         kvaUnrealizedValue: {
-          id: 1,
+          id: '1',
           marketShare: '3%',
           customerSatisfactionGap: '5/10',
           idTeam: 2,
           idIteration: 2,
         },
         kvaCurrentValue: {
-          id: 1,
+          id: '1',
           revenuePerEmployee: '8.500.000 COP',
           productCostRatio: '500.000.000 - 100.000.000 COP',
           employeeSatisfaction: '4/5',
@@ -618,7 +618,7 @@ describe('IterationComponent', () => {
           customerUsageIndex: '50/180 min',
         },
         kvaAbilityToInnovate: {
-          id: 2,
+          id: '1',
           featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
           innovationRate: '0.33',
           defectTrends: '+60',
@@ -630,7 +630,7 @@ describe('IterationComponent', () => {
           timeSpentContextSwitching: '3',
         },
         kvaTimeToMarket: {
-          id: 1,
+          id: '1',
           buildAndIntegrationFrequency: '10 by week',
           releaseFrequency: 'Monthly',
           releaseStabilizationPeriod: '3 days',
@@ -664,14 +664,14 @@ describe('IterationComponent', () => {
       state: 'Fail',
       kva: {
         kvaUnrealizedValue: {
-          id: 1,
+          id: '1',
           marketShare: '3%',
           customerSatisfactionGap: '5/10',
           idTeam: 2,
           idIteration: 2,
         },
         kvaCurrentValue: {
-          id: 1,
+          id: '1',
           revenuePerEmployee: '8.500.000 COP',
           productCostRatio: '500.000.000 - 100.000.000 COP',
           employeeSatisfaction: '4/5',
@@ -679,7 +679,7 @@ describe('IterationComponent', () => {
           customerUsageIndex: '50/180 min',
         },
         kvaAbilityToInnovate: {
-          id: 2,
+          id: '1',
           featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
           innovationRate: '0.33',
           defectTrends: '+60',
@@ -691,7 +691,7 @@ describe('IterationComponent', () => {
           timeSpentContextSwitching: '3',
         },
         kvaTimeToMarket: {
-          id: 1,
+          id: '1',
           buildAndIntegrationFrequency: '10 by week',
           releaseFrequency: 'Monthly',
           releaseStabilizationPeriod: '3 days',
@@ -725,14 +725,14 @@ describe('IterationComponent', () => {
       state: '',
       kva: {
         kvaUnrealizedValue: {
-          id: 1,
+          id: '1',
           marketShare: '3%',
           customerSatisfactionGap: '5/10',
           idTeam: 2,
           idIteration: 2,
         },
         kvaCurrentValue: {
-          id: 1,
+          id: '1',
           revenuePerEmployee: '8.500.000 COP',
           productCostRatio: '500.000.000 - 100.000.000 COP',
           employeeSatisfaction: '4/5',
@@ -740,7 +740,7 @@ describe('IterationComponent', () => {
           customerUsageIndex: '50/180 min',
         },
         kvaAbilityToInnovate: {
-          id: 2,
+          id: '1',
           featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
           innovationRate: '0.33',
           defectTrends: '+60',
@@ -752,7 +752,7 @@ describe('IterationComponent', () => {
           timeSpentContextSwitching: '3',
         },
         kvaTimeToMarket: {
-          id: 1,
+          id: '1',
           buildAndIntegrationFrequency: '10 by week',
           releaseFrequency: 'Monthly',
           releaseStabilizationPeriod: '3 days',
@@ -785,14 +785,14 @@ describe('IterationComponent', () => {
       state: '',
       kva: {
         kvaUnrealizedValue: {
-          id: 1,
+          id: '1',
           marketShare: '3%',
           customerSatisfactionGap: '5/10',
           idTeam: 2,
           idIteration: 2,
         },
         kvaCurrentValue: {
-          id: 1,
+          id: '1',
           revenuePerEmployee: '8.500.000 COP',
           productCostRatio: '500.000.000 - 100.000.000 COP',
           employeeSatisfaction: '4/5',
@@ -800,7 +800,7 @@ describe('IterationComponent', () => {
           customerUsageIndex: '50/180 min',
         },
         kvaAbilityToInnovate: {
-          id: 2,
+          id: '1',
           featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
           innovationRate: '0.33',
           defectTrends: '+60',
@@ -812,7 +812,7 @@ describe('IterationComponent', () => {
           timeSpentContextSwitching: '3',
         },
         kvaTimeToMarket: {
-          id: 1,
+          id: '1',
           buildAndIntegrationFrequency: '10 by week',
           releaseFrequency: 'Monthly',
           releaseStabilizationPeriod: '3 days',
@@ -869,5 +869,136 @@ describe('IterationComponent', () => {
     fixture.detectChanges();
 
     expect(component.iteration).toBeDefined();
+  });
+
+  it('should save a KVA UnrealizedValue', () => {
+    // Arrange
+    const kvaUnrealizedValue = {};
+    iterationFake = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: '',
+      kva: {
+        kvaUnrealizedValue: {
+          id: '',
+          marketShare: '3%',
+          customerSatisfactionGap: '5/10',
+          idTeam: 2,
+          idIteration: 2,
+        },
+        kvaCurrentValue: {
+          id: '1',
+          revenuePerEmployee: '8.500.000 COP',
+          productCostRatio: '500.000.000 - 100.000.000 COP',
+          employeeSatisfaction: '4/5',
+          customerSatisfaction: '3/5',
+          customerUsageIndex: '50/180 min',
+        },
+        kvaAbilityToInnovate: {
+          id: '1',
+          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          innovationRate: '0.33',
+          defectTrends: '+60',
+          onProductIndex: '80%',
+          installedVersionIndex: '2',
+          technicalDebt: '2 month',
+          productionIncidentTrends: '3 times by iteration',
+          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+          timeSpentContextSwitching: '3',
+        },
+        kvaTimeToMarket: {
+          id: '1',
+          buildAndIntegrationFrequency: '10 by week',
+          releaseFrequency: 'Monthly',
+          releaseStabilizationPeriod: '3 days',
+          meanTimeToRepair: '3/5',
+          cycleTime: '1 month',
+          leadTime: '3 months',
+          timeToLearn: '1 months',
+        },
+      },
+    };
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+
+    spyOn(kvaUnrealizedValueService, 'save').and.returnValue(
+      of(kvaUnrealizedValue)
+    );
+    // Act
+    fixture.detectChanges();
+
+    // Act
+    component.saveKVA();
+
+    // Assert
+    expect(component.router.navigate.length).toBe(1);
+  });
+
+  it('should update a KVA UnrealizedValue', () => {
+    // Arrange
+    const kvaUnrealizedValue = {};
+    iterationFake = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: '',
+      kva: {
+        kvaUnrealizedValue: {
+          id: '1',
+          marketShare: '3%',
+          customerSatisfactionGap: '5/10',
+          idTeam: 2,
+          idIteration: 2,
+        },
+        kvaCurrentValue: {
+          id: '1',
+          revenuePerEmployee: '8.500.000 COP',
+          productCostRatio: '500.000.000 - 100.000.000 COP',
+          employeeSatisfaction: '4/5',
+          customerSatisfaction: '3/5',
+          customerUsageIndex: '50/180 min',
+        },
+        kvaAbilityToInnovate: {
+          id: '1',
+          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          innovationRate: '0.33',
+          defectTrends: '+60',
+          onProductIndex: '80%',
+          installedVersionIndex: '2',
+          technicalDebt: '2 month',
+          productionIncidentTrends: '3 times by iteration',
+          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+          timeSpentContextSwitching: '3',
+        },
+        kvaTimeToMarket: {
+          id: '1',
+          buildAndIntegrationFrequency: '10 by week',
+          releaseFrequency: 'Monthly',
+          releaseStabilizationPeriod: '3 days',
+          meanTimeToRepair: '3/5',
+          cycleTime: '1 month',
+          leadTime: '3 months',
+          timeToLearn: '1 months',
+        },
+      },
+    };
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    spyOn(kvaUnrealizedValueService, 'update').and.returnValue(
+      of(kvaUnrealizedValue)
+    );
+    // Act
+    fixture.detectChanges();
+    component.saveKVA();
+
+    // Assert
+    expect(component.router.navigate.length).toBe(1);
   });
 });

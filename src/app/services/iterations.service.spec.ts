@@ -11,7 +11,7 @@ import {
 import { IterationsService } from './iterations.service';
 
 describe('IterationsService', () => {
-  let httpClientSpy: { get: jasmine.Spy; post: jasmine.Spy };
+  let httpClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
   let service: IterationsService;
 
   const CVFake: CV = {
@@ -54,7 +54,7 @@ describe('IterationsService', () => {
   };
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
     service = new IterationsService(httpClientSpy as any);
   });
 
@@ -273,5 +273,31 @@ describe('IterationsService', () => {
       }
     );
     expect(httpClientSpy.post.calls.count()).toBe(1, 'one call');
+  });
+
+  it('should update an iteration', () => {
+    httpClientSpy.put.and.returnValue(of({ status: 200, iteration: {} }));
+
+    service.update('1', {}).subscribe(
+      (result) => {
+        expect(result.iteration).toEqual({});
+      },
+      (err) => console.log('HTTP Error', err)
+    );
+    expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
+  });
+
+  it('should to provoke an error - update', () => {
+    httpClientSpy.put.and.returnValue(
+      throwError({ status: 404, message: 'Not found' })
+    );
+
+    service.update('1', {}).subscribe(
+      (result) => console.log('good', result),
+      (err) => {
+        expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
+      }
+    );
+    expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
   });
 });

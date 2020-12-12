@@ -1,57 +1,56 @@
 <div class="row">
-  <div *ngIf="iteration.state != 'newIteration'" class="col-12 mb-4">
+  <div *ngIf="iteration?.state != 'newIteration'" class="col-12 mb-4">
     <app-iteration-card [iteration]="iteration"></app-iteration-card>
   </div>
-  
-    <form *ngIf="iteration.state == 'newIteration'" class="user card-body">
-      <h1 class="h3 mb-0 text-gray-800 pb-1">New Iteration</h1>
-      <div class="form-group row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-          <input
-            type="text"
-            name="iterationName"
-            [(ngModel)]="iteration.name"
-            class="form-control form-control-user"
-            id="iterationName"
-            placeholder="Iteration Name"
-          />
-        </div>
-        <div class="col-sm-6">
-          <input
-            type="text"
-            name="iteratioGoal"
-            [(ngModel)]="iteration.goal"
-            class="form-control form-control-user"
-            id="iteratioGoal"
-            placeholder="Iteration Goal"
-          />
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-          <input
-            type="text"
-            name="iteratioStartDate"
-            [(ngModel)]="iteration.startDate"
-            class="form-control form-control-user"
-            id="iteratioStartDate"
-            placeholder="Start Date"
-          />
-        </div>
-        <div class="col-sm-6">
-          <input
-            type="text"
-            name="iteratioEndDate"
-            [(ngModel)]="iteration.endDate"
-            class="form-control form-control-user"
-            id="iteratioEndDate"
-            placeholder="End Date"
-          />
-        </div>
+  <form *ngIf="iteration?.state == 'newIteration'" class="user card-body">
+    <h1 class="h3 mb-0 text-gray-800 pb-1">New Iteration</h1>
+    <div class="form-group row">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <input
+          type="text"
+          name="iterationName"
+          [(ngModel)]="iteration.name"
+          class="form-control form-control-user"
+          id="iterationName"
+          placeholder="Iteration Name"
+        />
       </div>
-    </form>
-  
+      <div class="col-sm-6">
+        <input
+          type="text"
+          name="iteratioGoal"
+          [(ngModel)]="iteration.goal"
+          class="form-control form-control-user"
+          id="iteratioGoal"
+          placeholder="Iteration Goal"
+        />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <input
+          type="text"
+          name="iteratioStartDate"
+          [(ngModel)]="iteration.startDate"
+          class="form-control form-control-user"
+          id="iteratioStartDate"
+          placeholder="Start Date"
+        />
+      </div>
+      <div class="col-sm-6">
+        <input
+          type="text"
+          name="iteratioEndDate"
+          [(ngModel)]="iteration.endDate"
+          class="form-control form-control-user"
+          id="iteratioEndDate"
+          placeholder="End Date"
+        />
+      </div>
+    </div>
+  </form>
 </div>
 <div class="row">
   <div class="col-sm-12">
@@ -290,6 +289,7 @@
             <key-value-mesures
               id="Market_Share"
               name="Cuota de mercado"
+              (valueChanged)="iteration?.KVM.UV.Market_Share = $event"
               [value]="iteration?.KVM.UV.Market_Share"
               helpText=" El porcentaje relativo del mercado controlado por el
               producto."
@@ -299,10 +299,11 @@
             <key-value-mesures
               id="Customer_Or_User_Satisfaction_Gap"
               name="Brecha de satisfacción del cliente o usuario"
+              (valueChanged)="
+                iteration?.KVM.UV.Customer_Or_User_Satisfaction_Gap = $event
+              "
               [value]="iteration?.KVM.UV.Customer_Or_User_Satisfaction_Gap"
-              helpText=" La relación (ingresos brutos / número de empleados) es un
-              indicador competitivo clave dentro de una industria. Esto
-          varía significativamente según la industria."
+              helpText=" La diferencia entre la experiencia deseada por un cliente o usuario y su experiencia actual."
               [status]="iteration?.state"
             ></key-value-mesures>
           </mat-tab>
@@ -313,7 +314,9 @@
 </div>
 
 <div
-  *ngIf="iteration?.state == 'In_Progress' || iteration.state == 'newIteration'"
+  *ngIf="
+    iteration?.state == 'In_Progress' || iteration?.state == 'newIteration'
+  "
   class="row"
 >
   <div class="container-fluid">
@@ -321,7 +324,9 @@
       <button
         type="button"
         class="btn btn-success btn-lg btn-block"
-        (click)="saveIteration()"
+        (click)="
+          iteration?.state == 'In_Progress' ? saveKVA() : saveIteration()
+        "
       >
         Save
       </button>

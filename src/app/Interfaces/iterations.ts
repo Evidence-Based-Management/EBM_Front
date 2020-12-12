@@ -20,6 +20,7 @@ export interface KVM {
 }
 
 export interface CV {
+  id: string;
   Revenue_Per_Employee: string;
   Product_Cost_Ratio: string;
   Employee_Satisfaction: string;
@@ -28,6 +29,7 @@ export interface CV {
 }
 
 export interface T2M {
+  id: string;
   Build_And_Integration_Frequency: string;
   Release_Frequency: string;
   Release_Stabilization_Period: string;
@@ -38,6 +40,7 @@ export interface T2M {
 }
 
 export interface A2I {
+  id: string;
   Feature_Usage_Index: Array<string>;
   Innovation_Rate: string;
   Defect_Trends: string;
@@ -50,6 +53,7 @@ export interface A2I {
 }
 
 export interface UV {
+  id: string;
   Market_Share: string;
   Customer_Or_User_Satisfaction_Gap: string;
 }

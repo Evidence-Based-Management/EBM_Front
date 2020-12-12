@@ -15,6 +15,7 @@ describe('IterationsService', () => {
   let service: IterationsService;
 
   const CVFake: CV = {
+    id: '1',
     Revenue_Per_Employee: '2.500.000 COP',
     Product_Cost_Ratio: '500.000.000 - 100.000.000 COP',
     Employee_Satisfaction: '4/5',
@@ -23,6 +24,7 @@ describe('IterationsService', () => {
   };
 
   const T2MFake: T2M = {
+    id: '1',
     Build_And_Integration_Frequency: '10 by week',
     Release_Frequency: 'Monthly',
     Release_Stabilization_Period: '3 days',
@@ -33,6 +35,7 @@ describe('IterationsService', () => {
   };
 
   const A2IFake: A2I = {
+    id: '1',
     Feature_Usage_Index: ['30 min by day', '5 min by day', '60 min by day'],
     Innovation_Rate: '0.33',
     Defect_Trends: '+60',
@@ -45,6 +48,7 @@ describe('IterationsService', () => {
   };
 
   const UVFake: UV = {
+    id: '1',
     Market_Share: '3%',
     Customer_Or_User_Satisfaction_Gap: '5/10',
   };
@@ -205,7 +209,7 @@ describe('IterationsService', () => {
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
 
-  it('should update an iteration', () => {
+  it('should save an iteration', () => {
     const expectedIterations: Iterations = {
       iterations: [
         {
@@ -238,7 +242,7 @@ describe('IterationsService', () => {
     expect(httpClientSpy.post.calls.count()).toBe(1, 'one call');
   });
 
-  it('should to provoke an error - updateIteration', () => {
+  it('should to provoke an error - save', () => {
     const expectedIterations: Iterations = {
       iterations: [
         {

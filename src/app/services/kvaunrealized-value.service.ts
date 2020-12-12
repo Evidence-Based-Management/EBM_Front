@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { URL_SERVICE } from '../config/config';
@@ -7,33 +7,22 @@ import { URL_SERVICE } from '../config/config';
 @Injectable({
   providedIn: 'root',
 })
-export class IterationsService {
-  jsonUrlIteration = URL_SERVICE + 'iterations/';
-  jsonUrlTeam = URL_SERVICE + 'teams/team/';
+export class KVAUnrealizedValueService {
+  jsonUrlIteration = URL_SERVICE + 'KVAUnrealizedValue/';
 
   constructor(private http: HttpClient) {}
 
-  getIterationsByTeam(idTeam: number): Observable<any> {
+  save(KVAUnrealizedValue: any): Observable<any> {
     return this.http
-      .get(this.jsonUrlTeam + idTeam, { responseType: 'json' })
+      .post(this.jsonUrlIteration + 'save', KVAUnrealizedValue, {
+        responseType: 'json',
+      })
       .pipe(catchError(this.errorHandler));
   }
 
-  getIterationById(id: string): Observable<any> {
+  update(id: string, KVAUnrealizedValue: any): Observable<any> {
     return this.http
-      .get(this.jsonUrlIteration + 'iteration/' + id, { responseType: 'json' })
-      .pipe(catchError(this.errorHandler));
-  }
-
-  save(iteration: any): Observable<any> {
-    return this.http
-      .post(this.jsonUrlIteration + 'save', iteration, { responseType: 'json' })
-      .pipe(catchError(this.errorHandler));
-  }
-
-  update(id: string, iteration: any): Observable<any> {
-    return this.http
-      .put(this.jsonUrlIteration + 'iteration/' + id, iteration, {
+      .put(this.jsonUrlIteration + id, KVAUnrealizedValue, {
         responseType: 'json',
       })
       .pipe(catchError(this.errorHandler));

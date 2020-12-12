@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Iteration } from 'src/app/Interfaces/iterations';
 import { IterationsService } from 'src/app/services/iterations.service';
 import { Router } from '@angular/router';
+import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
 
 @Component({
   selector: 'app-iteration',
@@ -13,6 +14,7 @@ export class IterationComponent implements OnInit {
   iteration: Iteration;
   constructor(
     public serviceItertations: IterationsService,
+    public serviceKVAUnrealizedValue: KVAUnrealizedValueService,
     public route: ActivatedRoute,
     public router: Router
   ) {}
@@ -32,6 +34,7 @@ export class IterationComponent implements OnInit {
         endDate: null,
         KVM: {
           CV: {
+            id: null,
             Customer_Satisfaction: null,
             Customer_Usage_Index: null,
             Employee_Satisfaction: null,
@@ -39,6 +42,7 @@ export class IterationComponent implements OnInit {
             Revenue_Per_Employee: null,
           },
           T2M: {
+            id: null,
             Build_And_Integration_Frequency: null,
             Cycle_Time: null,
             Lead_Time: null,
@@ -48,6 +52,7 @@ export class IterationComponent implements OnInit {
             Time_To_Learn: null,
           },
           A2I: {
+            id: null,
             Active_Code_Branches: null,
             Defect_Trends: null,
             Feature_Usage_Index: null,
@@ -59,6 +64,7 @@ export class IterationComponent implements OnInit {
             Time_Spent_Context_Switching: null,
           },
           UV: {
+            id: null,
             Customer_Or_User_Satisfaction_Gap: null,
             Market_Share: null,
           },
@@ -85,6 +91,9 @@ export class IterationComponent implements OnInit {
       state: response?.state ? response.state : '',
       KVM: {
         A2I: {
+          id: response?.kva?.kvaAbilityToInnovate
+            ? response.kva.kvaAbilityToInnovate.id
+            : '',
           Active_Code_Branches: response?.kva?.kvaAbilityToInnovate
             ? response.kva.kvaAbilityToInnovate
                 .activeCodeBranchesTimeSpentMergingCodeBetweenBranches
@@ -115,6 +124,9 @@ export class IterationComponent implements OnInit {
             : '',
         },
         CV: {
+          id: response?.kva?.kvaCurrentValue
+            ? response.kva.kvaCurrentValue.id
+            : '',
           Customer_Satisfaction: response?.kva?.kvaCurrentValue
             ? response.kva.kvaCurrentValue.customerSatisfaction
             : '',
@@ -132,6 +144,9 @@ export class IterationComponent implements OnInit {
             : '',
         },
         T2M: {
+          id: response?.kva?.kvaTimeToMarket
+            ? response.kva.kvaTimeToMarket.id
+            : '',
           Build_And_Integration_Frequency: response?.kva?.kvaTimeToMarket
             ? response.kva.kvaTimeToMarket.buildAndIntegrationFrequency
             : '',
@@ -155,6 +170,9 @@ export class IterationComponent implements OnInit {
             : '',
         },
         UV: {
+          id: response?.kva?.kvaUnrealizedValue
+            ? response.kva.kvaUnrealizedValue.id
+            : '',
           Customer_Or_User_Satisfaction_Gap: response?.kva?.kvaUnrealizedValue
             ? response.kva.kvaUnrealizedValue.customerSatisfactionGap
             : '',
@@ -183,5 +201,45 @@ export class IterationComponent implements OnInit {
       .subscribe((response: any) => {
         this.router.navigate(['/iterations']);
       });
+  }
+
+  saveKVA(): void {
+    this.saveUnrealizedValue();
+  }
+
+  saveUnrealizedValue(): void {
+    console.log(this.iteration.KVM);
+    console.log(this.iteration.KVM.UV);
+
+    if (this.iteration?.KVM?.UV?.id === '') {
+      console.log('save');
+      console.log(this.mapToKVAUnrealizedValue(this.iteration));
+
+      this.serviceKVAUnrealizedValue
+        .save(this.mapToKVAUnrealizedValue(this.iteration))
+        .subscribe(() => {
+          this.router.navigate(['/iteration/', this.iteration.id]);
+        });
+    } else {
+      console.log('update');
+      this.serviceKVAUnrealizedValue
+        .update(
+          this.iteration.KVM.UV.id,
+          this.mapToKVAUnrealizedValue(this.iteration)
+        )
+        .subscribe(() => {
+          this.router.navigate(['/iteration/', this.iteration.id]);
+        });
+    }
+  }
+
+  mapToKVAUnrealizedValue(iteration: Iteration): any {
+    return {
+      idIteration: iteration.id,
+      idTeam: 2,
+      customerSatisfactionGap:
+        iteration.KVM.UV.Customer_Or_User_Satisfaction_Gap,
+      marketShare: iteration.KVM.UV.Market_Share,
+    };
   }
 }

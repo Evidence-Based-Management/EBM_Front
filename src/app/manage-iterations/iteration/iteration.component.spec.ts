@@ -13,11 +13,13 @@ import { CV, T2M, A2I } from '../../Interfaces/iterations';
 import { KeyValueMesuresComponent } from '../key-value-mesures/key-value-mesures.component';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;
   let fixture: ComponentFixture<IterationComponent>;
   let iterationsService: IterationsService;
+  let kvaUnrealizedValueService: KVAUnrealizedValueService;
   let activatedRoute: ActivatedRoute;
 
   let iterationFake = {
@@ -83,6 +85,13 @@ describe('IterationComponent', () => {
       ],
       providers: [
         {
+          provide: KVAUnrealizedValueService,
+          useValue: {
+            save: () => of(iterationFake),
+            update: () => of(iterationFake),
+          },
+        },
+        {
           provide: IterationsService,
           useValue: {
             getIterationById: () => of(iterationFake),
@@ -107,6 +116,7 @@ describe('IterationComponent', () => {
     fixture = TestBed.createComponent(IterationComponent);
     component = fixture.componentInstance;
     iterationsService = TestBed.inject(IterationsService);
+    kvaUnrealizedValueService = TestBed.inject(KVAUnrealizedValueService);
     activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
@@ -162,6 +172,7 @@ describe('IterationComponent', () => {
       endDate: null,
       KVM: {
         CV: {
+          id: null,
           Customer_Satisfaction: null,
           Customer_Usage_Index: null,
           Employee_Satisfaction: null,
@@ -169,6 +180,7 @@ describe('IterationComponent', () => {
           Revenue_Per_Employee: null,
         },
         T2M: {
+          id: null,
           Build_And_Integration_Frequency: null,
           Cycle_Time: null,
           Lead_Time: null,
@@ -178,6 +190,7 @@ describe('IterationComponent', () => {
           Time_To_Learn: null,
         },
         A2I: {
+          id: null,
           Active_Code_Branches: null,
           Defect_Trends: null,
           Feature_Usage_Index: null,
@@ -189,6 +202,7 @@ describe('IterationComponent', () => {
           Time_Spent_Context_Switching: null,
         },
         UV: {
+          id: null,
           Customer_Or_User_Satisfaction_Gap: null,
           Market_Share: null,
         },
@@ -249,34 +263,34 @@ describe('IterationComponent', () => {
     );
     // Act
     fixture.detectChanges();
-    const Revenue_Per_Employee = fixture.debugElement.queryAll(
-      By.css('#input_Revenue_Per_Employee')
-    );
-    const Product_Cost_Ratio = fixture.debugElement.queryAll(
-      By.css('#input_Product_Cost_Ratio')
-    );
-    const Employee_Satisfaction = fixture.debugElement.queryAll(
-      By.css('#input_Employee_Satisfaction')
-    );
-    const Customer_Satisfaction = fixture.debugElement.queryAll(
-      By.css('#input_Customer_Satisfaction')
-    );
-    const Customer_Usage_Index = fixture.debugElement.queryAll(
-      By.css('#input_Customer_Usage_Index')
-    );
 
-    fixture.whenStable().then(() => {});
-
-    // Assert
-    expect(Revenue_Per_Employee[0].nativeElement.value).toEqual(
-      '8.500.000 COP'
-    );
-    expect(Product_Cost_Ratio[0].nativeElement.value).toEqual(
-      '500.000.000 - 100.000.000 COP'
-    );
-    expect(Employee_Satisfaction[0].nativeElement.value).toEqual('4/5');
-    expect(Customer_Satisfaction[0].nativeElement.value).toEqual('3/5');
-    expect(Customer_Usage_Index[0].nativeElement.value).toEqual('50/180 min');
+    fixture.whenStable().then(() => {
+      const Revenue_Per_Employee = fixture.debugElement.queryAll(
+        By.css('#input_Revenue_Per_Employee')
+      );
+      const Product_Cost_Ratio = fixture.debugElement.queryAll(
+        By.css('#input_Product_Cost_Ratio')
+      );
+      const Employee_Satisfaction = fixture.debugElement.queryAll(
+        By.css('#input_Employee_Satisfaction')
+      );
+      const Customer_Satisfaction = fixture.debugElement.queryAll(
+        By.css('#input_Customer_Satisfaction')
+      );
+      const Customer_Usage_Index = fixture.debugElement.queryAll(
+        By.css('#input_Customer_Usage_Index')
+      );
+      // Assert
+      expect(Revenue_Per_Employee[0].nativeElement.value).toEqual(
+        '8.500.000 COP'
+      );
+      expect(Product_Cost_Ratio[0].nativeElement.value).toEqual(
+        '500.000.000 - 100.000.000 COP'
+      );
+      expect(Employee_Satisfaction[0].nativeElement.value).toEqual('4/5');
+      expect(Customer_Satisfaction[0].nativeElement.value).toEqual('3/5');
+      expect(Customer_Usage_Index[0].nativeElement.value).toEqual('50/180 min');
+    });
   });
 
   it('should exist 7 KeyValueMesuresComponent T2M at second HTML Tabs', () => {

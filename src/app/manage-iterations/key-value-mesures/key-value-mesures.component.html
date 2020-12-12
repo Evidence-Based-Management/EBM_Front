@@ -7,12 +7,16 @@
     </div>
     <div class="col-sm-9">
       <input
-        [readonly]="status == 'In_Progress' || status == 'newIteration' ? false : true"
+        [readonly]="
+          status == 'In_Progress' || status == 'newIteration' ? false : true
+        "
         type="text"
         class="form-control"
         id="input_{{ id }}"
         attr.aria-describedby="{{ id }}_HelpBlock"
-        [(value)]="status == 'newIteration' ? '..To Be Define..' : value"
+        (name)="id"
+        [(ngModel)]="value"
+        (ngModelChange)="onChange()"
       />
       <small id="{{ id }}_HelpBlock" class="form-text text-muted">
         {{ helpText }}

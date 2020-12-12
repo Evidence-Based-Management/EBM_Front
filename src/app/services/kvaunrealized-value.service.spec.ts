@@ -64,7 +64,7 @@ describe('KVAUnrealizedValueService', () => {
       },
       (err) => console.log('HTTP Error', err)
     );
-    expect(httpClientSpy.post.calls.count()).toBe(1, 'one call');
+    expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
 
     expect(service).toBeTruthy();
   });

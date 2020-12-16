@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="iteration" class="row">
   <div *ngIf="iteration?.state != 'newIteration'" class="col-12 mb-4">
     <app-iteration-card [iteration]="iteration"></app-iteration-card>
   </div>
@@ -52,7 +52,7 @@
     </div>
   </form>
 </div>
-<div class="row">
+<div *ngIf="iteration" class="row">
   <div class="col-sm-12">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

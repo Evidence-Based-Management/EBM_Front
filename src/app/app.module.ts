@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { KeyValueMesuresComponent } from './manage-iterations/key-value-mesures/key-value-mesures.component';
+import { LoaderInterceptorService } from './services/loader-interceptor.service';
+import { LoaderComponent } from './home/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { KeyValueMesuresComponent } from './manage-iterations/key-value-mesures/
     IterationComponent,
     IterationCardComponent,
     KeyValueMesuresComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,13 @@ import { KeyValueMesuresComponent } from './manage-iterations/key-value-mesures/
     MatTabsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

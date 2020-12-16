@@ -1,36 +1,34 @@
 import { of, throwError } from 'rxjs';
 
-import { KVAUnrealizedValueService } from './kvaunrealized-value.service';
+import { KVACurrentValueService } from './kvacurrent-value.service';
 
-describe('KVAUnrealizedValueService', () => {
+describe('KVACurrentValueService', () => {
   let httpClientSpy: { put: jasmine.Spy; post: jasmine.Spy };
-  let service: KVAUnrealizedValueService;
+  let service: KVACurrentValueService;
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);
-    service = new KVAUnrealizedValueService(httpClientSpy as any);
+    service = new KVACurrentValueService(httpClientSpy as any);
   });
 
-  it('should save a new KVAUnrealizedValueService', () => {
-    const kvaUnrealizedValue = {
-      idIteration: '1',
-      idTeam: '2',
-      customerSatisfactionGap: '50/100',
-      marketShare: '50%',
+  it('should save a new KVACurrentValueService', () => {
+    const kvaCurrentValue = {
+      customerSatisfaction: '4/5',
+      customerUsageIndex: '50/180 min',
+      employeeSatisfaction: '3/5',
+      id: 0,
+      idIteration: 0,
+      idTeam: 0,
+      productCostRatio: '500.000.000 - 100.000.000 COP',
+      revenuePerEmployee: '8.500.000 COP',
     };
+
     httpClientSpy.post.and.returnValue(
-      of({ status: 200, kvaunrealized_value: kvaUnrealizedValue })
+      of({ status: 200, kva_current_value: kvaCurrentValue })
     );
-
-    service.save(kvaUnrealizedValue).subscribe(
-      (result) => {
-        expect(result.kvaunrealized_value).toEqual(kvaUnrealizedValue);
-      },
-      (err) => console.log('HTTP Error', err)
-    );
-    expect(httpClientSpy.post.calls.count()).toBe(1, 'one call');
-
-    expect(service).toBeTruthy();
+    service.save(kvaCurrentValue).subscribe((result) => {
+      expect(result.kva_current_value).toEqual(kvaCurrentValue);
+    });
   });
 
   it('should to provoke an error - save', () => {
@@ -47,20 +45,24 @@ describe('KVAUnrealizedValueService', () => {
     expect(httpClientSpy.post.calls.count()).toBe(1, 'one call');
   });
 
-  it('should updae a exist KVAUnrealizedValueService', () => {
-    const kva = {
-      idIteration: '1',
-      idTeam: '2',
-      customerSatisfactionGap: '50/100',
-      marketShare: '50%',
+  it('should updae a exist KVACurrentValueService', () => {
+    const kvaCurrentValue = {
+      customerSatisfaction: '4/5',
+      customerUsageIndex: '50/180 min',
+      employeeSatisfaction: '3/5',
+      id: 0,
+      idIteration: 0,
+      idTeam: 0,
+      productCostRatio: '500.000.000 - 100.000.000 COP',
+      revenuePerEmployee: '8.500.000 COP',
     };
     httpClientSpy.put.and.returnValue(
-      of({ status: 200, kvaunrealized_value: kva })
+      of({ status: 200, kva_current_value: kvaCurrentValue })
     );
 
-    service.update('1', kva).subscribe(
+    service.update('1', kvaCurrentValue).subscribe(
       (result) => {
-        expect(result.kvaunrealized_value).toEqual(kva);
+        expect(result.kva_current_value).toEqual(kvaCurrentValue);
       },
       (err) => console.log('HTTP Error', err)
     );

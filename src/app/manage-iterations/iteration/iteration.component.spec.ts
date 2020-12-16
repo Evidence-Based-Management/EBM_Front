@@ -14,12 +14,14 @@ import { KeyValueMesuresComponent } from '../key-value-mesures/key-value-mesures
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
+import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;
   let fixture: ComponentFixture<IterationComponent>;
   let iterationsService: IterationsService;
   let kvaUnrealizedValueService: KVAUnrealizedValueService;
+  let kvaCurrentValueService: KVACurrentValueService;
   let activatedRoute: ActivatedRoute;
 
   let iterationFake = {
@@ -85,10 +87,17 @@ describe('IterationComponent', () => {
       ],
       providers: [
         {
+          provide: KVACurrentValueService,
+          useValue: {
+            save: () => of({}),
+            update: () => of({}),
+          },
+        },
+        {
           provide: KVAUnrealizedValueService,
           useValue: {
-            save: () => of(iterationFake),
-            update: () => of(iterationFake),
+            save: () => of({}),
+            update: () => of({}),
           },
         },
         {
@@ -117,7 +126,9 @@ describe('IterationComponent', () => {
     component = fixture.componentInstance;
     iterationsService = TestBed.inject(IterationsService);
     kvaUnrealizedValueService = TestBed.inject(KVAUnrealizedValueService);
+    kvaCurrentValueService = TestBed.inject(KVACurrentValueService);
     activatedRoute = TestBed.inject(ActivatedRoute);
+    spyOn(component.router, 'navigate').and.resolveTo();
   });
 
   it('should create with idIteration', () => {
@@ -291,6 +302,7 @@ describe('IterationComponent', () => {
       expect(Customer_Satisfaction[0].nativeElement.value).toEqual('3/5');
       expect(Customer_Usage_Index[0].nativeElement.value).toEqual('50/180 min');
     });
+    expect(component.idIteration.length).toBe(1);
   });
 
   it('should exist 7 KeyValueMesuresComponent T2M at second HTML Tabs', () => {
@@ -874,53 +886,8 @@ describe('IterationComponent', () => {
   it('should save a KVA UnrealizedValue', () => {
     // Arrange
     const kvaUnrealizedValue = {};
-    iterationFake = {
-      id: '-1',
-      name: 'Fake',
-      goal: 'sprint goal -1',
-      startDate: '01/01/2020',
-      endDate: '01/31/2020',
-      state: '',
-      kva: {
-        kvaUnrealizedValue: {
-          id: '',
-          marketShare: '3%',
-          customerSatisfactionGap: '5/10',
-          idTeam: 2,
-          idIteration: 2,
-        },
-        kvaCurrentValue: {
-          id: '1',
-          revenuePerEmployee: '8.500.000 COP',
-          productCostRatio: '500.000.000 - 100.000.000 COP',
-          employeeSatisfaction: '4/5',
-          customerSatisfaction: '3/5',
-          customerUsageIndex: '50/180 min',
-        },
-        kvaAbilityToInnovate: {
-          id: '1',
-          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
-          innovationRate: '0.33',
-          defectTrends: '+60',
-          onProductIndex: '80%',
-          installedVersionIndex: '2',
-          technicalDebt: '2 month',
-          productionIncidentTrends: '3 times by iteration',
-          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
-          timeSpentContextSwitching: '3',
-        },
-        kvaTimeToMarket: {
-          id: '1',
-          buildAndIntegrationFrequency: '10 by week',
-          releaseFrequency: 'Monthly',
-          releaseStabilizationPeriod: '3 days',
-          meanTimeToRepair: '3/5',
-          cycleTime: '1 month',
-          leadTime: '3 months',
-          timeToLearn: '1 months',
-        },
-      },
-    };
+    iterationFake.kva.kvaUnrealizedValue.id = '';
+
     spyOn(iterationsService, 'getIterationById').and.returnValue(
       of(iterationFake)
     );
@@ -994,6 +961,46 @@ describe('IterationComponent', () => {
     spyOn(kvaUnrealizedValueService, 'update').and.returnValue(
       of(kvaUnrealizedValue)
     );
+    // Act
+    fixture.detectChanges();
+    component.saveKVA();
+
+    // Assert
+    expect(component.router.navigate.length).toBe(1);
+  });
+
+  it('should save a KVA Current Value', () => {
+    // Arrange
+    const kvaCurrentValue = {};
+    iterationFake.kva.kvaCurrentValue.id = '';
+
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+
+    spyOn(kvaCurrentValueService, 'save').and.returnValue(of(kvaCurrentValue));
+    // Act
+    fixture.detectChanges();
+
+    // Act
+    component.saveKVA();
+
+    // Assert
+    expect(component.router.navigate.length).toBe(1);
+  });
+
+  it('should update a KVA UnrealizedValue', () => {
+    // Arrange
+    const kvaCurrentValue = {};
+
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    spyOn(kvaCurrentValueService, 'update').and.returnValue(
+      of(kvaCurrentValue)
+    );
+
+    
     // Act
     fixture.detectChanges();
     component.saveKVA();

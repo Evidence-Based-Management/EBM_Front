@@ -4,6 +4,8 @@ import { Iteration } from 'src/app/Interfaces/iterations';
 import { IterationsService } from 'src/app/services/iterations.service';
 import { Router } from '@angular/router';
 import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
+import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
+import { forkJoin, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-iteration',
@@ -15,6 +17,7 @@ export class IterationComponent implements OnInit {
   constructor(
     public serviceItertations: IterationsService,
     public serviceKVAUnrealizedValue: KVAUnrealizedValueService,
+    public serviceKVACurrentValue: KVACurrentValueService,
     public route: ActivatedRoute,
     public router: Router
   ) {}
@@ -204,25 +207,36 @@ export class IterationComponent implements OnInit {
   }
 
   saveKVA(): void {
-    this.saveUnrealizedValue();
+    forkJoin([this.saveUnrealizedValue(), this.saveCurrentValue()]).subscribe(
+      (value) => {
+        this.router.navigate(['/iterations']);
+      }
+    );
   }
 
-  saveUnrealizedValue(): void {
+  saveUnrealizedValue(): Observable<any> {
     if (this.iteration.KVM.UV.id === '') {
-      this.serviceKVAUnrealizedValue
-        .save(this.mapToKVAUnrealizedValue(this.iteration))
-        .subscribe(() => {
-          this.router.navigate(['/iterations']);
-        });
+      return this.serviceKVAUnrealizedValue.save(
+        this.mapToKVAUnrealizedValue(this.iteration)
+      );
     } else {
-      this.serviceKVAUnrealizedValue
-        .update(
-          this.iteration.KVM.UV.id,
-          this.mapToKVAUnrealizedValue(this.iteration)
-        )
-        .subscribe(() => {
-          this.router.navigate(['/iterations']);
-        });
+      return this.serviceKVAUnrealizedValue.update(
+        this.iteration.KVM.UV.id,
+        this.mapToKVAUnrealizedValue(this.iteration)
+      );
+    }
+  }
+
+  saveCurrentValue(): Observable<any> {
+    if (this.iteration.KVM.CV.id === '') {
+      return this.serviceKVACurrentValue.save(
+        this.mapToKVACurrentValue(this.iteration)
+      );
+    } else {
+      return this.serviceKVACurrentValue.update(
+        this.iteration.KVM.CV.id,
+        this.mapToKVACurrentValue(this.iteration)
+      );
     }
   }
 
@@ -233,6 +247,18 @@ export class IterationComponent implements OnInit {
       customerSatisfactionGap:
         iteration.KVM.UV.Customer_Or_User_Satisfaction_Gap,
       marketShare: iteration.KVM.UV.Market_Share,
+    };
+  }
+
+  mapToKVACurrentValue(iteration: Iteration): any {
+    return {
+      idIteration: iteration.id,
+      idTeam: 2,
+      customerSatisfaction: iteration.KVM.CV.Customer_Satisfaction,
+      customerUsageIndex: iteration.KVM.CV.Customer_Usage_Index,
+      employeeSatisfaction: iteration.KVM.CV.Employee_Satisfaction,
+      productCostRatio: iteration.KVM.CV.Product_Cost_Ratio,
+      revenuePerEmployee: iteration.KVM.CV.Revenue_Per_Employee,
     };
   }
 }

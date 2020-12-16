@@ -65,6 +65,7 @@
             <key-value-mesures
               id="Revenue_Per_Employee"
               name="Ingresos por empleado"
+              (valueChanged)="iteration?.KVM.CV.Revenue_Per_Employee = $event"
               [value]="iteration?.KVM.CV.Revenue_Per_Employee"
               helpText="La relación (ingresos brutos / número de empleados) es un
                         indicador competitivo clave dentro de una industria. Esto
@@ -75,6 +76,7 @@
             <key-value-mesures
               id="Product_Cost_Ratio"
               name="Relación de costo del producto"
+              (valueChanged)="iteration?.KVM.CV.Product_Cost_Ratio = $event"
               [value]="iteration?.KVM.CV.Product_Cost_Ratio"
               helpText="Gastos y costos totales para los productos / sistemas que se miden, incluidos los costos operativos en comparación con los ingresos."
               [status]="iteration?.state"
@@ -83,6 +85,7 @@
             <key-value-mesures
               id="Employee_Satisfaction"
               name="Satisfacción del empleado"
+              (valueChanged)="iteration?.KVM.CV.Employee_Satisfaction = $event"
               [value]="iteration?.KVM.CV.Employee_Satisfaction"
               helpText="Alguna forma de análisis de sentimientos para ayudar a medir
               el compromiso, la energía y el entusiasmo de los empleados."
@@ -92,6 +95,7 @@
             <key-value-mesures
               id="Customer_Satisfaction"
               name="Satisfacción del cliente"
+              (valueChanged)="iteration?.KVM.CV.Customer_Satisfaction = $event"
               [value]="iteration?.KVM.CV.Customer_Satisfaction"
               helpText="Alguna forma de análisis de sentimientos para ayudar a medir
               el compromiso y la satisfacción del cliente con el producto."
@@ -101,6 +105,7 @@
             <key-value-mesures
               id="Customer_Usage_Index"
               name="Índice de uso del cliente"
+              (valueChanged)="iteration?.KVM.CV.Customer_Usage_Index = $event"
               [value]="iteration?.KVM.CV.Customer_Usage_Index"
               helpText="Medición del uso, por función, para ayudar a inferir el
               grado en que los clientes encuentran útil el producto y si

@@ -1,29 +1,38 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { LoaderService } from './loader.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoaderInterceptorService implements HttpInterceptor {
+  constructor(private loaderService: LoaderService) {}
 
-  constructor(private loaderService: LoaderService) { }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     this.showLoader();
 
-    return next.handle(req).pipe(tap((event: HttpEvent<any>) => {
-      if (event instanceof HttpResponse) {
+    return next.handle(req).pipe(
+      tap((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          this.onEnd();
+        }
+      }),
+      catchError((error) => {
         this.onEnd();
-      }
-    },
-      (err: any) => {
-        this.onEnd();
-      }));
-
+        return throwError(error);
+      })
+    );
   }
 
   private onEnd(): void {
@@ -37,6 +46,4 @@ export class LoaderInterceptorService implements HttpInterceptor {
   private hideLoader(): void {
     this.loaderService.hide();
   }
-
 }
-

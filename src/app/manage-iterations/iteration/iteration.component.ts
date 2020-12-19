@@ -110,7 +110,7 @@ export class IterationComponent implements OnInit {
             : '',
           Feature_Usage_Index: response?.kva?.kvaAbilityToInnovate
             ? response.kva.kvaAbilityToInnovate.featureUsageIndex
-            : [],
+            : '',
           Innovation_Rate: response?.kva?.kvaAbilityToInnovate
             ? response.kva.kvaAbilityToInnovate.innovationRate
             : '',

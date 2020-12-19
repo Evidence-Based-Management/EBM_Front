@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
 import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
 import { forkJoin, Observable } from 'rxjs';
+import { KVATimeToMarketService } from '../../services/kvatime-to-market.service';
 
 @Component({
   selector: 'app-iteration',
@@ -18,6 +19,7 @@ export class IterationComponent implements OnInit {
     public serviceItertations: IterationsService,
     public serviceKVAUnrealizedValue: KVAUnrealizedValueService,
     public serviceKVACurrentValue: KVACurrentValueService,
+    public serviceKVATimeToMarket: KVATimeToMarketService,
     public route: ActivatedRoute,
     public router: Router
   ) {}
@@ -207,11 +209,13 @@ export class IterationComponent implements OnInit {
   }
 
   saveKVA(): void {
-    forkJoin([this.saveUnrealizedValue(), this.saveCurrentValue()]).subscribe(
-      (value) => {
-        this.router.navigate(['/iterations']);
-      }
-    );
+    forkJoin([
+      this.saveUnrealizedValue(),
+      this.saveCurrentValue(),
+      this.saveTimeToMarket(),
+    ]).subscribe((value) => {
+      this.router.navigate(['/iterations']);
+    });
   }
 
   saveUnrealizedValue(): Observable<any> {
@@ -240,6 +244,18 @@ export class IterationComponent implements OnInit {
     }
   }
 
+  saveTimeToMarket(): Observable<any> {
+    const mappedTimeToMarket = this.mapToKVATimeToMarket(this.iteration);
+    if (this.iteration.KVM.T2M.id === '') {
+      return this.serviceKVATimeToMarket.save(mappedTimeToMarket);
+    } else {
+      return this.serviceKVATimeToMarket.update(
+        this.iteration.KVM.T2M.id,
+        mappedTimeToMarket
+      );
+    }
+  }
+
   mapToKVAUnrealizedValue(iteration: Iteration): any {
     return {
       idIteration: iteration.id,
@@ -259,6 +275,22 @@ export class IterationComponent implements OnInit {
       employeeSatisfaction: iteration.KVM.CV.Employee_Satisfaction,
       productCostRatio: iteration.KVM.CV.Product_Cost_Ratio,
       revenuePerEmployee: iteration.KVM.CV.Revenue_Per_Employee,
+    };
+  }
+
+  mapToKVATimeToMarket(iteration: Iteration): any {
+    return {
+      idIteration: iteration.id,
+      idTeam: 2,
+      buildAndIntegrationFrequency:
+        iteration.KVM.T2M.Build_And_Integration_Frequency,
+      cycleTime: iteration.KVM.T2M.Cycle_Time,
+      leadTime: iteration.KVM.T2M.Lead_Time,
+      meanTimeToRepair: iteration.KVM.T2M.Mean_Time_To_Repair,
+      releaseFrequency: iteration.KVM.T2M.Release_Frequency,
+      releaseStabilizationPeriod:
+        iteration.KVM.T2M.Release_Stabilization_Period,
+      timeToLearn: iteration.KVM.T2M.Time_To_Learn,
     };
   }
 }

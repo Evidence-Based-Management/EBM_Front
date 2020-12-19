@@ -118,6 +118,7 @@
             <key-value-mesures
               id="Build_And_Integration_Frequency"
               name="Frecuencia de construcción e integración"
+              (valueChanged)="iteration?.KVM.T2M.Build_And_Integration_Frequency = $event"
               [value]="iteration?.KVM.T2M.Build_And_Integration_Frequency"
               helpText=" El número de compilaciones integradas y probadas por período
               de tiempo. Para un equipo que lanza con frecuencia o de
@@ -129,6 +130,7 @@
             <key-value-mesures
               id="Release_Frequency"
               name="Frecuencia de lanzamiento"
+              (valueChanged)="iteration?.KVM.T2M.Release_Frequency = $event"
               [value]="iteration?.KVM.T2M.Release_Frequency"
               helpText="El número de lanzamientos por período de tiempo, p. Ej. de
             forma continua, diaria, semanal, mensual, trimestral, etc.
@@ -140,6 +142,7 @@
             <key-value-mesures
               id="Release_Stabilization_Period"
               name="Período de estabilización de lanzamiento"
+              (valueChanged)="iteration?.KVM.T2M.Release_Stabilization_Period = $event"
               [value]="iteration?.KVM.T2M.Release_Stabilization_Period"
               helpText=" El tiempo que se dedica a corregir los problemas del
               producto entre el momento en que los desarrolladores dicen
@@ -153,6 +156,7 @@
             <key-value-mesures
               id="Mean_Time_To_Repair"
               name="Tiempo estimado o promedio para reparar"
+              (valueChanged)="iteration?.KVM.T2M.Mean_Time_To_Repair = $event"
               [value]="iteration?.KVM.T2M.Mean_Time_To_Repair"
               helpText=" La cantidad de tiempo promedio que transcurre desde que se
             detecta un error hasta que se corrige. Esto ayuda a revelar
@@ -163,6 +167,7 @@
             <key-value-mesures
               id="Cycle_Time"
               name="Tiempo de ciclo (Cycle time)"
+              (valueChanged)="iteration?.KVM.T2M.Cycle_Time = $event"
               [value]="iteration?.KVM.T2M.Cycle_Time"
               helpText=" La cantidad de tiempo desde que comienza el trabajo en un
               lanzamiento hasta el momento en que se libera realmente.
@@ -174,6 +179,7 @@
             <key-value-mesures
               id="Lead_Time"
               name="Tiempo de espera (Lead Time)"
+              (valueChanged)="iteration?.KVM.T2M.Lead_Time = $event"
               [value]="iteration?.KVM.T2M.Lead_Time"
               helpText=" La cantidad de tiempo desde que se propone una idea o se
               forma una hipótesis hasta que un cliente puede beneficiarse
@@ -186,6 +192,7 @@
             <key-value-mesures
               id="Time_To_Learn"
               name="Tiempo de aprender (Time-To-Learn)"
+              (valueChanged)="iteration?.KVM.T2M.Time_To_Learn = $event"
               [value]="iteration?.KVM.T2M.Time_To_Learn"
               helpText=" El tiempo total necesario para esbozar una idea o mejora,
               construirla, entregarla a los usuarios y aprender de su uso."
@@ -196,6 +203,7 @@
             <key-value-mesures
               id="Innovation_Rate"
               name="Tasa de innovación"
+              (valueChanged)="iteration?.KVM.T2M.Innovation_Rate = $event"
               [value]="iteration?.KVM.A2I.Innovation_Rate"
               helpText="El porcentaje de esfuerzo o costo invertido en capacidades de nuevos productos, 
             dividido por el esfuerzo o costo total del producto. Esto proporciona información sobre la capacidad de la organización para ofrecer nuevas capacidades de productos."
@@ -205,6 +213,7 @@
             <key-value-mesures
               id="Feature_Usage_Index"
               name="Índice de uso de funciones"
+              (valueChanged)="iteration?.KVM.T2M.Feature_Usage_Index = $event"
               [value]="iteration?.KVM.A2I.Feature_Usage_Index"
               helpText="Medición de características del producto que se utilizan
             con frecuencia. Esto ayuda a capturar características que
@@ -215,6 +224,7 @@
             <key-value-mesures
               id="Defect_Trends"
               name="Tendencias de defectos"
+              (valueChanged)="iteration?.KVM.T2M.Defect_Trends = $event"
               [value]="iteration?.KVM.A2I.Defect_Trends"
               helpText="Medición del cambio de defectos desde la última medición.
               Un defecto es todo aquello que reduce el valor del
@@ -227,6 +237,7 @@
             <key-value-mesures
               id="On_Product_Index"
               name="Índice sobre el producto"
+              (valueChanged)="iteration?.KVM.T2M.On_Product_Index = $event"
               [value]="iteration?.KVM.A2I.On_Product_Index"
               helpText=" El porcentaje de tiempo que los equipos dedican a trabajar
               en el producto y el valor."
@@ -236,6 +247,7 @@
             <key-value-mesures
               id="Installed_Version_Index"
               name="Índice de versiones instaladas"
+              (valueChanged)="iteration?.KVM.T2M.Installed_Version_Index = $event"
               [value]="iteration?.KVM.A2I.Installed_Version_Index"
               helpText="El número de versiones de un producto que se admiten
               actualmente. Esto refleja el esfuerzo que la organización
@@ -247,6 +259,7 @@
             <key-value-mesures
               id="Technical_Debt"
               name="Deuda técnica"
+              (valueChanged)="iteration?.KVM.T2M.Technical_Debt = $event"
               [value]="iteration?.KVM.A2I.Technical_Debt"
               helpText="Un concepto en programación que refleja el trabajo
             adicional de desarrollo y prueba que surge cuando las
@@ -260,6 +273,7 @@
             <key-value-mesures
               id="Production_Incident_Trends"
               name="Tendencias de incidentes de producción"
+              (valueChanged)="iteration?.KVM.T2M.Production_Incident_Trends = $event"
               [value]="iteration?.KVM.A2I.Production_Incident_Trends"
               helpText="La cantidad de veces que se interrumpió al equipo de
             desarrollo para solucionar un problema en un producto
@@ -272,6 +286,7 @@
             <key-value-mesures
               id="Active_Code_Branches"
               name="Ramas de código activas, tiempo dedicado a fusionar código entre ramas"
+              (valueChanged)="iteration?.KVM.T2M.Active_Code_Branches = $event"
               [value]="iteration?.KVM.A2I.Active_Code_Branches"
               helpText=" Estas medidas son como el Índice de versiones instaladas,
               ya que las diferentes versiones implementadas generalmente
@@ -282,6 +297,7 @@
             <key-value-mesures
               id="Time_Spent_Context_Switching"
               name="Tiempo dedicado al cambio de contexto"
+              (valueChanged)="iteration?.KVM.T2M.Time_Spent_Context_Switching = $event"
               [value]="iteration?.KVM.A2I.Time_Spent_Context_Switching"
               helpText="El número de reuniones por día por persona y el número de
               veces al día que los miembros del equipo son interrumpidos

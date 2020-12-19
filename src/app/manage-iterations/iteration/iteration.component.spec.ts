@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatTabsModule, MatTab, MatTabGroup } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { Iteration, UV } from 'src/app/Interfaces/iterations';
 import { IterationsService } from 'src/app/services/iterations.service';
 import { IterationCardComponent } from '../iteration-card/iteration-card.component';
 
 import { IterationComponent } from './iteration.component';
-import { CV, T2M, A2I } from '../../Interfaces/iterations';
 import { KeyValueMesuresComponent } from '../key-value-mesures/key-value-mesures.component';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
 import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
+import { KVATimeToMarketService } from '../../services/kvatime-to-market.service';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;
@@ -22,6 +21,7 @@ describe('IterationComponent', () => {
   let iterationsService: IterationsService;
   let kvaUnrealizedValueService: KVAUnrealizedValueService;
   let kvaCurrentValueService: KVACurrentValueService;
+  let kvaTimeToMarkerService: KVATimeToMarketService;
   let activatedRoute: ActivatedRoute;
 
   let iterationFake = {
@@ -101,6 +101,13 @@ describe('IterationComponent', () => {
           },
         },
         {
+          provide: KVATimeToMarketService,
+          useValue: {
+            save: () => of({}),
+            update: () => of({}),
+          },
+        },
+        {
           provide: IterationsService,
           useValue: {
             getIterationById: () => of(iterationFake),
@@ -127,6 +134,7 @@ describe('IterationComponent', () => {
     iterationsService = TestBed.inject(IterationsService);
     kvaUnrealizedValueService = TestBed.inject(KVAUnrealizedValueService);
     kvaCurrentValueService = TestBed.inject(KVACurrentValueService);
+    kvaTimeToMarkerService = TestBed.inject(KVATimeToMarketService);
     activatedRoute = TestBed.inject(ActivatedRoute);
     spyOn(component.router, 'navigate').and.resolveTo();
   });
@@ -1000,12 +1008,51 @@ describe('IterationComponent', () => {
       of(kvaCurrentValue)
     );
 
-    
     // Act
     fixture.detectChanges();
     component.saveKVA();
 
     // Assert
+    expect(component.router.navigate.length).toBe(1);
+  });
+
+  it('should save a KVA Time To Marker', () => {
+    // Arrange
+    const kvaTimeToMarket = {};
+    iterationFake.kva.kvaTimeToMarket.id = '';
+
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+
+    spyOn(kvaTimeToMarkerService, 'save').and.returnValue(of(kvaTimeToMarket));
+    // Act
+    fixture.detectChanges();
+
+    // Act
+    component.saveKVA();
+
+    // Assert
+    expect(component.router.navigate.length).toBe(1);
+  });
+
+  it('should update a KVA Time To Market', () => {
+    // Arrange
+    const kvaTimeToMarket = {};
+
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    spyOn(kvaTimeToMarkerService, 'update').and.returnValue(
+      of(kvaTimeToMarket)
+    );
+
+    // Act
+    fixture.detectChanges();
+    component.saveKVA();
+
+    // Assert
+
     expect(component.router.navigate.length).toBe(1);
   });
 });

@@ -1,33 +1,36 @@
 import { of, throwError } from 'rxjs';
 
-import { KVATimeToMarketService } from './kvatime-to-market.service';
+import { KVAAbilityToInnovateService } from './kvaability-to-innovate.service';
 
-describe('KVATimeToMarketService', () => {
+describe('KVAAbilityToInnovateService', () => {
   let httpClientSpy: { put: jasmine.Spy; post: jasmine.Spy };
-  let service: KVATimeToMarketService;
-  const kvaTimeToMarket = {
-    buildAndIntegrationFrequency: 'string',
-    cycleTime: 'string',
+  let service: KVAAbilityToInnovateService;
+  const kvaAbilityToInnovate = {
+    activeCodeBranchesTimeSpentMergingCodeBetweenBranches: 'string',
+    defectTrends: 'string',
+    featureUsageIndex: 'string',
     id: 0,
     idIteration: 0,
     idTeam: 0,
-    leadTime: 'string',
-    meanTimeToRepair: 'string',
-    releaseFrequency: 'string',
-    releaseStabilizationPeriod: 'string',
-    timeToLearn: 'string',
+    innovationRate: 'string',
+    installedVersionIndex: 'string',
+    onProductIndex: 'string',
+    productionIncidentTrends: 'string',
+    technicalDebt: 'string',
+    timeSpentContextSwitching: 'string',
   };
+
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);
-    service = new KVATimeToMarketService(httpClientSpy as any);
+    service = new KVAAbilityToInnovateService(httpClientSpy as any);
   });
 
-  it('should save a new KVATimeToMarket', () => {
+  it('should save a new KVA Ability To Innovate', () => {
     httpClientSpy.post.and.returnValue(
-      of({ status: 200, kva_time_to_market: kvaTimeToMarket })
+      of({ status: 200, kva_ability_to_innovate: kvaAbilityToInnovate })
     );
-    service.save(kvaTimeToMarket).subscribe((result) => {
-      expect(result.kva_time_to_market).toEqual(kvaTimeToMarket);
+    service.save(kvaAbilityToInnovate).subscribe((result) => {
+      expect(result.kva_ability_to_innovate).toEqual(kvaAbilityToInnovate);
     });
   });
 
@@ -45,15 +48,15 @@ describe('KVATimeToMarketService', () => {
     expect(httpClientSpy.post.calls.count()).toBe(1, 'one call');
   });
 
-  it('should updae a exist KVATimeToMarket', () => {
+  it('should updae a exist KVA Ability To Innovate', () => {
   
     httpClientSpy.put.and.returnValue(
-      of({ status: 200, kva_time_to_market: kvaTimeToMarket })
+      of({ status: 200, kva_ability_to_innovate: kvaAbilityToInnovate })
     );
 
-    service.update('1', kvaTimeToMarket).subscribe(
+    service.update('1', kvaAbilityToInnovate).subscribe(
       (result) => {
-        expect(result.kva_time_to_market).toEqual(kvaTimeToMarket);
+        expect(result.kva_ability_to_innovate).toEqual(kvaAbilityToInnovate);
       },
       (err) => console.log('HTTP Error', err)
     );

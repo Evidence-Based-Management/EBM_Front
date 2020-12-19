@@ -33,7 +33,7 @@ export interface T2M {
   Build_And_Integration_Frequency: string;
   Release_Frequency: string;
   Release_Stabilization_Period: string;
-  Mean_Time_To_Repair: string;  
+  Mean_Time_To_Repair: string;
   Cycle_Time: string;
   Lead_Time: string;
   Time_To_Learn: string;
@@ -41,7 +41,7 @@ export interface T2M {
 
 export interface A2I {
   id: string;
-  Feature_Usage_Index: Array<string>;
+  Feature_Usage_Index: string;
   Innovation_Rate: string;
   Defect_Trends: string;
   On_Product_Index: string;

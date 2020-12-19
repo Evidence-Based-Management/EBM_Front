@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
 import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
 import { KVATimeToMarketService } from '../../services/kvatime-to-market.service';
+import { KVAAbilityToInnovateService } from '../../services/kvaability-to-innovate.service';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;
@@ -22,6 +23,7 @@ describe('IterationComponent', () => {
   let kvaUnrealizedValueService: KVAUnrealizedValueService;
   let kvaCurrentValueService: KVACurrentValueService;
   let kvaTimeToMarkerService: KVATimeToMarketService;
+  let kvaAbilityToInnovateService: KVAAbilityToInnovateService;
   let activatedRoute: ActivatedRoute;
 
   let iterationFake = {
@@ -49,7 +51,7 @@ describe('IterationComponent', () => {
       },
       kvaAbilityToInnovate: {
         id: '1',
-        featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+        featureUsageIndex: '30 min by day',
         innovationRate: '0.33',
         defectTrends: '+60',
         onProductIndex: '80%',
@@ -108,6 +110,13 @@ describe('IterationComponent', () => {
           },
         },
         {
+          provide: KVAAbilityToInnovateService,
+          useValue: {
+            save: () => of({}),
+            update: () => of({}),
+          },
+        },
+        {
           provide: IterationsService,
           useValue: {
             getIterationById: () => of(iterationFake),
@@ -135,6 +144,7 @@ describe('IterationComponent', () => {
     kvaUnrealizedValueService = TestBed.inject(KVAUnrealizedValueService);
     kvaCurrentValueService = TestBed.inject(KVACurrentValueService);
     kvaTimeToMarkerService = TestBed.inject(KVATimeToMarketService);
+    kvaAbilityToInnovateService = TestBed.inject(KVAAbilityToInnovateService);
     activatedRoute = TestBed.inject(ActivatedRoute);
     spyOn(component.router, 'navigate').and.resolveTo();
   });
@@ -473,7 +483,7 @@ describe('IterationComponent', () => {
 
       // Assert
       expect(Feature_Usage_Index[0].nativeElement.value).toEqual(
-        '30 min by day,5 min by day,60 min by day'
+        '30 min by day'
       );
       expect(Innovation_Rate[0].nativeElement.value).toEqual('0.33');
       expect(Defect_Trends[0].nativeElement.value).toEqual('+60');
@@ -579,7 +589,7 @@ describe('IterationComponent', () => {
         },
         kvaAbilityToInnovate: {
           id: '1',
-          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          featureUsageIndex: '30 min by day',
           innovationRate: '0.33',
           defectTrends: '+60',
           onProductIndex: '80%',
@@ -639,7 +649,7 @@ describe('IterationComponent', () => {
         },
         kvaAbilityToInnovate: {
           id: '1',
-          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          featureUsageIndex: '30 min by day',
           innovationRate: '0.33',
           defectTrends: '+60',
           onProductIndex: '80%',
@@ -700,7 +710,7 @@ describe('IterationComponent', () => {
         },
         kvaAbilityToInnovate: {
           id: '1',
-          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          featureUsageIndex: '30 min by day',
           innovationRate: '0.33',
           defectTrends: '+60',
           onProductIndex: '80%',
@@ -761,7 +771,7 @@ describe('IterationComponent', () => {
         },
         kvaAbilityToInnovate: {
           id: '1',
-          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          featureUsageIndex: '30 min by day',
           innovationRate: '0.33',
           defectTrends: '+60',
           onProductIndex: '80%',
@@ -821,7 +831,7 @@ describe('IterationComponent', () => {
         },
         kvaAbilityToInnovate: {
           id: '1',
-          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          featureUsageIndex: '30 min by day',
           innovationRate: '0.33',
           defectTrends: '+60',
           onProductIndex: '80%',
@@ -941,7 +951,7 @@ describe('IterationComponent', () => {
         },
         kvaAbilityToInnovate: {
           id: '1',
-          featureUsageIndex: ['30 min by day', '5 min by day', '60 min by day'],
+          featureUsageIndex: '30 min by day',
           innovationRate: '0.33',
           defectTrends: '+60',
           onProductIndex: '80%',
@@ -1045,6 +1055,48 @@ describe('IterationComponent', () => {
     );
     spyOn(kvaTimeToMarkerService, 'update').and.returnValue(
       of(kvaTimeToMarket)
+    );
+
+    // Act
+    fixture.detectChanges();
+    component.saveKVA();
+
+    // Assert
+
+    expect(component.router.navigate.length).toBe(1);
+  });
+
+  it('should save a KVA Ability To Inovate', () => {
+    // Arrange
+    const kvaAbilityToInnovate = {};
+    iterationFake.kva.kvaAbilityToInnovate.id = '';
+
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+
+    spyOn(kvaAbilityToInnovateService, 'save').and.returnValue(
+      of(kvaAbilityToInnovate)
+    );
+    // Act
+    fixture.detectChanges();
+
+    // Act
+    component.saveKVA();
+
+    // Assert
+    expect(component.router.navigate.length).toBe(1);
+  });
+
+  it('should update a KVA Ability To Inovate', () => {
+    // Arrange
+    const kvaAbilityToInnovate = {};
+
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    spyOn(kvaAbilityToInnovateService, 'update').and.returnValue(
+      of(kvaAbilityToInnovate)
     );
 
     // Act

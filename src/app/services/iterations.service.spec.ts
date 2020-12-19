@@ -36,7 +36,7 @@ describe('IterationsService', () => {
 
   const A2IFake: A2I = {
     id: '1',
-    Feature_Usage_Index: ['30 min by day', '5 min by day', '60 min by day'],
+    Feature_Usage_Index: '30 min by day',
     Innovation_Rate: '0.33',
     Defect_Trends: '+60',
     On_Product_Index: '80%',

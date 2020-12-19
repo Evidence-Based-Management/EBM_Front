@@ -7,6 +7,7 @@ import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.se
 import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
 import { forkJoin, Observable } from 'rxjs';
 import { KVATimeToMarketService } from '../../services/kvatime-to-market.service';
+import { KVAAbilityToInnovateService } from '../../services/kvaability-to-innovate.service';
 
 @Component({
   selector: 'app-iteration',
@@ -20,6 +21,7 @@ export class IterationComponent implements OnInit {
     public serviceKVAUnrealizedValue: KVAUnrealizedValueService,
     public serviceKVACurrentValue: KVACurrentValueService,
     public serviceKVATimeToMarket: KVATimeToMarketService,
+    public serviceKVAAbilityToInnovate: KVAAbilityToInnovateService,
     public route: ActivatedRoute,
     public router: Router
   ) {}
@@ -213,6 +215,7 @@ export class IterationComponent implements OnInit {
       this.saveUnrealizedValue(),
       this.saveCurrentValue(),
       this.saveTimeToMarket(),
+      this.saveAbilityToInnovate(),
     ]).subscribe((value) => {
       this.router.navigate(['/iterations']);
     });
@@ -256,6 +259,20 @@ export class IterationComponent implements OnInit {
     }
   }
 
+  saveAbilityToInnovate(): Observable<any> {
+    const mappedAbilityToInnovate = this.mapToKVAAbilityToInnovate(
+      this.iteration
+    );
+    if (this.iteration.KVM.A2I.id === '') {
+      return this.serviceKVAAbilityToInnovate.save(mappedAbilityToInnovate);
+    } else {
+      return this.serviceKVAAbilityToInnovate.update(
+        this.iteration.KVM.A2I.id,
+        mappedAbilityToInnovate
+      );
+    }
+  }
+
   mapToKVAUnrealizedValue(iteration: Iteration): any {
     return {
       idIteration: iteration.id,
@@ -291,6 +308,22 @@ export class IterationComponent implements OnInit {
       releaseStabilizationPeriod:
         iteration.KVM.T2M.Release_Stabilization_Period,
       timeToLearn: iteration.KVM.T2M.Time_To_Learn,
+    };
+  }
+  mapToKVAAbilityToInnovate(iteration: Iteration): any {
+    return {
+      idIteration: iteration.id,
+      idTeam: 2,
+      activeCodeBranchesTimeSpentMergingCodeBetweenBranches:
+        iteration.KVM.A2I.Active_Code_Branches,
+      defectTrends: iteration.KVM.A2I.Defect_Trends,
+      featureUsageIndex: iteration.KVM.A2I.Feature_Usage_Index,
+      innovationRate: iteration.KVM.A2I.Innovation_Rate,
+      installedVersionIndex: iteration.KVM.A2I.Installed_Version_Index,
+      onProductIndex: iteration.KVM.A2I.On_Product_Index,
+      productionIncidentTrends: iteration.KVM.A2I.Production_Incident_Trends,
+      technicalDebt: iteration.KVM.A2I.Technical_Debt,
+      timeSpentContextSwitching: iteration.KVM.A2I.Time_Spent_Context_Switching,
     };
   }
 }

@@ -163,7 +163,7 @@ describe('IterationComponent', () => {
 
     // Assert
     expect(name[0].nativeElement.innerHTML).toBe(' Fake ');
-    expect(goal[0].nativeElement.innerHTML).toBe('sprint goal -1');
+    expect(goal[0].nativeElement.innerHTML).toBe(' sprint goal -1 ');
 
     expect(component).toBeTruthy();
   });

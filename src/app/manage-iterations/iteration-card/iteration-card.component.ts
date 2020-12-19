@@ -7,6 +7,7 @@ import { Iteration } from 'src/app/Interfaces/iterations';
 })
 export class IterationCardComponent implements OnInit {
   @Input() iteration: Iteration;
+  @Input() isDetail: boolean;
 
   constructor() {}
 

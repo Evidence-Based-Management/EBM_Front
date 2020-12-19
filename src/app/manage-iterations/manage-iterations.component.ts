@@ -29,6 +29,16 @@ export class ManageIterationsComponent implements OnInit {
 
   setLocalIterations(iteration: any): void {
     if ('iterations' in iteration) {
+      iteration.iterations.sort(function (a, b) {
+        if (a.id > b.id) {
+          return 1;
+        }
+        if (a.id < b.id) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
       for (let index = 0; index < iteration.iterations.length; index++) {
         this.iterationsToHtml.iterations.push(
           this.newIteration(iteration.iterations, index)

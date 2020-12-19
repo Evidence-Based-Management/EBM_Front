@@ -996,4 +996,64 @@ describe('ManageIterationsComponent', () => {
     // Assert
     expect(result.length).toBe(1);
   });
+
+  it('should order iterations', () => {
+    // Arrange
+    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+      of({
+        id: 2,
+        name: 'Increibles',
+        dateJoin: '2020-01-01T05:00:00',
+        iterations: [
+          {
+            id: 2,
+            name: 'Iteration 1',
+            goal: 'My goal',
+            startDate: '2020-10-01T05:00:00',
+            endDate: '2020-10-21T05:00:00',
+            state: 'Completed',
+          },
+          {
+            id: 2,
+            name: 'Iteration 1',
+            goal: 'My goal',
+            startDate: '2020-10-01T05:00:00',
+            endDate: '2020-10-21T05:00:00',
+            state: 'Completed',
+          },
+          {
+            id: 7,
+            name: 'Iteration 1',
+            goal: 'My goal',
+            startDate: '2020-10-01T05:00:00',
+            endDate: '2020-10-21T05:00:00',
+            state: 'Completed',
+          },
+          {
+            id: 5,
+            name: 'Iteration 1',
+            goal: 'My goal',
+            startDate: '2020-10-01T05:00:00',
+            endDate: '2020-10-21T05:00:00',
+            state: 'Completed',
+          },
+          {
+            id: 0,
+            name: 'Iteration 1',
+            goal: 'My goal',
+            startDate: '2020-10-01T05:00:00',
+            endDate: '2020-10-21T05:00:00',
+            state: 'Completed',
+          },
+        ],
+      })
+    );
+    fixture.detectChanges();
+
+    // Act
+    const result = fixture.debugElement.queryAll(By.css('a'));
+
+    // Assert
+    expect(result.length).toBe(1);
+  });
 });

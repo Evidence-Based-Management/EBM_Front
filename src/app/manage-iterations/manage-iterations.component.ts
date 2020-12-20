@@ -31,10 +31,10 @@ export class ManageIterationsComponent implements OnInit {
     if ('iterations' in iteration) {
       iteration.iterations.sort(function (a, b) {
         if (a.id > b.id) {
-          return 1;
+          return -1;
         }
         if (a.id < b.id) {
-          return -1;
+          return 1;
         }
         // a must be equal to b
         return 0;

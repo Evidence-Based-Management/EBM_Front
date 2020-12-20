@@ -13,6 +13,7 @@ import { IterationCardComponent } from './manage-iterations/iteration-card/itera
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
 import { KeyValueMesuresComponent } from './manage-iterations/key-value-mesures/key-value-mesures.component';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
 import { LoaderComponent } from './home/loader/loader.component';
@@ -34,6 +35,7 @@ import { LoaderComponent } from './home/loader/loader.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    MatSelectModule,
     FormsModule,
   ],
   providers: [

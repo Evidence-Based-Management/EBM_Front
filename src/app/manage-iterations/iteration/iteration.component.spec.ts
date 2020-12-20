@@ -15,6 +15,7 @@ import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.se
 import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
 import { KVATimeToMarketService } from '../../services/kvatime-to-market.service';
 import { KVAAbilityToInnovateService } from '../../services/kvaability-to-innovate.service';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;
@@ -85,6 +86,7 @@ describe('IterationComponent', () => {
         AppRoutingModule,
         BrowserAnimationsModule,
         MatTabsModule,
+        MatSelectModule,
         FormsModule,
       ],
       providers: [
@@ -121,6 +123,7 @@ describe('IterationComponent', () => {
           useValue: {
             getIterationById: () => of(iterationFake),
             save: () => of(iterationFake),
+            update: () => of(iterationFake),
           },
         },
         {
@@ -1106,5 +1109,19 @@ describe('IterationComponent', () => {
     // Assert
 
     expect(component.router.navigate.length).toBe(1);
+  });
+
+  it('should update a Iteraton', () => {
+    // Arrange
+    spyOn(iterationsService, 'update').and.returnValue(of(iterationFake));
+    fixture.detectChanges();
+
+    // Act
+    component.updateIteration('Completed');
+    const iterationCard = fixture.debugElement.queryAll(
+      By.css('app-iteration-card')
+    );
+
+    expect(iterationCard.length).toBe(1);
   });
 });

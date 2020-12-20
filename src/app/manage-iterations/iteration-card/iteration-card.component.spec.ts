@@ -8,9 +8,8 @@ describe('IterationCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IterationCardComponent ]
-    })
-    .compileComponents();
+      declarations: [IterationCardComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,12 @@ describe('IterationCardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit the selected value', () => {
+    spyOn(component.selectionChange, 'emit');
+
+    component.onChange('Completed');
+    expect(component.selectionChange.emit).toHaveBeenCalled();
   });
 });

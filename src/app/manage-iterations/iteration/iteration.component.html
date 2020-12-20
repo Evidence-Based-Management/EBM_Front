@@ -1,6 +1,6 @@
 <div *ngIf="iteration" class="row">
   <div *ngIf="iteration?.state != 'newIteration'" class="col-12 mb-4">
-    <app-iteration-card [iteration]="iteration" isDetail="true"></app-iteration-card>
+    <app-iteration-card [iteration]="iteration" isDetail="true" (selectionChange)="updateIteration($event)"></app-iteration-card>
   </div>
 
   <form *ngIf="iteration?.state == 'newIteration'" class="user card-body">

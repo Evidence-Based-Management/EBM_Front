@@ -191,20 +191,28 @@ export class IterationComponent implements OnInit {
     };
   }
 
-  mapFromIteration(iteration: Iteration): any {
+  mapFromIteration(iteration: Iteration, newState: string): any {
     return {
       goal: iteration.goal,
       name: iteration.name,
       startDate: iteration.startDate,
       endDate: iteration.endDate,
-      state: 'In_Progress',
+      state: newState,
       idTeam: 2,
     };
   }
 
   saveIteration(): void {
     this.serviceItertations
-      .save(this.mapFromIteration(this.iteration))
+      .save(this.mapFromIteration(this.iteration, 'In_Progress'))
+      .subscribe((response: any) => {
+        this.router.navigate(['/iterations']);
+      });
+  }
+  updateIteration(state: string): void {
+    this.iteration.state = state;
+    this.serviceItertations
+      .update(this.iteration.id, this.mapFromIteration(this.iteration, state))
       .subscribe((response: any) => {
         this.router.navigate(['/iterations']);
       });

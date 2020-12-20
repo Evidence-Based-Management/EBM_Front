@@ -14,9 +14,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { KeyValueMesuresComponent } from './manage-iterations/key-value-mesures/key-value-mesures.component';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
 import { LoaderComponent } from './home/loader/loader.component';
+import { NewIterationComponent } from './manage-iterations/iteration/new-iteration/new-iteration.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +34,7 @@ import { LoaderComponent } from './home/loader/loader.component';
     IterationCardComponent,
     KeyValueMesuresComponent,
     LoaderComponent,
+    NewIterationComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +44,9 @@ import { LoaderComponent } from './home/loader/loader.component';
     MatTabsModule,
     MatSelectModule,
     FormsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     {

@@ -16,6 +16,10 @@ import { KVACurrentValueService } from '../../services/kvacurrent-value.service'
 import { KVATimeToMarketService } from '../../services/kvatime-to-market.service';
 import { KVAAbilityToInnovateService } from '../../services/kvaability-to-innovate.service';
 import { MatSelectModule } from '@angular/material/select';
+import { NewIterationComponent } from './new-iteration/new-iteration.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;
@@ -81,6 +85,7 @@ describe('IterationComponent', () => {
         IterationComponent,
         IterationCardComponent,
         KeyValueMesuresComponent,
+        NewIterationComponent,
       ],
       imports: [
         AppRoutingModule,
@@ -88,6 +93,9 @@ describe('IterationComponent', () => {
         MatTabsModule,
         MatSelectModule,
         FormsModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
       ],
       providers: [
         {
@@ -190,10 +198,13 @@ describe('IterationComponent', () => {
     );
 
     // Assert
+
     expect(iterationName[0].nativeElement.placeholder).toBe('Iteration Name');
     expect(iteratioGoal[0].nativeElement.placeholder).toBe('Iteration Goal');
-    expect(iteratioStartDate[0].nativeElement.placeholder).toBe('Start Date');
-    expect(iteratioEndDate[0].nativeElement.placeholder).toBe('End Date');
+    expect(iteratioStartDate[0].attributes['data-placeholder']).toBe(
+      'Start Date'
+    );
+    expect(iteratioEndDate[0].attributes['data-placeholder']).toBe('End Date');
 
     expect(component.iteration).toEqual({
       id: null,

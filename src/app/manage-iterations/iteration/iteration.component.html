@@ -1,55 +1,14 @@
 <div *ngIf="iteration" class="row">
   <div *ngIf="iteration?.state != 'newIteration'" class="col-12 mb-4">
-    <app-iteration-card [iteration]="iteration" isDetail="true" (selectionChange)="updateIteration($event)"></app-iteration-card>
+    <app-iteration-card
+      [iteration]="iteration"
+      isDetail="true"
+      (selectionChange)="updateIteration($event)"
+    ></app-iteration-card>
   </div>
 
   <form *ngIf="iteration?.state == 'newIteration'" class="user card-body">
-    <h1 class="h3 mb-0 text-gray-800 pb-1">New Iteration</h1>
-    <div class="form-group row">
-      <div class="col-sm-6 mb-3 mb-sm-0">
-        <input
-          type="text"
-          name="iterationName"
-          [(ngModel)]="iteration.name"
-          class="form-control form-control-user"
-          id="iterationName"
-          placeholder="Iteration Name"
-        />
-      </div>
-      <div class="col-sm-6">
-        <input
-          type="text"
-          name="iteratioGoal"
-          [(ngModel)]="iteration.goal"
-          class="form-control form-control-user"
-          id="iteratioGoal"
-          placeholder="Iteration Goal"
-        />
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-sm-6 mb-3 mb-sm-0">
-        <input
-          type="text"
-          name="iteratioStartDate"
-          [(ngModel)]="iteration.startDate"
-          class="form-control form-control-user"
-          id="iteratioStartDate"
-          placeholder="Start Date"
-        />
-      </div>
-      <div class="col-sm-6">
-        <input
-          type="text"
-          name="iteratioEndDate"
-          [(ngModel)]="iteration.endDate"
-          class="form-control form-control-user"
-          id="iteratioEndDate"
-          placeholder="End Date"
-        />
-      </div>
-    </div>
+    <app-new-iteration [iteration]="iteration"></app-new-iteration>
   </form>
 </div>
 <div *ngIf="iteration && iteration?.state != 'newIteration'" class="row">
@@ -118,7 +77,9 @@
             <key-value-mesures
               id="Build_And_Integration_Frequency"
               name="Frecuencia de construcción e integración"
-              (valueChanged)="iteration?.KVM.T2M.Build_And_Integration_Frequency = $event"
+              (valueChanged)="
+                iteration?.KVM.T2M.Build_And_Integration_Frequency = $event
+              "
               [value]="iteration?.KVM.T2M.Build_And_Integration_Frequency"
               helpText=" El número de compilaciones integradas y probadas por período
               de tiempo. Para un equipo que lanza con frecuencia o de
@@ -142,7 +103,9 @@
             <key-value-mesures
               id="Release_Stabilization_Period"
               name="Período de estabilización de lanzamiento"
-              (valueChanged)="iteration?.KVM.T2M.Release_Stabilization_Period = $event"
+              (valueChanged)="
+                iteration?.KVM.T2M.Release_Stabilization_Period = $event
+              "
               [value]="iteration?.KVM.T2M.Release_Stabilization_Period"
               helpText=" El tiempo que se dedica a corregir los problemas del
               producto entre el momento en que los desarrolladores dicen
@@ -247,7 +210,9 @@
             <key-value-mesures
               id="Installed_Version_Index"
               name="Índice de versiones instaladas"
-              (valueChanged)="iteration?.KVM.A2I.Installed_Version_Index = $event"
+              (valueChanged)="
+                iteration?.KVM.A2I.Installed_Version_Index = $event
+              "
               [value]="iteration?.KVM.A2I.Installed_Version_Index"
               helpText="El número de versiones de un producto que se admiten
               actualmente. Esto refleja el esfuerzo que la organización
@@ -273,7 +238,9 @@
             <key-value-mesures
               id="Production_Incident_Trends"
               name="Tendencias de incidentes de producción"
-              (valueChanged)="iteration?.KVM.A2I.Production_Incident_Trends = $event"
+              (valueChanged)="
+                iteration?.KVM.A2I.Production_Incident_Trends = $event
+              "
               [value]="iteration?.KVM.A2I.Production_Incident_Trends"
               helpText="La cantidad de veces que se interrumpió al equipo de
             desarrollo para solucionar un problema en un producto
@@ -297,7 +264,9 @@
             <key-value-mesures
               id="Time_Spent_Context_Switching"
               name="Tiempo dedicado al cambio de contexto"
-              (valueChanged)="iteration?.KVM.A2I.Time_Spent_Context_Switching = $event"
+              (valueChanged)="
+                iteration?.KVM.A2I.Time_Spent_Context_Switching = $event
+              "
               [value]="iteration?.KVM.A2I.Time_Spent_Context_Switching"
               helpText="El número de reuniones por día por persona y el número de
               veces al día que los miembros del equipo son interrumpidos

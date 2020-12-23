@@ -57,7 +57,6 @@
 
   function renderMenu() {
     if ($(window).width() < 768) {
-      console.log("Im in");
       $(".sidebar .collapse").collapse("hide");
     }
 

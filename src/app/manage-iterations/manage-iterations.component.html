@@ -1,28 +1,16 @@
 <!-- Page Heading -->
 
 <div class="row">
-  <div class="col-lg-4 d-sm-flex align-items-center mb-4">
+  <div class="col-lg-8 d-sm-flex align-items-center mb-4">
     <h1 class="h3 mb-0 text-gray-800">Manage Iterations</h1>
   </div>
-  <div class="col-lg-4">
-    <div class="d-flex flex-row-reverse">
-      <h2>
-        <span class="badge badge-pill badge-danger mr-2 ml-2">Failed</span>
-      </h2>
-      <h2>
-        <span class="badge badge-pill badge-warning mr-2 ml-2"
-          >In Progress</span
-        >
-      </h2>
-      <h2>
-        <span class="badge badge-pill badge-success mr-2 ml-2">Success</span>
-      </h2>
-    </div>
-  </div>
-  <div class="col-lg-4 pb-2">
-    <a class="btn btn-outline-info btn-lg btn-block" routerLink="/addIteration"
-      >Add New Iteration</a
-    >
+  <div class="col-lg-4 d-flex flex-row-reverse mb-2">
+    <a routerLink="/addIteration" class="btn btn-success btn-icon-split">
+      <span class="icon text-white-50">
+        <em class="fas fa-plus"></em>
+      </span>
+      <span class="text">Add new Iteration</span>
+    </a>
   </div>
 </div>
 
@@ -32,6 +20,9 @@
     class="col-xl-3 col-md-6 mb-4 col-lg-6"
     (click)="goToIterationDetails(iteration.id)"
   >
-    <app-iteration-card [iteration]="iteration" [isDetail]="false"></app-iteration-card>
+    <app-iteration-card
+      [iteration]="iteration"
+      [isDetail]="false"
+    ></app-iteration-card>
   </div>
 </div>

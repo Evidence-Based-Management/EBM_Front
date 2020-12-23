@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'iterations', component: ManageIterationsComponent },
   { path: 'iteration/:id', component: IterationComponent },
   { path: 'addIteration', component: IterationComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/iterations', pathMatch: 'full' },
   { path: '**', redirectTo: '/' },
 ];
 

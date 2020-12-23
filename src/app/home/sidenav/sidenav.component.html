@@ -8,52 +8,25 @@
     class="sidebar-brand d-flex align-items-center justify-content-center"
     routerLink="/"
   >
-    <div class="sidebar-brand-text mx-3">      
-      VANITATI
-    </div>
+    <div class="sidebar-brand-text mx-3">VANITATI</div>
   </a>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider my-0" />
-
   <!-- Nav Item - Dashboard -->
+  <li class="nav-item active">
+    <a class="nav-link" routerLink="/iterations" routerLinkActive="active">
+      <em class="fas fa-fw fa-cog"></em>
+      <span>Iterations</span>
+    </a>
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+  <!-- Nav Item - Iterations -->
   <li class="nav-item active">
     <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
       <em class="fas fa-fw fa-tachometer-alt"></em>
       <span>Dashboard</span></a
     >
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider" />
-
-  <!-- Heading -->
-  <div class="sidebar-heading">Iterations</div>
-
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-    <a
-      class="nav-link collapsed"
-      href="#"
-      data-toggle="collapse"
-      data-target="#collapseTwo"
-      aria-expanded="true"
-      aria-controls="collapseTwo"
-    >
-      <em class="fas fa-fw fa-cog"></em>
-      <span>Iterations</span>
-    </a>
-    <div
-      id="collapseTwo"
-      class="collapse"
-      aria-labelledby="headingTwo"
-      data-parent="#accordionSidebar"
-    >
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Actions:</h6>
-        <a class="collapse-item" routerLink="/iterations">Manage</a>
-      </div>
-    </div>
   </li>
 </ul>
 <!-- End of Sidebar -->

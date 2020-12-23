@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'Evidence Based Management';
   ngOnInit(): void {
-    this.loadScript('../assets/js/menu.js');
+    this.loadScript('assets/js/menu.js');
   }
 
   loadScript(url: string): void {

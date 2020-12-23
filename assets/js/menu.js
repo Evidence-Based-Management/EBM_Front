@@ -10,19 +10,11 @@
     }
   });
 
-
+  // Hide menu whe page is loaded
+  renderMenu();
   // Close any open menu accordions when window is resized below 768px
   $(window).on("resize", function () {
-    if ($(window).width() < 768) {
-      $(".sidebar .collapse").collapse("hide");
-    }
-
-    // Toggle the side navigation when window is resized below 480px
-    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
-      $("body").addClass("sidebar-toggled");
-      $(".sidebar").addClass("toggled");
-      $(".sidebar .collapse").collapse("hide");
-    }
+    renderMenu();
   });
 
   // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
@@ -62,4 +54,17 @@
       );
     e.preventDefault();
   });
+
+  function renderMenu() {
+    if ($(window).width() < 768) {
+      console.log("Im in");
+      $(".sidebar .collapse").collapse("hide");
+    }
+
+    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+      $("body").addClass("sidebar-toggled");
+      $(".sidebar").addClass("toggled");
+      $(".sidebar .collapse").collapse("hide");
+    }
+  }
 })(jQuery); // End of use strict

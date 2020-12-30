@@ -19,16 +19,34 @@
         <blockquote class="d-none d-sm-block blockquote">
           <p class="mb-0">Goal:</p>
           <footer class="blockquote-footer">
-            {{ isDetail==false ? ( iteration?.goal | slice: 0:47) : ( iteration?.goal) }}
+            {{
+              isDetail == false
+                ? (iteration?.goal | slice: 0:47)
+                : iteration?.goal
+            }}
           </footer>
         </blockquote>
+        <blockquote class="d-none d-sm-block blockquote" *ngIf="isDetail">
+          <p class="mb-0">Start Date:</p>
+          <footer class="blockquote-footer">{{ iteration?.startDate }}</footer>
+        </blockquote>
+        <blockquote class="d-none d-sm-block blockquote" *ngIf="isDetail">
+          <p class="mb-0">End Date:</p>
+          <footer class="blockquote-footer">{{ iteration?.endDate }}</footer>
+        </blockquote>
       </div>
-      <div class="col-md-2 pt-2" *ngIf="isDetail && iteration?.state == 'In_Progress'">
+      <div
+        class="col-md-2 pt-2"
+        *ngIf="isDetail && iteration?.state == 'In_Progress'"
+      >
         <mat-form-field appearance="fill">
           <mat-label>State:</mat-label>
-          <mat-select [(value)]="selected" (selectionChange)="onChange(selected)" >
+          <mat-select
+            [(value)]="selected"
+            (selectionChange)="onChange(selected)"
+          >
             <mat-option *ngFor="let state of states" [value]="state">
-              {{state}}
+              {{ state }}
             </mat-option>
           </mat-select>
         </mat-form-field>

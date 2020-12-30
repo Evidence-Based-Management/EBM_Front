@@ -8,7 +8,10 @@
 
 <!-- Content Row -->
 <div class="row">
-  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-12 mb-3">
+    <app-iteration-card [iteration]="iteration" isDetail="true" ></app-iteration-card>
+  </div>
+  <!-- Curren Value -->
   <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-primary shadow h-100 py-2">
       <div class="card-body">
@@ -19,29 +22,39 @@
             >
               Current Value (CV)
             </div>
-           
-            <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Revenue per Employee                
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Product Cost Ratio
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Employee Satisfaction
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Customer Satisfaction
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Customer Usage Index
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-              </li>
-            </ul>
+
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Revenue per Employee</h5>                  
+                </div>
+                <p class="mb-1">  {{ iteration?.KVM?.CV?.Revenue_Per_Employee }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Product Cost Ratio</h5>                  
+                </div>
+                <p class="mb-1">   {{ iteration?.KVM?.CV?.Product_Cost_Ratio }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1"> Employee Satisfaction</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.CV?.Employee_Satisfaction }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Customer Satisfaction</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.CV?.Customer_Satisfaction }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Customer Usage Index</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.CV?.Customer_Usage_Index }}</p>                
+              </div>
+            </div>           
           </div>
           <div class="col-auto">
             <em class="fas fa-calendar fa-2x text-gray-300"></em>
@@ -51,7 +64,7 @@
     </div>
   </div>
 
-  <!-- Earnings (Monthly) Card Example -->
+  <!-- Time To Market -->
   <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-success shadow h-100 py-2">
       <div class="card-body">
@@ -62,37 +75,53 @@
             >
               Time To Market (T2M)
             </div>
-            
-            <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Build and integration frequency
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Release Frequency
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Release Stabilization Period
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Mean Time to Repair
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Cycle Time
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Lead Time
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Time-to-Learn
-                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-              </li>
-            </ul>
+
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Build and integration frequency</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Build_And_Integration_Frequency }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Release Frequency</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Release_Frequency }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Release Stabilization Period</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Release_Stabilization_Period }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Mean Time to Repair</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Mean_Time_To_Repair }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Cycle Time</h5>                  
+                </div>
+                <p class="mb-1"> {{ iteration?.KVM?.T2M?.Cycle_Time }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Lead Time</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Lead_Time }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Time-to-Learn</h5>                  
+                </div>
+                <p class="mb-1"> {{ iteration?.KVM?.T2M?.Time_To_Learn }}</p>                
+              </div>
+            </div>  
+
+          
           </div>
           <div class="col-auto">
             <em class="fas fa-dollar-sign fa-2x text-gray-300"></em>
@@ -102,7 +131,7 @@
     </div>
   </div>
 
-  <!-- Earnings (Monthly) Card Example -->
+  <!-- Ability To Innovate -->
   <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-info shadow h-100 py-2">
       <div class="card-body">
@@ -110,45 +139,64 @@
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
               Ability to Innovate (A2I)
-            </div>            
-            <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Feature Usage Index
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Innovation Rate
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Defect trends
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                On-Product Index
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Installed Version Index
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Technical Debt
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Production Incident Trends
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Active code branches, time spent merging code between branches
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Time spent context-switching
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-              </li>
-            </ul>
+            </div>
+
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Feature Usage Index</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.Feature_Usage_Index }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Innovation Rate</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.Innovation_Rate }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Defect trends</h5>                  
+                </div>
+                <p class="mb-1"> {{ iteration?.KVM?.A2I?.Defect_Trends }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">On-Product Index</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.On_Product_Index }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Installed Version Index</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.Installed_Version_Index }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Technical Debt</h5>                  
+                </div>
+                <p class="mb-1">  {{ iteration?.KVM?.A2I?.Technical_Debt }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Production Incident Trends</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.Production_Incident_Trends }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Active code branches, time spent merging code between branches</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.Active_Code_Branches }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Time spent context-switching</h5>                  
+                </div>
+                <p class="mb-1"> {{ iteration?.KVM?.A2I?.Time_Spent_Context_Switching }}</p>                
+              </div>
+            </div>              
           </div>
           <div class="col-auto">
             <em class="fas fa-clipboard-list fa-2x text-gray-300"></em>
@@ -158,7 +206,7 @@
     </div>
   </div>
 
-  <!-- Pending Requests Card Example -->
+  <!-- Unrealized Value -->
   <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-warning shadow h-100 py-2">
       <div class="card-body">
@@ -169,17 +217,21 @@
             >
               Unrealized Value (UV)
             </div>
-            
-            <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Market Share
-                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                Customer or user satisfaction gap
-                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-              </li>              
-            </ul>
+
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Market Share</h5>                  
+                </div>
+                <p class="mb-1">{{ iteration?.KVM?.UV?.Market_Share }}</p>                
+              </div>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Customer or user satisfaction gap</h5>                  
+                </div>
+                <p class="mb-1"> {{ iteration?.KVM?.UV?.Customer_Or_User_Satisfaction_Gap }}</p>                
+              </div>
+            </div>                 
           </div>
           <div class="col-auto">
             <em class="fas fa-comments fa-2x text-gray-300"></em>
@@ -188,4 +240,6 @@
       </div>
     </div>
   </div>
+
+  
 </div>

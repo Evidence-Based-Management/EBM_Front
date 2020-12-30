@@ -90,19 +90,6 @@ describe('IterationsService', () => {
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
 
-  it('should get all iterations empty', () => {
-    const expectedIterations: Iterations[] = new Array<Iterations>();
-
-    httpClientSpy.get.and.returnValue(of(expectedIterations));
-
-    service.getIterationsByTeam(1).subscribe(
-      (result: Iterations[]) => {
-        expect(result).toEqual(Array<Iterations>());
-      },
-      (err) => console.log('HTTP Error', err)
-    );
-    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
-  });
 
   it('should get a iteration by id', () => {
     const expectedIterations: Iterations = {
@@ -299,5 +286,80 @@ describe('IterationsService', () => {
       }
     );
     expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
+  });
+
+
+  
+  it('should get last iteration by team empty', () => {
+    const expectedIterations: Iterations[] = new Array<Iterations>();
+
+    httpClientSpy.get.and.returnValue(of(expectedIterations));
+
+    service.getLastIterationByTeam(1).subscribe(
+      (result: Iterations[]) => {
+        expect(result).toEqual(Array<Iterations>());
+      },
+      (err) => console.log('HTTP Error', err)
+    );
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
+
+  it('should get a iteration by idTeam with data', () => {
+    const expectedIterations: Iterations = {
+      iterations: [
+        {
+          id: '0',
+          name: 'Sprint 1',
+          goal: 'sprint goal 0',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: 'Completed',
+          KVM: {
+            CV: CVFake,
+            T2M: T2MFake,
+            A2I: A2IFake,
+            UV: UVFake,
+          },
+        },
+        {
+          id: '-1',
+          name: 'Sprint -1',
+          goal: 'sprint goal -1',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: 'Completed',
+          KVM: {
+            CV: CVFake,
+            T2M: T2MFake,
+            A2I: A2IFake,
+            UV: UVFake,
+          },
+        },
+        {
+          id: '-2',
+          name: 'Sprint -2',
+          goal: 'sprint goal -2',
+          startDate: '01/01/2020',
+          endDate: '01/28/2020',
+          state: 'Completed',
+          KVM: {
+            CV: CVFake,
+            T2M: T2MFake,
+            A2I: A2IFake,
+            UV: UVFake,
+          },
+        },
+      ],
+    };
+    httpClientSpy.get.and.returnValue(of(expectedIterations));
+
+    service.getLastIterationByTeam(1).subscribe(
+      (result: any) => {
+        expect(result.iterations[0].id).toBe('0');
+        expect(result.iterations[0].name).toBe('Sprint 1');
+      },
+      (err) => console.log('HTTP Error getIterationById', err)
+    );
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
 });

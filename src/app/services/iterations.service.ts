@@ -25,6 +25,12 @@ export class IterationsService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getLastIterationByTeam(idTeam: number): Observable<any> {
+    return this.http
+      .get(this.jsonUrlIteration + 'last/' + idTeam, { responseType: 'json' })
+      .pipe(catchError(this.errorHandler));
+  }
+
   save(iteration: any): Observable<any> {
     return this.http
       .post(this.jsonUrlIteration + 'save', iteration, { responseType: 'json' })

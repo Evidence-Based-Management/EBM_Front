@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IterationsService } from '../services/iterations.service';
-import { Iteration } from '../Interfaces/iterations';
-import { IterationMappers } from '../utilities/mappers';
+import { IterationsService } from '../../services/iterations.service';
+import { Iteration } from '../../Interfaces/iterations';
+import { IterationMappers } from '../../utilities/mappers';
 
 @Component({
   selector: 'app-dashboard',

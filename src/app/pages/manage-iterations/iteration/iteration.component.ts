@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Iteration } from 'src/app/Interfaces/iterations';
 import { IterationsService } from 'src/app/services/iterations.service';
 import { Router } from '@angular/router';
-import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
-import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
 import { forkJoin, Observable } from 'rxjs';
-import { KVATimeToMarketService } from '../../services/kvatime-to-market.service';
-import { KVAAbilityToInnovateService } from '../../services/kvaability-to-innovate.service';
 import { IterationMappers } from 'src/app/utilities/mappers';
+import { KVAUnrealizedValueService } from 'src/app/services/kvaunrealized-value.service';
+import { KVACurrentValueService } from 'src/app/services/kvacurrent-value.service';
+import { KVATimeToMarketService } from 'src/app/services/kvatime-to-market.service';
+import { KVAAbilityToInnovateService } from 'src/app/services/kvaability-to-innovate.service';
 
 @Component({
   selector: 'app-iteration',

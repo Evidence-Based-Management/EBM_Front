@@ -5,48 +5,30 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidenavComponent } from './home/sidenav/sidenav.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ManageIterationsComponent } from './manage-iterations/manage-iterations.component';
-import { IterationComponent } from './manage-iterations/iteration/iteration.component';
-import { IterationCardComponent } from './manage-iterations/iteration-card/iteration-card.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatSelectModule } from '@angular/material/select';
-
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
-
-import { KeyValueMesuresComponent } from './manage-iterations/key-value-mesures/key-value-mesures.component';
 import { LoaderInterceptorService } from './services/loader-interceptor.service';
-import { LoaderComponent } from './home/loader/loader.component';
-import { NewIterationComponent } from './manage-iterations/iteration/new-iteration/new-iteration.component';
+import { SigninComponent } from './authentication/signin/signin.component';
+import { SignupComponent } from './authentication/signup/signup.component';
+import { PagesComponent } from './pages/pages.component';
+import { PagesModule } from './pages/pages.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent,
-    DashboardComponent,
-    ManageIterationsComponent,
-    IterationComponent,
-    IterationCardComponent,
-    KeyValueMesuresComponent,
-    LoaderComponent,
-    NewIterationComponent,
+    SigninComponent,
+    SignupComponent,
+    PagesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTabsModule,
-    MatSelectModule,
     FormsModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
+    SharedModule,
   ],
   providers: [
     {

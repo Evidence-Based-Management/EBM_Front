@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { IterationsService } from '../../services/iterations.service';
 import { IterationCardComponent } from '../manage-iterations/iteration-card/iteration-card.component';
-import { IterationsService } from '../services/iterations.service';
 
 import { DashboardComponent } from './dashboard.component';
 

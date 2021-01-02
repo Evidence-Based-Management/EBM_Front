@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { IterationComponent } from './manage-iterations/iteration/iteration.component';
-import { ManageIterationsComponent } from './manage-iterations/manage-iterations.component';
+import { SigninComponent } from './authentication/signin/signin.component';
+import { SignupComponent } from './authentication/signup/signup.component';
+import { PagesComponent } from './pages/pages.component';
+import { SigInGuard } from './services/guards/sig-in.guard';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'iterations', component: ManageIterationsComponent },
-  { path: 'iteration/:id', component: IterationComponent },
-  { path: 'addIteration', component: IterationComponent },
-  { path: '', redirectTo: '/iterations', pathMatch: 'full' },
+  { path: 'sigin', component: SigninComponent },
+  { path: 'sigup', component: SignupComponent },
+  {
+    path: '',
+    component: PagesComponent,
+    canActivate: [SigInGuard],
+    loadChildren: './pages/pages.module#PagesModule',
+  },
   { path: '**', redirectTo: '/' },
 ];
 

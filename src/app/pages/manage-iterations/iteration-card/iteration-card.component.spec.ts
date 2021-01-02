@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IterationCardComponent } from './iteration-card.component';
 import { By } from '@angular/platform-browser';
-import { Iteration } from '../../Interfaces/iterations';
 
 describe('IterationCardComponent', () => {
   let component: IterationCardComponent;

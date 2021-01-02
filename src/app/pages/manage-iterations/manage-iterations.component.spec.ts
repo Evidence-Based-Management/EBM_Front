@@ -1,20 +1,12 @@
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 
 import { ManageIterationsComponent } from './manage-iterations.component';
-import {
-  A2I,
-  CV,
-  Iteration,
-  Iterations,
-  T2M,
-  UV,
-} from '../Interfaces/iterations';
-import { IterationsService } from '../services/iterations.service';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 import { Router } from '@angular/router';
 import { IterationCardComponent } from './iteration-card/iteration-card.component';
+import { IterationsService } from 'src/app/services/iterations.service';
 
 describe('ManageIterationsComponent', () => {
   let component: ManageIterationsComponent;

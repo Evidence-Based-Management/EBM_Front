@@ -11,15 +11,15 @@ import { IterationComponent } from './iteration.component';
 import { KeyValueMesuresComponent } from '../key-value-mesures/key-value-mesures.component';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { KVAUnrealizedValueService } from '../../services/kvaunrealized-value.service';
-import { KVACurrentValueService } from '../../services/kvacurrent-value.service';
-import { KVATimeToMarketService } from '../../services/kvatime-to-market.service';
-import { KVAAbilityToInnovateService } from '../../services/kvaability-to-innovate.service';
 import { MatSelectModule } from '@angular/material/select';
 import { NewIterationComponent } from './new-iteration/new-iteration.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { KVAUnrealizedValueService } from 'src/app/services/kvaunrealized-value.service';
+import { KVACurrentValueService } from 'src/app/services/kvacurrent-value.service';
+import { KVATimeToMarketService } from 'src/app/services/kvatime-to-market.service';
+import { KVAAbilityToInnovateService } from 'src/app/services/kvaability-to-innovate.service';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;

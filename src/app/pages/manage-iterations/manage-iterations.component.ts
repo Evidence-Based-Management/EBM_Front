@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Iteration, Iterations } from 'src/app/Interfaces/iterations';
-import { IterationsService } from '../services/iterations.service';
+
 import { Router } from '@angular/router';
+import { IterationsService } from 'src/app/services/iterations.service';
 
 @Component({
   selector: 'app-manage-iterations',

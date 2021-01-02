@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 
 import { SigInGuard } from './sig-in.guard';
 
@@ -16,5 +16,9 @@ describe('SigInGuard', () => {
 
   it('should be created', () => {
     expect(guard).toBeTruthy();
+  });
+
+  it('should return true', () => {
+    expect(guard.canActivate()).toBeTruthy();
   });
 });

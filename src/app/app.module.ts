@@ -12,7 +12,6 @@ import { LoaderInterceptorService } from './services/loader-interceptor.service'
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { PagesComponent } from './pages/pages.component';
-import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({

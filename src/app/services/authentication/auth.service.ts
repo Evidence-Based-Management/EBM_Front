@@ -28,8 +28,6 @@ export class AuthService {
       .post(this.jsonUrlUsers + 'signin', user, { responseType: 'json' })
       .pipe(
         map((resp: any) => {
-          console.log(resp);
-          
           this.saveLocaStorage('0', resp.jwt, resp.userName);
           return true;
         }),
@@ -49,11 +47,11 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  saveLocaStorage(id: string, token: string, user: User): boolean {
+  saveLocaStorage(id: string, token: string, username: string): boolean {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
-    this.user = user.username;
+    localStorage.setItem('user', JSON.stringify(username));
+    this.user = username;
     this.token = token;
     return true;
   }

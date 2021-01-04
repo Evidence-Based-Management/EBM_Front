@@ -12,6 +12,8 @@ export class PagesComponent implements OnInit {
   title = 'Evidence Based Management';
   user: string;
   constructor(public auth: AuthService, public router: Router) {
+    console.log(auth);
+
     this.user = auth.user;
   }
   ngOnInit(): void {

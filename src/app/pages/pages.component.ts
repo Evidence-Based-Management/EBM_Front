@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/authentication/auth.service';
-import { User } from '../Interfaces/user';
 
 @Component({
   selector: 'app-pages',
@@ -12,8 +11,6 @@ export class PagesComponent implements OnInit {
   title = 'Evidence Based Management';
   user: string;
   constructor(public auth: AuthService, public router: Router) {
-    console.log(auth);
-
     this.user = auth.user;
   }
   ngOnInit(): void {

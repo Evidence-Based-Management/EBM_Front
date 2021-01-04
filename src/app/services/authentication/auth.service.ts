@@ -50,7 +50,7 @@ export class AuthService {
   saveLocaStorage(id: string, token: string, username: string): boolean {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(username));
+    localStorage.setItem('user', username);
     this.user = username;
     this.token = token;
     return true;
@@ -59,7 +59,7 @@ export class AuthService {
   loadLocalStorage(): boolean {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
-      this.user = JSON.parse(localStorage.getItem('user'));
+      this.user = localStorage.getItem('user');
       return true;
     } else {
       this.token = '';

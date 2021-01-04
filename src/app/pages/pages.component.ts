@@ -28,6 +28,6 @@ export class PagesComponent implements OnInit {
   }
   logout(): void {
     this.auth.logout();
-    this.router.navigate(['/sigin']);
+    this.router.navigate(['/signin']);
   }
 }

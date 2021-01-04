@@ -3,7 +3,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AppRoutingModule } from 'src/app/app.routes';
 import { IterationsService } from 'src/app/services/iterations.service';
 import { IterationCardComponent } from '../iteration-card/iteration-card.component';
 

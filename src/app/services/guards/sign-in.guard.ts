@@ -6,7 +6,7 @@ import { AuthService } from '../authentication/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class SigInGuard implements CanActivate {
+export class SignInGuard implements CanActivate {
   path: import('@angular/router').ActivatedRouteSnapshot[];
   route: import('@angular/router').ActivatedRouteSnapshot;
 
@@ -20,7 +20,7 @@ export class SigInGuard implements CanActivate {
     if (this.auth.isLogged()) {
       return true;
     } else {
-      this.router.navigate(['/sigin']);
+      this.router.navigate(['/signin']);
       return false;
     }
   }

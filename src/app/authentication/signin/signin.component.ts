@@ -10,13 +10,16 @@ import { AuthService } from '../../services/authentication/auth.service';
 })
 export class SigninComponent implements OnInit {
   user: User = { username: null, password: null };
+  errorMessage: string;
   constructor(private userHttp: AuthService, public router: Router) {}
 
   ngOnInit(): void {}
-  signup(): any {
-    this.userHttp.sigin(this.user).subscribe((response) => {
+  signin(): any {
+    this.userHttp.signin(this.user).subscribe((response) => {
       if (response === true) {
         this.router.navigate(['/iterations']);
+      }else{
+        this.errorMessage = 'User or password was incorrect!';
       }
     });
   }

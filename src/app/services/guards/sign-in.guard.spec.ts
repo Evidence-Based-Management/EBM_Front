@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { Router, CanActivate } from '@angular/router';
-import { of } from 'rxjs';
-import { User } from 'src/app/Interfaces/user';
+import { Router } from '@angular/router';
 import { AuthService } from '../authentication/auth.service';
 
-import { SigInGuard } from './sig-in.guard';
+import { SignInGuard } from './sign-in.guard';
 
 describe('SigInGuard', () => {
-  let guard: SigInGuard;
+  let guard: SignInGuard;
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+  let authService: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -16,13 +15,14 @@ describe('SigInGuard', () => {
         {
           provide: AuthService,
           useValue: {
-            isLogged: (user: User) => of({}),
+            isLogged: () => true,
           },
         },
         { provide: Router, useValue: routerSpy },
       ],
     });
-    guard = TestBed.inject(SigInGuard);
+    guard = TestBed.inject(SignInGuard);
+    authService = TestBed.inject(AuthService);
   });
 
   it('should be created', () => {
@@ -31,5 +31,10 @@ describe('SigInGuard', () => {
 
   it('should return true', () => {
     expect(guard.canActivate()).toBeTruthy();
+  });
+
+  it('should return false', () => {
+    authService.isLogged = jasmine.createSpy().and.returnValue(false);
+    expect(guard.canActivate()).toBeFalsy();
   });
 });

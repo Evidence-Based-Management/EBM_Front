@@ -23,7 +23,7 @@ export class AuthService {
       .post(this.jsonUrlUsers + 'signup', user, { responseType: 'json' })
       .pipe(catchError(this.errorHandler));
   }
-  sigin(user: User): Observable<any> {
+  signin(user: User): Observable<any> {
     return this.http
       .post(this.jsonUrlUsers + 'signin', user, { responseType: 'json' })
       .pipe(
@@ -44,7 +44,7 @@ export class AuthService {
     this.user = null;
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/signin']);
   }
 
   saveLocaStorage(id: string, token: string, username: string): boolean {

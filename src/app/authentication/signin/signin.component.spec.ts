@@ -11,6 +11,7 @@ describe('SigninComponent', () => {
   let component: SigninComponent;
   let fixture: ComponentFixture<SigninComponent>;
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+  let authService: AuthService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,7 +21,7 @@ describe('SigninComponent', () => {
         {
           provide: AuthService,
           useValue: {
-            sigin: (user: User) => of({}),
+            signin: (user: User) => of({}),
           },
         },
         { provide: Router, useValue: routerSpy },
@@ -30,11 +31,25 @@ describe('SigninComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SigninComponent);
+    authService = TestBed.inject(AuthService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should signin', () => {
+    authService.signin = jasmine.createSpy().and.returnValue(of(true));
+    component.signin();
+    expect(component.router.navigate.call.length).toBe(1);
+    expect(component.errorMessage).toBeUndefined();
+  });
+
+  it('should signin false', () => {
+    authService.signin = jasmine.createSpy().and.returnValue(of(false));
+    component.signin();
+    expect(component.errorMessage).toBe('User or password was incorrect!');
   });
 });

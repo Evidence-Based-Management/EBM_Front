@@ -54,7 +54,7 @@ describe('AuthService', () => {
           jwt: 'Bearer safasdfsdfsdfsdfdsf-sdfsdf,..dsfsdf',
         })
       );
-    service.sigin(user).subscribe((result) => {
+    service.signin(user).subscribe((result) => {
       expect(result).toBeTruthy();
       expect(service.saveLocaStorage.call.length).toBe(1);
       expect(service.user).toBe('test');

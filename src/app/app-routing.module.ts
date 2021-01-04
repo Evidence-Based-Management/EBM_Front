@@ -12,7 +12,8 @@ const routes: Routes = [
     path: '',
     component: PagesComponent,
     canActivate: [SigInGuard],
-    loadChildren: './pages/pages.module#PagesModule',
+    loadChildren: () =>
+      import('./pages/pages.module').then((mod) => mod.PagesModule),
   },
   { path: '**', redirectTo: '/' },
 ];

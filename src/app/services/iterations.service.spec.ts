@@ -7,11 +7,13 @@ import {
   T2M,
   UV,
 } from '../Interfaces/iterations';
+import { AuthService } from './authentication/auth.service';
 
 import { IterationsService } from './iterations.service';
 
 describe('IterationsService', () => {
   let httpClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
+  let authClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
   let service: IterationsService;
 
   const CVFake: CV = {
@@ -55,7 +57,8 @@ describe('IterationsService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
-    service = new IterationsService(httpClientSpy as any);
+    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
+    service = new IterationsService(httpClientSpy as any, authClientSpy as any);
   });
 
   it('should get all iterations with values', () => {
@@ -89,7 +92,6 @@ describe('IterationsService', () => {
     );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
-
 
   it('should get a iteration by id', () => {
     const expectedIterations: Iterations = {
@@ -288,8 +290,6 @@ describe('IterationsService', () => {
     expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
   });
 
-
-  
   it('should get last iteration by team empty', () => {
     const expectedIterations: Iterations[] = new Array<Iterations>();
 

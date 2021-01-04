@@ -27,4 +27,10 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     expect(component).toBeTruthy();
   });
+  it('should render app-loader', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+
+    expect(compiled.querySelector('app-loader')).not.toBeNull();
+  });
 });

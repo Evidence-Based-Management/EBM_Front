@@ -5,6 +5,8 @@ import { SidenavComponent } from '../shared/home/sidenav/sidenav.component';
 import { PagesComponent } from './pages.component';
 import { AppPagesModule } from './pages.routes';
 import { AppModule } from '../app.module';
+import { AppComponent } from '../app.component';
+import { SharedModule } from '../shared/shared.module';
 
 describe('PagesComponent', () => {
   let component: PagesComponent;
@@ -12,7 +14,8 @@ describe('PagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppPagesModule, AppModule],
+      imports: [AppPagesModule, AppModule, SharedModule],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
@@ -36,9 +39,4 @@ describe('PagesComponent', () => {
     expect(compiled.querySelector('router-outlet')).not.toBeNull();
   });
 
-  it('should render app-loader', () => {
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('app-loader')).not.toBeNull();
-  });
 });

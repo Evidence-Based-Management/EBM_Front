@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/authentication/auth.service';
+import { User } from '../Interfaces/user';
 
 @Component({
   selector: 'app-pages',
@@ -7,6 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
   title = 'Evidence Based Management';
+  user: string;
+  constructor(public auth: AuthService, public router: Router) {
+    console.log(auth.user);
+
+    this.user = auth.user;
+  }
   ngOnInit(): void {
     this.loadScript('assets/js/menu.js');
   }
@@ -19,5 +28,9 @@ export class PagesComponent implements OnInit {
     script.async = false;
     script.defer = true;
     body.appendChild(script);
+  }
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/sigin']);
   }
 }

@@ -10,7 +10,7 @@ import { User } from '../../Interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
-  user: User;
+  user: string;
   token: string;
 
   jsonUrlUsers = URL_SERVICE + 'auth/';
@@ -53,7 +53,7 @@ export class AuthService {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    this.user = user;
+    this.user = user.username;
     this.token = token;
     return true;
   }

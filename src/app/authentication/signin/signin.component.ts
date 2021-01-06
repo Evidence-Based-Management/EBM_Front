@@ -13,12 +13,15 @@ export class SigninComponent implements OnInit {
   errorMessage: string;
   constructor(private userHttp: AuthService, public router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.add('bg-gradient-primary'); //add the class
+  }
   signin(): any {
     this.userHttp.signin(this.user).subscribe((response) => {
       if (response === true) {
         this.router.navigate(['/iterations']);
-      }else{
+      } else {
         this.errorMessage = 'User or password was incorrect!';
       }
     });

@@ -21,7 +21,16 @@ export class AuthService {
   signup(user: User): Observable<any> {
     return this.http
       .post(this.jsonUrlUsers + 'signup', user, { responseType: 'json' })
-      .pipe(catchError(this.errorHandler));
+      .pipe(
+        map((response: any) => {
+          if (response.username === user.username) {
+            return true;
+          } else {
+            return false;
+          }
+        }),
+        catchError(this.errorHandler)
+      );
   }
   signin(user: User): Observable<any> {
     return this.http
@@ -30,6 +39,19 @@ export class AuthService {
         map((resp: any) => {
           this.saveLocaStorage('0', resp.jwt, resp.userName);
           return true;
+        }),
+        catchError(this.errorHandler)
+      );
+  }
+
+  checkUserName(userName: string): Observable<any> {
+    return this.http
+      .get(this.jsonUrlUsers + 'checkusername/' + userName, {
+        responseType: 'json',
+      })
+      .pipe(
+        map((response: any) => {
+          return response;
         }),
         catchError(this.errorHandler)
       );

@@ -1,20 +1,31 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { URL_SERVICE } from '../config/config';
+import { AuthService } from './authentication/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class KVAUnrealizedValueService {
   jsonUrlIteration = URL_SERVICE + 'KVAUnrealizedValue/';
+  token: string;
+  httpOptions: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private user: AuthService) {
+    this.token = user.token;
+
+    this.httpOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.token,
+    });
+  }
 
   save(KVAUnrealizedValue: any): Observable<any> {
     return this.http
       .post(this.jsonUrlIteration + 'save', KVAUnrealizedValue, {
+        headers: this.httpOptions,
         responseType: 'json',
       })
       .pipe(catchError(this.errorHandler));
@@ -23,6 +34,7 @@ export class KVAUnrealizedValueService {
   update(id: string, KVAUnrealizedValue: any): Observable<any> {
     return this.http
       .put(this.jsonUrlIteration + id, KVAUnrealizedValue, {
+        headers: this.httpOptions,
         responseType: 'json',
       })
       .pipe(catchError(this.errorHandler));

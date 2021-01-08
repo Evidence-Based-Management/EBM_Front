@@ -4,6 +4,7 @@ import { KVATimeToMarketService } from './kvatime-to-market.service';
 
 describe('KVATimeToMarketService', () => {
   let httpClientSpy: { put: jasmine.Spy; post: jasmine.Spy };
+  let authClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
   let service: KVATimeToMarketService;
   const kvaTimeToMarket = {
     buildAndIntegrationFrequency: 'string',
@@ -19,7 +20,11 @@ describe('KVATimeToMarketService', () => {
   };
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);
-    service = new KVATimeToMarketService(httpClientSpy as any);
+    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
+    service = new KVATimeToMarketService(
+      httpClientSpy as any,
+      authClientSpy as any
+    );
   });
 
   it('should save a new KVATimeToMarket', () => {
@@ -46,7 +51,6 @@ describe('KVATimeToMarketService', () => {
   });
 
   it('should updae a exist KVATimeToMarket', () => {
-  
     httpClientSpy.put.and.returnValue(
       of({ status: 200, kva_time_to_market: kvaTimeToMarket })
     );
@@ -93,5 +97,4 @@ describe('KVATimeToMarketService', () => {
     );
     expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
   });
-
 });

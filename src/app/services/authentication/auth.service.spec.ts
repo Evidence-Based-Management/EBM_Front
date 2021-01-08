@@ -45,15 +45,25 @@ describe('AuthService', () => {
     });
   });
 
+  it('should not signup', (done) => {
+    httpClientSpy.post = jasmine.createSpy().and.returnValue(
+      of({
+        userName: 'diff',
+      })
+    );
+    service.signup(user).subscribe((result) => {
+      expect(result).toBeFalsy();
+      done();
+    });
+  });
+
   it('should signin', (done) => {
-    httpClientSpy.post = jasmine
-      .createSpy()
-      .and.returnValue(
-        of({
-          userName: 'test',
-          jwt: 'Bearer safasdfsdfsdfsdfdsf-sdfsdf,..dsfsdf',
-        })
-      );
+    httpClientSpy.post = jasmine.createSpy().and.returnValue(
+      of({
+        userName: 'test',
+        jwt: 'Bearer safasdfsdfsdfsdfdsf-sdfsdf,..dsfsdf',
+      })
+    );
     service.signin(user).subscribe((result) => {
       expect(result).toBeTruthy();
       expect(service.saveLocaStorage.call.length).toBe(1);
@@ -106,7 +116,6 @@ describe('AuthService', () => {
     httpClientSpy.post = jasmine
       .createSpy()
       .and.returnValue(throwError(errorEventFake));
-  
 
     service.signup(user).subscribe(
       (result) => console.log('good', result),
@@ -115,5 +124,13 @@ describe('AuthService', () => {
       }
     );
     expect(httpClientSpy.post.call.length).toBe(1, 'one call');
+  });
+
+  it('should checkusername', (done) => {
+    httpClientSpy.get = jasmine.createSpy().and.returnValue(of(user));
+    service.checkUserName(user.username).subscribe((result) => {
+      expect(result).toBe(user);
+      done();
+    });
   });
 });

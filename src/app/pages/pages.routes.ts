@@ -4,6 +4,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IterationComponent } from './manage-iterations/iteration/iteration.component';
 import { ManageIterationsComponent } from './manage-iterations/manage-iterations.component';
 import { SignInGuard } from '../services/guards/sign-in.guard';
+import { ProductComponent } from './product/product.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { TeamComponent } from './team/team.component';
 
 const routes: Routes = [
   {
@@ -26,7 +29,22 @@ const routes: Routes = [
     component: IterationComponent,
     canActivate: [SignInGuard],
   },
-  { path: '', redirectTo: '/iterations', pathMatch: 'full' },
+  {
+    path: 'products',
+    component: ProductComponent,
+    canActivate: [SignInGuard],
+  },
+  {
+    path: 'teams',
+    component: TeamComponent,
+    canActivate: [SignInGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [SignInGuard],
+  },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({

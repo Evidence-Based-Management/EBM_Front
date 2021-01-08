@@ -44,7 +44,7 @@ describe('AppRoutingModule', () => {
 
   it('should be itrations when path is empty when is logged', (done) => {
     router.navigate(['']).then(() => {
-      expect(router.url).toBe('/iterations');
+      expect(router.url).toBe('/dashboard');
       done();
     });
   });

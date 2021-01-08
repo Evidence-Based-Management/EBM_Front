@@ -60,7 +60,6 @@ export class SignupComponent implements OnInit {
     } else {
       this.validationEmptyEmail = false;
     }
-    console.log(this.user.password);
 
     if (this.user.password === '' || this.user.password === null) {
       this.validationEmptyPassword = true;

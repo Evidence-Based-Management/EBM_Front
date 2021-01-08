@@ -1,15 +1,15 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-    ><em class="fas fa-download fa-sm text-white-50"></em> Generate Report</a
-  >
 </div>
 
 <!-- Content Row -->
 <div class="row">
   <div class="col-12 mb-3">
-    <app-iteration-card [iteration]="iteration" isDetail="true" ></app-iteration-card>
+    <app-iteration-card
+      [iteration]="iteration"
+      isDetail="true"
+    ></app-iteration-card>
   </div>
   <!-- Curren Value -->
   <div class="col-xl-3 col-md-6 mb-4">
@@ -26,35 +26,43 @@
             <div class="list-group">
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Revenue per Employee</h5>                  
+                  <h5 class="mb-1">Revenue per Employee</h5>
                 </div>
-                <p class="mb-1">  {{ iteration?.KVM?.CV?.Revenue_Per_Employee }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.CV?.Revenue_Per_Employee }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Product Cost Ratio</h5>                  
+                  <h5 class="mb-1">Product Cost Ratio</h5>
                 </div>
-                <p class="mb-1">   {{ iteration?.KVM?.CV?.Product_Cost_Ratio }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.CV?.Product_Cost_Ratio }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1"> Employee Satisfaction</h5>                  
+                  <h5 class="mb-1">Employee Satisfaction</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.CV?.Employee_Satisfaction }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.CV?.Employee_Satisfaction }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Customer Satisfaction</h5>                  
+                  <h5 class="mb-1">Customer Satisfaction</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.CV?.Customer_Satisfaction }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.CV?.Customer_Satisfaction }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Customer Usage Index</h5>                  
+                  <h5 class="mb-1">Customer Usage Index</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.CV?.Customer_Usage_Index }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.CV?.Customer_Usage_Index }}
+                </p>
               </div>
-            </div>           
+            </div>
           </div>
           <div class="col-auto">
             <em class="fas fa-calendar fa-2x text-gray-300"></em>
@@ -79,49 +87,53 @@
             <div class="list-group">
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Build and integration frequency</h5>                  
+                  <h5 class="mb-1">Build and integration frequency</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.T2M?.Build_And_Integration_Frequency }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.T2M?.Build_And_Integration_Frequency }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Release Frequency</h5>                  
+                  <h5 class="mb-1">Release Frequency</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.T2M?.Release_Frequency }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Release_Frequency }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Release Stabilization Period</h5>                  
+                  <h5 class="mb-1">Release Stabilization Period</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.T2M?.Release_Stabilization_Period }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.T2M?.Release_Stabilization_Period }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Mean Time to Repair</h5>                  
+                  <h5 class="mb-1">Mean Time to Repair</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.T2M?.Mean_Time_To_Repair }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.T2M?.Mean_Time_To_Repair }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Cycle Time</h5>                  
+                  <h5 class="mb-1">Cycle Time</h5>
                 </div>
-                <p class="mb-1"> {{ iteration?.KVM?.T2M?.Cycle_Time }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Cycle_Time }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Lead Time</h5>                  
+                  <h5 class="mb-1">Lead Time</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.T2M?.Lead_Time }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Lead_Time }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Time-to-Learn</h5>                  
+                  <h5 class="mb-1">Time-to-Learn</h5>
                 </div>
-                <p class="mb-1"> {{ iteration?.KVM?.T2M?.Time_To_Learn }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.T2M?.Time_To_Learn }}</p>
               </div>
-            </div>  
-
-          
+            </div>
           </div>
           <div class="col-auto">
             <em class="fas fa-dollar-sign fa-2x text-gray-300"></em>
@@ -144,59 +156,72 @@
             <div class="list-group">
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Feature Usage Index</h5>                  
+                  <h5 class="mb-1">Feature Usage Index</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.A2I?.Feature_Usage_Index }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.A2I?.Feature_Usage_Index }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Innovation Rate</h5>                  
+                  <h5 class="mb-1">Innovation Rate</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.A2I?.Innovation_Rate }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.Innovation_Rate }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Defect trends</h5>                  
+                  <h5 class="mb-1">Defect trends</h5>
                 </div>
-                <p class="mb-1"> {{ iteration?.KVM?.A2I?.Defect_Trends }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.Defect_Trends }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">On-Product Index</h5>                  
+                  <h5 class="mb-1">On-Product Index</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.A2I?.On_Product_Index }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.On_Product_Index }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Installed Version Index</h5>                  
+                  <h5 class="mb-1">Installed Version Index</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.A2I?.Installed_Version_Index }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.A2I?.Installed_Version_Index }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Technical Debt</h5>                  
+                  <h5 class="mb-1">Technical Debt</h5>
                 </div>
-                <p class="mb-1">  {{ iteration?.KVM?.A2I?.Technical_Debt }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.A2I?.Technical_Debt }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Production Incident Trends</h5>                  
+                  <h5 class="mb-1">Production Incident Trends</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.A2I?.Production_Incident_Trends }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.A2I?.Production_Incident_Trends }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Active code branches, time spent merging code between branches</h5>                  
+                  <h5 class="mb-1">
+                    Active code branches, time spent merging code between
+                    branches
+                  </h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.A2I?.Active_Code_Branches }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.A2I?.Active_Code_Branches }}
+                </p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Time spent context-switching</h5>                  
+                  <h5 class="mb-1">Time spent context-switching</h5>
                 </div>
-                <p class="mb-1"> {{ iteration?.KVM?.A2I?.Time_Spent_Context_Switching }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.A2I?.Time_Spent_Context_Switching }}
+                </p>
               </div>
-            </div>              
+            </div>
           </div>
           <div class="col-auto">
             <em class="fas fa-clipboard-list fa-2x text-gray-300"></em>
@@ -221,17 +246,19 @@
             <div class="list-group">
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Market Share</h5>                  
+                  <h5 class="mb-1">Market Share</h5>
                 </div>
-                <p class="mb-1">{{ iteration?.KVM?.UV?.Market_Share }}</p>                
+                <p class="mb-1">{{ iteration?.KVM?.UV?.Market_Share }}</p>
               </div>
               <div class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">Customer or user satisfaction gap</h5>                  
+                  <h5 class="mb-1">Customer or user satisfaction gap</h5>
                 </div>
-                <p class="mb-1"> {{ iteration?.KVM?.UV?.Customer_Or_User_Satisfaction_Gap }}</p>                
+                <p class="mb-1">
+                  {{ iteration?.KVM?.UV?.Customer_Or_User_Satisfaction_Gap }}
+                </p>
               </div>
-            </div>                 
+            </div>
           </div>
           <div class="col-auto">
             <em class="fas fa-comments fa-2x text-gray-300"></em>
@@ -240,6 +267,4 @@
       </div>
     </div>
   </div>
-
-  
 </div>

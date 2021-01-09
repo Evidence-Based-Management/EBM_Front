@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Iteration } from 'src/app/Interfaces/iterations';
-import { IterationsService } from 'src/app/services/iterations.service';
+import { IterationsService } from 'src/app/services/iterations/iterations.service';
 import { Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { IterationMappers } from 'src/app/utilities/mappers';
-import { KVAUnrealizedValueService } from 'src/app/services/kvaunrealized-value.service';
-import { KVACurrentValueService } from 'src/app/services/kvacurrent-value.service';
-import { KVATimeToMarketService } from 'src/app/services/kvatime-to-market.service';
-import { KVAAbilityToInnovateService } from 'src/app/services/kvaability-to-innovate.service';
+import { KVAUnrealizedValueService } from 'src/app/services/key-value-areas/kvaunrealized-value.service';
+import { KVATimeToMarketService } from 'src/app/services/key-value-areas/kvatime-to-market.service';
+import { KVACurrentValueService } from 'src/app/services/key-value-areas/kvacurrent-value.service';
+import { KVAAbilityToInnovateService } from 'src/app/services/key-value-areas/kvaability-to-innovate.service';
+
 
 @Component({
   selector: 'app-iteration',

@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { AppRoutingModule } from 'src/app/app.routes';
-import { IterationsService } from 'src/app/services/iterations.service';
+import { IterationsService } from 'src/app/services/iterations/iterations.service';
 import { IterationCardComponent } from '../iteration-card/iteration-card.component';
 
 import { IterationComponent } from './iteration.component';
@@ -16,10 +16,10 @@ import { NewIterationComponent } from './new-iteration/new-iteration.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { KVAUnrealizedValueService } from 'src/app/services/kvaunrealized-value.service';
-import { KVACurrentValueService } from 'src/app/services/kvacurrent-value.service';
-import { KVATimeToMarketService } from 'src/app/services/kvatime-to-market.service';
-import { KVAAbilityToInnovateService } from 'src/app/services/kvaability-to-innovate.service';
+import { KVAUnrealizedValueService } from 'src/app/services/key-value-areas/kvaunrealized-value.service';
+import { KVATimeToMarketService } from 'src/app/services/key-value-areas/kvatime-to-market.service';
+import { KVACurrentValueService } from 'src/app/services/key-value-areas/kvacurrent-value.service';
+import { KVAAbilityToInnovateService } from 'src/app/services/key-value-areas/kvaability-to-innovate.service';
 
 describe('IterationComponent', () => {
   let component: IterationComponent;

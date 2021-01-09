@@ -1,18 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { URL_SERVICE } from '../config/config';
-import { AuthService } from './authentication/auth.service';
+import { URL_SERVICE } from '../../config/config';
+import { AuthService } from '../authentication/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class KVAAbilityToInnovateService {
-  jsonUrlIteration = URL_SERVICE + 'KVAAbilityToInnovate/';
+export class KVAUnrealizedValueService {
+  jsonUrlIteration = URL_SERVICE + 'KVAUnrealizedValue/';
   token: string;
   httpOptions: any;
+
   constructor(private http: HttpClient, private user: AuthService) {
     this.token = user.token;
 
@@ -21,18 +21,19 @@ export class KVAAbilityToInnovateService {
       Authorization: 'Bearer ' + this.token,
     });
   }
-  save(KVAAbilityToInnovate: any): Observable<any> {
+
+  save(KVAUnrealizedValue: any): Observable<any> {
     return this.http
-      .post(this.jsonUrlIteration + 'save', KVAAbilityToInnovate, {
+      .post(this.jsonUrlIteration + 'save', KVAUnrealizedValue, {
         headers: this.httpOptions,
         responseType: 'json',
       })
       .pipe(catchError(this.errorHandler));
   }
 
-  update(id: string, KVAAbilityToInnovate: any): Observable<any> {
+  update(id: string, KVAUnrealizedValue: any): Observable<any> {
     return this.http
-      .put(this.jsonUrlIteration + id, KVAAbilityToInnovate, {
+      .put(this.jsonUrlIteration + id, KVAUnrealizedValue, {
         headers: this.httpOptions,
         responseType: 'json',
       })

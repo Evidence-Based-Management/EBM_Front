@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
-import { LoaderState } from '../Interfaces/loader';
+import { LoaderState } from '../../Interfaces/loader';
 
 import { LoaderService } from './loader.service';
 

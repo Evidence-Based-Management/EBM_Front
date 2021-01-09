@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoaderInterceptorService } from './services/loader-interceptor.service';
+import { LoaderInterceptorService } from './services/utilities/loader-interceptor.service';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { PagesComponent } from './pages/pages.component';

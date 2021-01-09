@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
-import { LoaderState } from '../Interfaces/loader';
+import { LoaderState } from '../../Interfaces/loader';
 
 import { LoaderInterceptorService } from './loader-interceptor.service';
 import { LoaderService } from './loader.service';

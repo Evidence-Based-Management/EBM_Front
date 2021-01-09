@@ -6,8 +6,8 @@ import {
   Iterations,
   T2M,
   UV,
-} from '../Interfaces/iterations';
-import { AuthService } from './authentication/auth.service';
+} from '../../Interfaces/iterations';
+import { AuthService } from '../authentication/auth.service';
 
 import { IterationsService } from './iterations.service';
 

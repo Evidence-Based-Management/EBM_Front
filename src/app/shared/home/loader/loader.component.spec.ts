@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { LoaderState } from 'src/app/Interfaces/loader';
-import { LoaderService } from 'src/app/services/loader.service';
+import { LoaderService } from 'src/app/services/utilities/loader.service';
 
 import { LoaderComponent } from './loader.component';
 

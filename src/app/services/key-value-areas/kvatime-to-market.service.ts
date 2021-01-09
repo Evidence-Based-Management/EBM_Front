@@ -1,15 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { URL_SERVICE } from '../../config/config';
 import { catchError } from 'rxjs/operators';
-import { URL_SERVICE } from '../config/config';
-import { AuthService } from './authentication/auth.service';
+import { Observable, throwError } from 'rxjs';
+import { AuthService } from '../authentication/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class KVAUnrealizedValueService {
-  jsonUrlIteration = URL_SERVICE + 'KVAUnrealizedValue/';
+export class KVATimeToMarketService {
+  jsonUrlIteration = URL_SERVICE + 'KVATimeToMarket/';
   token: string;
   httpOptions: any;
 
@@ -21,19 +21,18 @@ export class KVAUnrealizedValueService {
       Authorization: 'Bearer ' + this.token,
     });
   }
-
-  save(KVAUnrealizedValue: any): Observable<any> {
+  save(KVATimeToMarket: any): Observable<any> {
     return this.http
-      .post(this.jsonUrlIteration + 'save', KVAUnrealizedValue, {
+      .post(this.jsonUrlIteration + 'save', KVATimeToMarket, {
         headers: this.httpOptions,
         responseType: 'json',
       })
       .pipe(catchError(this.errorHandler));
   }
 
-  update(id: string, KVAUnrealizedValue: any): Observable<any> {
+  update(id: string, KVATimeToMarket: any): Observable<any> {
     return this.http
-      .put(this.jsonUrlIteration + id, KVAUnrealizedValue, {
+      .put(this.jsonUrlIteration + id, KVATimeToMarket, {
         headers: this.httpOptions,
         responseType: 'json',
       })

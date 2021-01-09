@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 
 import { Router } from '@angular/router';
 import { IterationCardComponent } from './iteration-card/iteration-card.component';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../services/products/product.service';
 
 describe('ManageIterationsComponent', () => {
   let component: ManageIterationsComponent;

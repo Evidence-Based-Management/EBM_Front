@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IterationsService } from '../../services/iterations.service';
+import { IterationsService } from '../../services/iterations/iterations.service';
 import { Iteration } from '../../Interfaces/iterations';
 import { IterationMappers } from '../../utilities/mappers';
 

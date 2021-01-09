@@ -96,7 +96,7 @@ export class IterationComponent implements OnInit {
       startDate: iteration.startDate,
       endDate: iteration.endDate,
       state: newState,
-      idTeam: 2,
+      idProduct: 1,
     };
   }
 

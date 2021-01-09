@@ -3,6 +3,7 @@ import { Iteration, Iterations } from 'src/app/Interfaces/iterations';
 
 import { Router } from '@angular/router';
 import { IterationsService } from 'src/app/services/iterations.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-manage-iterations',
@@ -12,7 +13,7 @@ export class ManageIterationsComponent implements OnInit {
   iterationsToHtml: Iterations = { iterations: new Array<Iteration>() };
 
   constructor(
-    public serviceItertations: IterationsService,
+    public serviceProduct: ProductService,
     public router: Router
   ) {}
 
@@ -21,8 +22,8 @@ export class ManageIterationsComponent implements OnInit {
   }
 
   getIterations(): void {
-    this.serviceItertations
-      .getIterationsByTeam(2)
+    this.serviceProduct
+      .getIterationsByPoduct(1)
       .subscribe((iteration: any) => {
         this.setLocalIterations(iteration);
       });

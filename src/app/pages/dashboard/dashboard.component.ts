@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor(public serviceItertations: IterationsService) {}
 
   ngOnInit(): void {
-    this.serviceItertations.getLastIterationByTeam(2).subscribe((iteration) => {
+    this.serviceItertations.getLastIterationByTeam(1).subscribe((iteration) => {
       this.iteration = IterationMappers.mapToIteration(iteration);
     });
   }

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { URL_SERVICE } from '../config/config';
@@ -8,9 +8,8 @@ import { AuthService } from './authentication/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class IterationsService {
-  jsonUrlIteration = URL_SERVICE + 'iterations/';
-
+export class ProductService {
+  jsonUrlProduct = URL_SERVICE + 'product/';
   token: string;
   httpOptions: any;
 
@@ -23,42 +22,14 @@ export class IterationsService {
     });
   }
 
-  getIterationById(id: string): Observable<any> {
+  getIterationsByPoduct(idProduct: number): Observable<any> {
     return this.http
-      .get(this.jsonUrlIteration + 'iteration/' + id, {
+      .get(this.jsonUrlProduct + idProduct, {
         headers: this.httpOptions,
         responseType: 'json',
       })
       .pipe(catchError(this.errorHandler));
   }
-
-  getLastIterationByTeam(idTeam: number): Observable<any> {
-    return this.http
-      .get(this.jsonUrlIteration + 'last/' + idTeam, {
-        headers: this.httpOptions,
-        responseType: 'json',
-      })
-      .pipe(catchError(this.errorHandler));
-  }
-
-  save(iteration: any): Observable<any> {
-    return this.http
-      .post(this.jsonUrlIteration + 'save', iteration, {
-        headers: this.httpOptions,
-        responseType: 'json',
-      })
-      .pipe(catchError(this.errorHandler));
-  }
-
-  update(id: string, iteration: any): Observable<any> {
-    return this.http
-      .put(this.jsonUrlIteration + 'iteration/' + id, iteration, {
-        headers: this.httpOptions,
-        responseType: 'json',
-      })
-      .pipe(catchError(this.errorHandler));
-  }
-
   errorHandler(error): Observable<any> {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

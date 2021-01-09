@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManageIterationsComponent } from './manage-iterations.component';
 import { of } from 'rxjs';
@@ -6,12 +6,12 @@ import { By } from '@angular/platform-browser';
 
 import { Router } from '@angular/router';
 import { IterationCardComponent } from './iteration-card/iteration-card.component';
-import { IterationsService } from 'src/app/services/iterations.service';
+import { ProductService } from '../../services/product.service';
 
 describe('ManageIterationsComponent', () => {
   let component: ManageIterationsComponent;
   let fixture: ComponentFixture<ManageIterationsComponent>;
-  let iterationsService: IterationsService;
+  let productService: ProductService;
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
   beforeEach(async () => {
@@ -19,9 +19,9 @@ describe('ManageIterationsComponent', () => {
       declarations: [ManageIterationsComponent, IterationCardComponent],
       providers: [
         {
-          provide: IterationsService,
+          provide: ProductService,
           useValue: {
-            getIterationsByTeam: (idTeam: number) =>
+            getIterationsByPoduct: (idTeam: number) =>
               of({
                 id: 2,
                 name: 'Increibles',
@@ -91,7 +91,7 @@ describe('ManageIterationsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ManageIterationsComponent);
     component = fixture.componentInstance;
-    iterationsService = TestBed.inject(IterationsService);
+    productService = TestBed.inject(ProductService);
   });
 
   it('should create', () => {
@@ -100,7 +100,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get at least iterations', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.callThrough();
+    spyOn(productService, 'getIterationsByPoduct').and.callThrough();
     fixture.detectChanges();
 
     // Assert
@@ -109,7 +109,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get empty iterations', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(of({}));
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(of({}));
     fixture.detectChanges();
     // AA
     expect(component.iterationsToHtml.iterations.length).toBe(0);
@@ -117,7 +117,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should get empty iterations - getIterations()', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(of({}));
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(of({}));
     fixture.detectChanges();
 
     // Act
@@ -429,7 +429,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should has 3 html cards', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(
       of({
         id: 2,
         name: 'Increibles',
@@ -541,7 +541,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 html card Completed', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(
       of({
         id: 2,
         name: 'Increibles',
@@ -615,7 +615,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 html card Fail', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(
       of({
         id: 2,
         name: 'Increibles',
@@ -689,7 +689,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 html card In_Progress', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(
       of({
         id: 2,
         name: 'Increibles',
@@ -763,7 +763,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 html card empty status', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(
       of({
         id: 2,
         name: 'Increibles',
@@ -837,7 +837,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should have 1 button to create a new Iteration', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(
       of({
         id: 2,
         name: 'Increibles',
@@ -909,7 +909,7 @@ describe('ManageIterationsComponent', () => {
 
   it('should order iterations', () => {
     // Arrange
-    spyOn(iterationsService, 'getIterationsByTeam').and.returnValue(
+    spyOn(productService, 'getIterationsByPoduct').and.returnValue(
       of({
         id: 2,
         name: 'Increibles',

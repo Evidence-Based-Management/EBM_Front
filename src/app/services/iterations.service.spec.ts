@@ -61,37 +61,7 @@ describe('IterationsService', () => {
     service = new IterationsService(httpClientSpy as any, authClientSpy as any);
   });
 
-  it('should get all iterations with values', () => {
-    const expectedIterations: Iterations = {
-      iterations: [
-        {
-          id: '0',
-          name: 'Sprint 1',
-          goal: 'sprint goal 0',
-          startDate: '01/01/2020',
-          endDate: '01/28/2020',
-          state: 'Completed',
-          KVM: {
-            CV: CVFake,
-            T2M: T2MFake,
-            A2I: A2IFake,
-            UV: UVFake,
-          },
-        },
-      ],
-    };
-    httpClientSpy.get.and.returnValue(of(expectedIterations));
-
-    service.getIterationsByTeam(1).subscribe(
-      (result: Iterations) => {
-        expect(result.iterations.length).toBeGreaterThan(0);
-        expect(result.iterations[0].id).toBe('0');
-        expect(result.iterations[0].name).toBe('Sprint 1');
-      },
-      (err) => console.log('HTTP Error', err)
-    );
-    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
-  });
+ 
 
   it('should get a iteration by id', () => {
     const expectedIterations: Iterations = {
@@ -152,19 +122,7 @@ describe('IterationsService', () => {
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
 
-  it('should to provoke an error - getIterations', () => {
-    httpClientSpy.get.and.returnValue(
-      throwError({ status: 404, message: 'Not found' })
-    );
-
-    service.getIterationsByTeam(1).subscribe(
-      (result) => console.log('good', result),
-      (err) => {
-        expect(err).toEqual(`Error Code: 404\nMessage: Not found`);
-      }
-    );
-    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
-  });
+  
 
   it('should to provoke an error - getIterationById(-1)', () => {
     httpClientSpy.get.and.returnValue(

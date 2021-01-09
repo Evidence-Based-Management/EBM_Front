@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { User } from 'src/app/Interfaces/user';
@@ -22,6 +23,7 @@ describe('SignupComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SignupComponent],
+      imports: [FormsModule],
       providers: [
         {
           provide: AuthService,

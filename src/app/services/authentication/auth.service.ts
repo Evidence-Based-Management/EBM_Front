@@ -10,6 +10,7 @@ import { User } from '../../Interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
+  id: number;
   user: string;
   token: string;
 
@@ -37,7 +38,7 @@ export class AuthService {
       .post(this.jsonUrlUsers + 'signin', user, { responseType: 'json' })
       .pipe(
         map((resp: any) => {
-          this.saveLocaStorage('0', resp.jwt, resp.userName);
+          this.saveLocaStorage(resp.id, resp.jwt, resp.userName);
           return true;
         }),
         catchError(this.errorHandler)
@@ -64,15 +65,18 @@ export class AuthService {
   logout(): any {
     this.token = null;
     this.user = null;
+    this.id = null;
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('id');
     this.router.navigate(['/signin']);
   }
 
-  saveLocaStorage(id: string, token: string, username: string): boolean {
-    localStorage.setItem('id', id);
+  saveLocaStorage(id: number, token: string, username: string): boolean {
+    localStorage.setItem('id', id.toString());
     localStorage.setItem('token', token);
     localStorage.setItem('user', username);
+    this.id = id;
     this.user = username;
     this.token = token;
     return true;
@@ -82,6 +86,7 @@ export class AuthService {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.user = localStorage.getItem('user');
+      this.id = Number(localStorage.getItem('id'));
       return true;
     } else {
       this.token = '';

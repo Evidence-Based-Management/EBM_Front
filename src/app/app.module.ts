@@ -2,18 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app.routes';
-import { AppComponent } from './app.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoaderInterceptorService } from './services/utilities/loader-interceptor.service';
+import { AppRoutingModule } from './app.routes';
+
+import { SharedModule } from './shared/shared.module';
+
+import { AppComponent } from './app.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { PagesComponent } from './pages/pages.component';
-import { SharedModule } from './shared/shared.module';
 
+import { LoaderInterceptorService } from './services/utilities/loader-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,

@@ -11,10 +11,12 @@ import { AuthService } from '../authentication/auth.service';
 export class ProductService {
   jsonUrlProduct = URL_SERVICE + 'product/';
   token: string;
+  id: number;
   httpOptions: any;
 
   constructor(private http: HttpClient, private user: AuthService) {
     this.token = user.token;
+    this.id = user.id;
 
     this.httpOptions = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -30,6 +32,16 @@ export class ProductService {
       })
       .pipe(catchError(this.errorHandler));
   }
+
+  getProductByUser(): Observable<any> {
+    return this.http
+    .get(this.jsonUrlProduct + 'byuser/' + this.id, {
+      headers: this.httpOptions,
+      responseType: 'json',
+    })
+    .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error): Observable<any> {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

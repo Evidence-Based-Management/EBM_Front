@@ -17,8 +17,6 @@ export class ProductComponent implements AfterViewInit {
 
   constructor(private product: ProductService) {
     product.getProductByUser().subscribe((result) => {
-      console.log(result);
-
       this.dataSource.data = result;
     });
   }

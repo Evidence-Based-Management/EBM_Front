@@ -60,6 +60,7 @@ describe('AuthService', () => {
   it('should signin', (done) => {
     httpClientSpy.post = jasmine.createSpy().and.returnValue(
       of({
+        id: 1,
         userName: 'test',
         jwt: 'Bearer safasdfsdfsdfsdfdsf-sdfsdf,..dsfsdf',
       })

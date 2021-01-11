@@ -35,7 +35,7 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
     expect(service.loadLocalStorage.call.length).toBe(1);
     expect(service.user).toBeNull();
-    expect(service.token).toBe('');
+    expect(service.token).toBeNull();
   });
 
   it('should signup', (done) => {

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { ProductService } from 'src/app/services/products/product.service';
@@ -46,5 +46,20 @@ describe('ProductComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should applyFilter', () => {
+    const event = new KeyboardEvent('keyup', {
+      bubbles: true,
+      cancelable: true,
+      shiftKey: false,
+    });
+    const input = fixture.debugElement.query(By.css('input'));
+    const inputElement = input.nativeElement;
+    inputElement.value = 12;
+    inputElement.dispatchEvent(event);
+
+    component.applyFilter(event);
+    expect(component.dataSource.filter).toBe('12');
   });
 });

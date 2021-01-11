@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { URL_SERVICE } from 'src/app/config/config';
-import { AuthService } from '../authentication/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +12,8 @@ export class KVACurrentValueService {
   token: string;
   httpOptions: any;
 
-  constructor(private http: HttpClient, private user: AuthService) {
-    this.token = user.token;
+  constructor(private http: HttpClient) {
+    this.token = localStorage.getItem('token');
 
     this.httpOptions = new HttpHeaders({
       'Content-Type': 'application/json',

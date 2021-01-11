@@ -4,7 +4,6 @@ import { KVAAbilityToInnovateService } from './kvaability-to-innovate.service';
 
 describe('KVAAbilityToInnovateService', () => {
   let httpClientSpy: { put: jasmine.Spy; post: jasmine.Spy };
-  let authClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
 
   let service: KVAAbilityToInnovateService;
   const kvaAbilityToInnovate = {
@@ -24,8 +23,7 @@ describe('KVAAbilityToInnovateService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);
-    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
-    service = new KVAAbilityToInnovateService(httpClientSpy as any, authClientSpy as any);
+    service = new KVAAbilityToInnovateService(httpClientSpy as any);
     
   });
 

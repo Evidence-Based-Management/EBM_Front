@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { URL_SERVICE } from '../../config/config';
-import { AuthService } from '../authentication/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +13,9 @@ export class ProductService {
   id: number;
   httpOptions: any;
 
-  constructor(private http: HttpClient, private user: AuthService) {
-    this.token = user.token;
-    this.id = user.id;
+  constructor(private http: HttpClient) {
+    this.token = localStorage.getItem('token');
+    this.id = Number(localStorage.getItem('id'));
 
     this.httpOptions = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -33,13 +32,13 @@ export class ProductService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getProductByUser(): Observable<any> {
+  getProductByUser(idUser: number): Observable<any> {
     return this.http
-    .get(this.jsonUrlProduct + 'byuser/' + this.id, {
-      headers: this.httpOptions,
-      responseType: 'json',
-    })
-    .pipe(catchError(this.errorHandler));
+      .get(this.jsonUrlProduct + 'byuser/' + idUser, {
+        headers: this.httpOptions,
+        responseType: 'json',
+      })
+      .pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error): Observable<any> {

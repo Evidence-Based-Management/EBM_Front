@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from '../../Interfaces/product';
@@ -9,16 +9,19 @@ import { ProductService } from '../../services/products/product.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
-export class ProductComponent implements AfterViewInit {
+export class ProductComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['id', 'name', 'idTeam', 'startDate'];
   dataSource = new MatTableDataSource<Product>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private product: ProductService) {
-    product.getProductByUser().subscribe((result) => {
-      this.dataSource.data = result;
-    });
+  constructor(private product: ProductService) {}
+  ngOnInit(): void {
+    this.product
+      .getProductByUser(Number(localStorage.getItem('id')))
+      .subscribe((result) => {
+        this.dataSource.data = result;
+      });
   }
 
   ngAfterViewInit(): void {

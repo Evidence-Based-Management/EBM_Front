@@ -7,7 +7,6 @@ import {
   T2M,
   UV,
 } from '../../Interfaces/iterations';
-import { AuthService } from '../authentication/auth.service';
 
 import { IterationsService } from './iterations.service';
 
@@ -57,11 +56,8 @@ describe('IterationsService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
-    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
-    service = new IterationsService(httpClientSpy as any, authClientSpy as any);
+    service = new IterationsService(httpClientSpy as any);
   });
-
- 
 
   it('should get a iteration by id', () => {
     const expectedIterations: Iterations = {
@@ -121,8 +117,6 @@ describe('IterationsService', () => {
     );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
-
-  
 
   it('should to provoke an error - getIterationById(-1)', () => {
     httpClientSpy.get.and.returnValue(

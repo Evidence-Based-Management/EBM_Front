@@ -4,16 +4,13 @@ import { KVAUnrealizedValueService } from './kvaunrealized-value.service';
 
 describe('KVAUnrealizedValueService', () => {
   let httpClientSpy: { put: jasmine.Spy; post: jasmine.Spy };
-  let authClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
+
   let service: KVAUnrealizedValueService;
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);
-    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
-    service = new KVAUnrealizedValueService(
-      httpClientSpy as any,
-      authClientSpy as any
-    );
+
+    service = new KVAUnrealizedValueService(httpClientSpy as any);
   });
 
   it('should save a new KVAUnrealizedValueService', () => {

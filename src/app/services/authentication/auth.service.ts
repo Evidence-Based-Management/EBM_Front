@@ -89,8 +89,9 @@ export class AuthService {
       this.id = Number(localStorage.getItem('id'));
       return true;
     } else {
-      this.token = '';
+      this.token = null;
       this.user = null;
+      this.id = null;
       return false;
     }
   }

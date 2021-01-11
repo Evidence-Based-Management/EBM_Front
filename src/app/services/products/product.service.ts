@@ -3,27 +3,27 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { URL_SERVICE } from '../../config/config';
+import { AuthService } from '../authentication/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   jsonUrlProduct = URL_SERVICE + 'product/';
-  token: string;
-  id: number;
   httpOptions: any;
 
-  constructor(private http: HttpClient) {
-    this.token = localStorage.getItem('token');
-    this.id = Number(localStorage.getItem('id'));
-
-    this.httpOptions = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.token,
-    });
+  constructor(private http: HttpClient, private auth: AuthService) {
+    this.setUserAuthentication();
   }
 
+  setUserAuthentication(): void {
+    this.httpOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.auth.token,
+    });
+  }
   getIterationsByPoduct(idProduct: number): Observable<any> {
+    this.setUserAuthentication();
     return this.http
       .get(this.jsonUrlProduct + idProduct, {
         headers: this.httpOptions,
@@ -32,9 +32,10 @@ export class ProductService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getProductByUser(idUser: number): Observable<any> {
+  getProductByUser(): Observable<any> {
+    this.setUserAuthentication();
     return this.http
-      .get(this.jsonUrlProduct + 'byuser/' + idUser, {
+      .get(this.jsonUrlProduct + 'byuser/' + this.auth.id, {
         headers: this.httpOptions,
         responseType: 'json',
       })

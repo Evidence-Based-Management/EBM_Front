@@ -56,7 +56,8 @@ describe('IterationsService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put']);
-    service = new IterationsService(httpClientSpy as any);
+    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
+    service = new IterationsService(httpClientSpy as any, authClientSpy as any);
   });
 
   it('should get a iteration by id', () => {

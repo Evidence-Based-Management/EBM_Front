@@ -4,11 +4,16 @@ import { KVACurrentValueService } from './kvacurrent-value.service';
 
 describe('KVACurrentValueService', () => {
   let httpClientSpy: { put: jasmine.Spy; post: jasmine.Spy };
+  let authClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
   let service: KVACurrentValueService;
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);    
-    service = new KVACurrentValueService(httpClientSpy as any);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);
+    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
+    service = new KVACurrentValueService(
+      httpClientSpy as any,
+      authClientSpy as any
+    );
   });
 
   it('should save a new KVACurrentValueService', () => {

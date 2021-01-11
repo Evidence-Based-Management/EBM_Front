@@ -4,6 +4,7 @@ import { KVATimeToMarketService } from './kvatime-to-market.service';
 
 describe('KVATimeToMarketService', () => {
   let httpClientSpy: { put: jasmine.Spy; post: jasmine.Spy };
+  let authClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
 
   let service: KVATimeToMarketService;
   const kvaTimeToMarket = {
@@ -20,8 +21,11 @@ describe('KVATimeToMarketService', () => {
   };
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);
-
-    service = new KVATimeToMarketService(httpClientSpy as any);
+    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
+    service = new KVATimeToMarketService(
+      httpClientSpy as any,
+      authClientSpy as any
+    );
   });
 
   it('should save a new KVATimeToMarket', () => {

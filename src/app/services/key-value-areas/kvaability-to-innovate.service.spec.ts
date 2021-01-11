@@ -4,6 +4,7 @@ import { KVAAbilityToInnovateService } from './kvaability-to-innovate.service';
 
 describe('KVAAbilityToInnovateService', () => {
   let httpClientSpy: { put: jasmine.Spy; post: jasmine.Spy };
+  let authClientSpy: { get: jasmine.Spy; post: jasmine.Spy; put: jasmine.Spy };
 
   let service: KVAAbilityToInnovateService;
   const kvaAbilityToInnovate = {
@@ -23,8 +24,11 @@ describe('KVAAbilityToInnovateService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['put', 'post']);
-    service = new KVAAbilityToInnovateService(httpClientSpy as any);
-    
+    authClientSpy = jasmine.createSpyObj('user', ['get', 'post', 'put']);
+    service = new KVAAbilityToInnovateService(
+      httpClientSpy as any,
+      authClientSpy as any
+    );
   });
 
   it('should save a new KVA Ability To Innovate', () => {
@@ -51,7 +55,6 @@ describe('KVAAbilityToInnovateService', () => {
   });
 
   it('should updae a exist KVA Ability To Innovate', () => {
-  
     httpClientSpy.put.and.returnValue(
       of({ status: 200, kva_ability_to_innovate: kvaAbilityToInnovate })
     );
@@ -98,5 +101,4 @@ describe('KVAAbilityToInnovateService', () => {
     );
     expect(httpClientSpy.put.calls.count()).toBe(1, 'one call');
   });
-
 });

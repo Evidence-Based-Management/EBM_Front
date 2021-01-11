@@ -17,11 +17,9 @@ export class ProductComponent implements AfterViewInit, OnInit {
 
   constructor(private product: ProductService) {}
   ngOnInit(): void {
-    this.product
-      .getProductByUser(Number(localStorage.getItem('id')))
-      .subscribe((result) => {
-        this.dataSource.data = result;
-      });
+    this.product.getProductByUser().subscribe((result) => {
+      this.dataSource.data = result;
+    });
   }
 
   ngAfterViewInit(): void {

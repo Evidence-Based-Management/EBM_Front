@@ -4,24 +4,27 @@ import { throwError } from 'rxjs';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { URL_SERVICE } from 'src/app/config/config';
-
+import { AuthService } from '../authentication/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class KVAAbilityToInnovateService {
   jsonUrlIteration = URL_SERVICE + 'KVAAbilityToInnovate/';
-  token: string;
   httpOptions: any;
-  constructor(private http: HttpClient) {
-    this.token = localStorage.getItem('token')
+  constructor(private http: HttpClient, private auth: AuthService) {
+    this.setUserAuthentication();
+  }
 
+  setUserAuthentication(): void {
     this.httpOptions = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.token,
+      Authorization: 'Bearer ' + this.auth.token,
     });
   }
+
   save(KVAAbilityToInnovate: any): Observable<any> {
+    this.setUserAuthentication();
     return this.http
       .post(this.jsonUrlIteration + 'save', KVAAbilityToInnovate, {
         headers: this.httpOptions,
@@ -31,6 +34,7 @@ export class KVAAbilityToInnovateService {
   }
 
   update(id: string, KVAAbilityToInnovate: any): Observable<any> {
+    this.setUserAuthentication();
     return this.http
       .put(this.jsonUrlIteration + id, KVAAbilityToInnovate, {
         headers: this.httpOptions,

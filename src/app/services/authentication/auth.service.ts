@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { URL_SERVICE } from 'src/app/config/config';
+import { isUndefined } from 'util';
 import { User } from '../../Interfaces/user';
 
 @Injectable({
@@ -97,7 +98,7 @@ export class AuthService {
   }
 
   renewToken(): Observable<any> {
-    let url = this.jsonUrlUsers + '/renewtoken';
+    let url = this.jsonUrlUsers + 'renewtoken';
     url += '/' + this.token;
 
     return this.http.get(url).pipe(
@@ -106,7 +107,7 @@ export class AuthService {
         return throwError(err);
       }),
       map((resp: any) => {
-        this.token = resp.token;
+        this.token = resp.jwt;
         localStorage.setItem('token', this.token);
         return true;
       })

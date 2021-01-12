@@ -20,6 +20,7 @@ export class SignInGuard implements CanActivate {
     if (this.auth.isLogged()) {
       return true;
     } else {
+      console.error('Blocked by Guard Sigin');
       this.router.navigate(['/signin']);
       return false;
     }

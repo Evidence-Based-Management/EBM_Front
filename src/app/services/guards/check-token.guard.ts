@@ -9,29 +9,31 @@ export class CheckTokenGuard implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
 
   canActivate(): Promise<boolean> | boolean {
-    console.log('Token guard');
+    if (this.auth.isLogged()) {
+      const token = this.auth.token;
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expirado = this.expired(payload.exp);
 
-    const token = this.auth.token;
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    console.log(payload);
+      if (expirado) {
+        this.auth.logout();
+        return false;
+      }
 
+      return this.checkRenew(payload.exp);
+    } else {
+      console.error('Blocked by Guard CheckToken');
 
-    const expirado = this.expired(payload.exp);
-
-    if (expirado) {
-      this.router.navigate(['/login']);
       return false;
     }
-
-    return this.checkRenew(payload.exp);
   }
 
+  // When there is an hour to expire the token and the user still navigates, an attempt will be made to renew the token
   checkRenew(fechaExp: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      const tokenExp = new Date(fechaExp * 1000);
       const ahora = new Date();
+      const tokenExp = new Date(fechaExp * 1000); // Normalize to Date in milliseconds
+      ahora.setTime(ahora.getTime() + 1 * 60 * 60 * 1000); // Add 1 hour to time now in millisecionds
 
-      ahora.setTime(ahora.getTime() + 1 * 60 * 60 * 1000);
       if (tokenExp.getTime() > ahora.getTime()) {
         resolve(true);
       } else {
@@ -40,7 +42,7 @@ export class CheckTokenGuard implements CanActivate {
             resolve(true);
           },
           () => {
-            this.router.navigate(['/login']);
+            this.auth.logout();
             reject(false);
           }
         );

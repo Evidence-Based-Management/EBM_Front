@@ -96,6 +96,23 @@ export class AuthService {
     }
   }
 
+  renewToken(): Observable<any> {
+    let url = this.jsonUrlUsers + '/renewtoken';
+    url += '/' + this.token;
+
+    return this.http.get(url).pipe(
+      catchError((err) => {
+        this.router.navigate(['/login']);
+        return throwError(err);
+      }),
+      map((resp: any) => {
+        this.token = resp.token;
+        localStorage.setItem('token', this.token);
+        return true;
+      })
+    );
+  }
+
   errorHandler(error): Observable<any> {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

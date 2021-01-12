@@ -3,46 +3,46 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IterationComponent } from './manage-iterations/iteration/iteration.component';
 import { ManageIterationsComponent } from './manage-iterations/manage-iterations.component';
-import { SignInGuard } from '../services/guards/sign-in.guard';
 import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { TeamComponent } from './team/team.component';
+import { CheckTokenGuard } from '../services/guards/check-token.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [SignInGuard],
+    canActivate: [CheckTokenGuard],
   },
   {
     path: 'iterations',
     component: ManageIterationsComponent,
-    canActivate: [SignInGuard],
+    canActivate: [CheckTokenGuard],
   },
   {
     path: 'iteration/:id',
     component: IterationComponent,
-    canActivate: [SignInGuard],
+    canActivate: [CheckTokenGuard],
   },
   {
     path: 'addIteration',
     component: IterationComponent,
-    canActivate: [SignInGuard],
+    canActivate: [CheckTokenGuard],
   },
   {
     path: 'products',
     component: ProductComponent,
-    canActivate: [SignInGuard],
+    canActivate: [CheckTokenGuard],
   },
   {
     path: 'teams',
     component: TeamComponent,
-    canActivate: [SignInGuard],
+    canActivate: [CheckTokenGuard],
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [SignInGuard],
+    canActivate: [CheckTokenGuard],
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];

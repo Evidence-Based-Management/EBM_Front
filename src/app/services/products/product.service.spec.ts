@@ -26,6 +26,14 @@ describe('ProductService', () => {
     });
   });
 
+  it('shoult get a value when call getProductByUser', (done) => {
+    httpClientSpy.get.and.returnValue(of(true));
+    service.getProductByUser().subscribe((result) => {
+      expect(result).toBeTruthy();
+      done();
+    });
+  });
+
   it('should to provoke an error - getIterationsByPoduct(-1)', () => {
     httpClientSpy.get.and.returnValue(
       throwError({ status: 404, message: 'Not found' })

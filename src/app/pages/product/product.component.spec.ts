@@ -30,7 +30,14 @@ describe('ProductComponent', () => {
           provide: ProductService,
           useValue: {
             getProductByUser: (idTeam: number) =>
-              of([{ id: 1, name: 'pedro', idTeam: 1, startDate: new Date() }]),
+              of([
+                {
+                  id: 1,
+                  name: 'pedro',
+                  team: { name: 'product 1', id: 1 },
+                  startDate: new Date(),
+                },
+              ]),
           },
         },
       ],

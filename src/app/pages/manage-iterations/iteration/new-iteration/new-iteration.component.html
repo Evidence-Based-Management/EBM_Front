@@ -1,49 +1,57 @@
 <h1 class="h3 mb-0 text-gray-800 pb-1">New Iteration</h1>
 <div *ngIf="iteration" class="form-group row">
   <div class="col-sm-6 mb-3 mb-sm-0">
-    <input
-      type="text"
-      name="iterationName"
-      [(ngModel)]="iteration.name"
-      class="form-control form-control-user"
-      id="iterationName"
-      placeholder="Iteration Name"
-    />
+    <mat-form-field appearance="fill">
+      <mat-label>Iteration Name:</mat-label>
+      <input
+        matInput
+        #input
+        type="text"
+        name="iterationName"
+        [(ngModel)]="iteration.name"
+        id="iterationName"
+        placeholder="Iteration Name"
+      />
+    </mat-form-field>
   </div>
   <div class="col-sm-6">
-    <input
-      type="text"
-      name="iteratioGoal"
-      [(ngModel)]="iteration.goal"
-      class="form-control form-control-user"
-      id="iteratioGoal"
-      placeholder="Iteration Goal"
-    />
+    <mat-form-field appearance="fill">
+      <mat-label>Iteration Goal:</mat-label>
+      <input
+        matInput
+        #input
+        type="text"
+        name="iteratioGoal"
+        [(ngModel)]="iteration.goal"
+        id="iteratioGoal"
+        placeholder="Iteration Goal"
+      />
+    </mat-form-field>
   </div>
 </div>
 
 <div *ngIf="iteration" class="form-group row">
   <div class="col-sm-6 mb-3 mb-sm-0">
-    <mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date:</mat-label>
       <input
         matInput
         type="datetime-local"
         name="iteratioStartDate"
         [(ngModel)]="iteration.startDate"
-        class="form-control form-control-user"
         id="iteratioStartDate"
         placeholder="Start Date"
       />
     </mat-form-field>
   </div>
   <div class="col-sm-6">
-    <mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date:</mat-label>
       <input
         matInput
         type="datetime-local"
         name="iteratioEndDate"
         [(ngModel)]="iteration.endDate"
-        class="form-control form-control-user"
         id="iteratioEndDate"
         placeholder="End Date"
       />

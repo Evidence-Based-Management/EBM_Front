@@ -8,7 +8,7 @@ describe('NewIterationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewIterationComponent ]
+      declarations: [ NewIterationComponent ],
     })
     .compileComponents();
   });

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppPagesModule } from './pages.routes';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +23,7 @@ import { NewIterationComponent } from './manage-iterations/iteration/new-iterati
 import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { TeamComponent } from './team/team.component';
+import { NewProductComponent } from './product/new-product/new-product.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { TeamComponent } from './team/team.component';
     ProductComponent,
     ProfileComponent,
     TeamComponent,
+    NewProductComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { TeamComponent } from './team/team.component';
     MatTabsModule,
     MatSelectModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,

@@ -7,6 +7,7 @@ import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { TeamComponent } from './team/team.component';
 import { CheckTokenGuard } from '../services/guards/check-token.guard';
+import { NewProductComponent } from './product/new-product/new-product.component';
 
 const routes: Routes = [
   {
@@ -44,7 +45,14 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [CheckTokenGuard],
   },
+
+  {
+    path: 'addProduct',
+    component: NewProductComponent,
+    canActivate: [CheckTokenGuard],
+  },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: '/dashboard' },
 ];
 
 @NgModule({

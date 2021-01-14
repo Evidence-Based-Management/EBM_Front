@@ -3,4 +3,5 @@ export interface Product {
   name: string;
   startDate: Date;
   idTeam: number;
+  idUser: number;
 }

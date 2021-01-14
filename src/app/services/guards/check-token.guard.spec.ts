@@ -17,6 +17,7 @@ describe('CheckTokenGuard', () => {
         {
           provide: AuthService,
           useValue: {
+            token: 'klasldkasd.sadksamdlasd.laksdlsa',
             renewToken: () => of({}),
           },
         },

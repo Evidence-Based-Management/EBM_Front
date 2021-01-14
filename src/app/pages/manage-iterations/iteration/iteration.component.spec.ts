@@ -198,9 +198,12 @@ describe('IterationComponent', () => {
     );
 
     // Assert
-
-    expect(iterationName[0].nativeElement.placeholder).toBe('Iteration Name');
-    expect(iteratioGoal[0].nativeElement.placeholder).toBe('Iteration Goal');
+    expect(iterationName[0].attributes['data-placeholder']).toBe(
+      'Iteration Name'
+    );
+    expect(iteratioGoal[0].attributes['data-placeholder']).toBe(
+      'Iteration Goal'
+    );
     expect(iteratioStartDate[0].attributes['data-placeholder']).toBe(
       'Start Date'
     );

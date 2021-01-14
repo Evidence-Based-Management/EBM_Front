@@ -2,15 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { URL_SERVICE } from '../../config/config';
+import { URL_SERVICE } from 'src/app/config/config';
 import { AuthService } from '../authentication/auth.service';
-import { Product } from '../../Interfaces/product';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
-  jsonUrlProduct = URL_SERVICE + 'product/';
+export class TeamsService {
+  jsonUrlIteration = URL_SERVICE + 'teams/';
   httpOptions: any;
 
   constructor(private http: HttpClient, private auth: AuthService) {
@@ -23,30 +22,11 @@ export class ProductService {
       Authorization: 'Bearer ' + this.auth.token,
     });
   }
-  getIterationsByPoduct(idProduct: number): Observable<any> {
-    this.setUserAuthentication();
-    return this.http
-      .get(this.jsonUrlProduct + idProduct, {
-        headers: this.httpOptions,
-        responseType: 'json',
-      })
-      .pipe(catchError(this.errorHandler));
-  }
 
-  getProductByUser(): Observable<any> {
+  getTeamsByUserId(): Observable<any> {
     this.setUserAuthentication();
     return this.http
-      .get(this.jsonUrlProduct + 'byuser/' + this.auth.id, {
-        headers: this.httpOptions,
-        responseType: 'json',
-      })
-      .pipe(catchError(this.errorHandler));
-  }
-
-  save(product: Product): Observable<any> {
-    this.setUserAuthentication();
-    return this.http
-      .post(this.jsonUrlProduct + 'save', product, {
+      .get(this.jsonUrlIteration + 'byuserid/' + this.auth.id, {
         headers: this.httpOptions,
         responseType: 'json',
       })

@@ -10,7 +10,7 @@ import { ProductService } from '../../services/products/product.service';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['id', 'name', 'idTeam', 'startDate'];
+  displayedColumns: string[] = ['id', 'name', 'team.name', 'startDate'];
   dataSource = new MatTableDataSource<Product>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

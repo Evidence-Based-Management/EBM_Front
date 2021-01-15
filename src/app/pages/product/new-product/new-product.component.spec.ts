@@ -16,6 +16,9 @@ describe('NewProductComponent', () => {
   let component: NewProductComponent;
   let fixture: ComponentFixture<NewProductComponent>;
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+  let productService: ProductService;
+  let teamService: TeamsService;
+  let authService: AuthService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -26,7 +29,7 @@ describe('NewProductComponent', () => {
         FormsModule,
         MatInputModule,
         MatNativeDateModule,
-        MatSelectModule
+        MatSelectModule,
       ],
       providers: [
         {
@@ -55,11 +58,51 @@ describe('NewProductComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewProductComponent);
+    productService = TestBed.inject(ProductService);
+    teamService = TestBed.inject(TeamsService);
+    authService = TestBed.inject(AuthService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should getTeamsByUserId', () => {
+    const mockTeam = { id: '1', name: 'myteam' };
+    teamService.getTeamsByUserId = jasmine
+      .createSpy()
+      .and.returnValue(of(mockTeam));
+    component.getTeamsByUserId();
+    expect(component.teamsSelect).toEqual(mockTeam);
+  });
+
+  it('should save a new product', () => {
+    component.teamIdControl.setValue('anything');
+    component.teamNameControl.setValue('anything');
+    component.teamStarDateControl.setValue('anything');
+    authService.id = 1;
+    const mockTeam = { id: '1', name: 'myteam' };
+    productService.save = jasmine.createSpy().and.returnValue(of(mockTeam));
+    component.saveNewProduct();
+    expect(component).toBeTruthy();
+  });
+
+  it('should save a new product', () => {
+    const mockTeam = {};
+    productService.save = jasmine.createSpy().and.returnValue(of(mockTeam));
+    component.saveNewProduct();
+    expect(component).toBeTruthy();
+  });
+
+  it('should not save a new product', () => {
+    component.teamIdControl.setValue('anything');
+    component.teamNameControl.setValue('anything');
+    component.teamStarDateControl.setValue('anything');
+    authService.id = 1;
+    productService.save = jasmine.createSpy().and.returnValue(of(null));
+    component.saveNewProduct();
     expect(component).toBeTruthy();
   });
 });

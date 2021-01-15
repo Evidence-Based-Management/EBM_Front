@@ -9,7 +9,7 @@ import { KVAUnrealizedValueService } from 'src/app/services/key-value-areas/kvau
 import { KVATimeToMarketService } from 'src/app/services/key-value-areas/kvatime-to-market.service';
 import { KVACurrentValueService } from 'src/app/services/key-value-areas/kvacurrent-value.service';
 import { KVAAbilityToInnovateService } from 'src/app/services/key-value-areas/kvaability-to-innovate.service';
-
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-iteration',
@@ -36,6 +36,7 @@ export class IterationComponent implements OnInit {
     } else {
       this.iteration = {
         id: null,
+        idProduct: null,
         name: null,
         goal: null,
         state: 'newIteration',
@@ -97,16 +98,25 @@ export class IterationComponent implements OnInit {
       startDate: iteration.startDate,
       endDate: iteration.endDate,
       state: newState,
-      idProduct: 1,
+      idProduct: iteration.idProduct,
     };
   }
 
   saveIteration(): void {
-    this.serviceItertations
-      .save(this.mapFromIteration(this.iteration, 'In_Progress'))
-      .subscribe((response: any) => {
-        this.router.navigate(['/iterations']);
+    if (this.validateIteration()) {
+      this.serviceItertations
+        .save(this.mapFromIteration(this.iteration, 'In_Progress'))
+        .subscribe((response: any) => {
+          this.router.navigate(['/iterations']);
+        });
+    } else {
+      swal.fire({
+        title: 'Error!',
+        text: 'Invalid data!',
+        icon: 'error',
+        confirmButtonText: 'Ok',
       });
+    }
   }
   updateIteration(state: string): void {
     this.iteration.state = state;
@@ -232,5 +242,19 @@ export class IterationComponent implements OnInit {
       technicalDebt: iteration.KVM.A2I.Technical_Debt,
       timeSpentContextSwitching: iteration.KVM.A2I.Time_Spent_Context_Switching,
     };
+  }
+
+  validateIteration(): boolean {
+    if (
+      this.iteration.idProduct &&
+      this.iteration.startDate &&
+      this.iteration.endDate &&
+      this.iteration.name &&
+      this.iteration.goal
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

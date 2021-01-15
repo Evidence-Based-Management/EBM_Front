@@ -3,6 +3,7 @@ export class IterationMappers {
   public static mapToIteration(response: any): Iteration {
     return {
       id: response?.id ? response.id : '',
+      idProduct: response?.idProduct ? response.idProduct : '',
       name: response?.name ? response.name : '',
       goal: response?.goal ? response.goal : '',
       startDate: response?.startDate ? response.startDate : '',

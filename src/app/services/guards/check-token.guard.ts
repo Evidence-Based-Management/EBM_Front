@@ -11,6 +11,7 @@ export class CheckTokenGuard implements CanActivate {
   canActivate(): Promise<boolean> | boolean {
     if (this.auth.isLogged()) {
       const token = this.auth.token;
+
       const payload = JSON.parse(atob(token.split('.')[1]));
       const expirado = this.expired(payload.exp);
 

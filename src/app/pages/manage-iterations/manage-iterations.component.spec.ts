@@ -7,6 +7,11 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { IterationCardComponent } from './iteration-card/iteration-card.component';
 import { ProductService } from '../../services/products/product.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
 
 describe('ManageIterationsComponent', () => {
   let component: ManageIterationsComponent;
@@ -17,6 +22,14 @@ describe('ManageIterationsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ManageIterationsComponent, IterationCardComponent],
+      imports: [
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatSelectModule,
+      ],
       providers: [
         {
           provide: ProductService,
@@ -81,6 +94,22 @@ describe('ManageIterationsComponent', () => {
                   },
                 ],
               }),
+            getProductByUser: () =>
+              of([
+                {
+                  id: 1,
+                  name: 'Kioskos',
+                  startDate: '2021-01-08T22:03:00',
+                  idTeam: 2,
+                  idUser: 1,
+                  team: {
+                    id: 2,
+                    name: 'Pacman',
+                    dateJoin: '2020-01-01T05:00:00',
+                    idUser: 1,
+                  },
+                },
+              ]),
           },
         },
         { provide: Router, useValue: routerSpy },

@@ -5,6 +5,7 @@ import { TeamsService } from '../../../services/teams/teams.service';
 import { ProductService } from '../../../services/products/product.service';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/authentication/auth.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-product',
@@ -52,6 +53,13 @@ export class NewProductComponent implements OnInit {
         if (result) {
           this.router.navigate(['/products']);
         }
+      });
+    } else {
+      swal.fire({
+        title: 'Error!',
+        text: 'Invalid data!',
+        icon: 'error',
+        confirmButtonText: 'Ok',
       });
     }
   }

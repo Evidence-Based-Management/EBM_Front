@@ -18,6 +18,7 @@ describe('IterationCardComponent', () => {
     component = fixture.componentInstance;
     component.iteration = {
       id: null,
+      idProduct: null,
       name: null,
       goal: null,
       startDate: null,

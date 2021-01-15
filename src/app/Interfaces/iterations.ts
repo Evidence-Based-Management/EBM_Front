@@ -4,6 +4,7 @@ export interface Iterations {
 
 export interface Iteration {
   id: string;
+  idProduct: number;
   name: string;
   goal: string;
   startDate: string;

@@ -8,11 +8,13 @@ import { SharedModule } from '../shared/shared.module';
 import { User } from '../Interfaces/user';
 import { of } from 'rxjs';
 import { AuthService } from '../services/authentication/auth.service';
+import { Router } from '@angular/router';
 
 describe('PagesComponent', () => {
   let component: PagesComponent;
   let fixture: ComponentFixture<PagesComponent>;
   let authService: AuthService;
+  const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,8 +26,12 @@ describe('PagesComponent', () => {
           useValue: {
             logout: (user: User) => of({}),
             isLogged: () => true,
+            token:
+              'eyJhbGciOiJI.eyJzdWIiOiJ2YXJpMiIsImlhdCI6MTYxMDc0Mzg1MCwiZXhwIjoxNjEwNzc5ODUwfQ.1p4C_Wh-4UWaDx19KlhPMg5Q6b9-HSKKDxvGrupzt9I',
+            renewToken: () => of({}),
           },
         },
+        // { provide: Router, useValue: routerSpy },
       ],
     }).compileComponents();
   });

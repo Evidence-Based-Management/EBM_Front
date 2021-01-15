@@ -58,3 +58,19 @@
     </mat-form-field>
   </div>
 </div>
+
+<div *ngIf="iteration" class="form-group row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <mat-form-field appearance="fill">
+      <mat-label>Select Product:</mat-label>
+      <mat-select [(value)]="iteration.idProduct" required>
+        <mat-option *ngFor="let product of productsSelect" [value]="product.id">
+          {{ product.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="teamIdControl.hasError('required')"
+        >Please choose a product</mat-error
+      >
+    </mat-form-field>
+  </div>
+</div>

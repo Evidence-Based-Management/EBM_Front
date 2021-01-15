@@ -65,6 +65,7 @@ describe('IterationsService', () => {
       iterations: [
         {
           id: '0',
+          idProduct: -1,
           name: 'Sprint 1',
           goal: 'sprint goal 0',
           startDate: '01/01/2020',
@@ -79,6 +80,7 @@ describe('IterationsService', () => {
         },
         {
           id: '-1',
+          idProduct: -1,
           name: 'Sprint -1',
           goal: 'sprint goal -1',
           startDate: '01/01/2020',
@@ -93,6 +95,7 @@ describe('IterationsService', () => {
         },
         {
           id: '-2',
+          idProduct: -1,
           name: 'Sprint -2',
           goal: 'sprint goal -2',
           startDate: '01/01/2020',
@@ -156,6 +159,7 @@ describe('IterationsService', () => {
       iterations: [
         {
           id: '0',
+          idProduct: -1,
           name: 'Sprint 1',
           goal: 'sprint goal 0',
           startDate: '01/01/2020',
@@ -189,6 +193,7 @@ describe('IterationsService', () => {
       iterations: [
         {
           id: '0',
+          idProduct: -1,
           name: 'Sprint 1',
           goal: 'sprint goal 0',
           startDate: '01/01/2020',
@@ -262,6 +267,7 @@ describe('IterationsService', () => {
       iterations: [
         {
           id: '0',
+          idProduct: -1,
           name: 'Sprint 1',
           goal: 'sprint goal 0',
           startDate: '01/01/2020',
@@ -276,6 +282,7 @@ describe('IterationsService', () => {
         },
         {
           id: '-1',
+          idProduct: -1,
           name: 'Sprint -1',
           goal: 'sprint goal -1',
           startDate: '01/01/2020',
@@ -290,6 +297,7 @@ describe('IterationsService', () => {
         },
         {
           id: '-2',
+          idProduct: -1,
           name: 'Sprint -2',
           goal: 'sprint goal -2',
           startDate: '01/01/2020',

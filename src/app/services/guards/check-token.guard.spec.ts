@@ -17,8 +17,10 @@ describe('CheckTokenGuard', () => {
         {
           provide: AuthService,
           useValue: {
-            token: 'klasldkasd.sadksamdlasd.laksdlsa',
+            token:
+              'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJpMiIsImlhdCI6MTYxMDc0Mzg1MCwiZXhwIjoxNjEwNzc5ODUwfQ.1p4C_Wh-4UWaDx19KlhPMg5Q6b9-HSKKDxvGrupzt9I',
             renewToken: () => of({}),
+            isLogged: () => of(true),
           },
         },
         { provide: Router, useValue: routerSpy },

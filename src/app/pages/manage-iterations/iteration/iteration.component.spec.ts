@@ -198,7 +198,7 @@ describe('IterationComponent', () => {
                   },
                 ],
               }),
-              getProductByUser: () =>
+            getProductByUser: () =>
               of([
                 {
                   id: 1,
@@ -967,6 +967,71 @@ describe('IterationComponent', () => {
     expect(component.iteration.name).toBe(iterationFake.name);
   });
 
+  it('should save an iteration', () => {
+    // Arrange
+    iterationFake = {
+      id: '-1',
+      name: 'Fake',
+      goal: 'sprint goal -1',
+      startDate: '01/01/2020',
+      endDate: '01/31/2020',
+      state: '',
+      kva: {
+        kvaUnrealizedValue: {
+          id: '1',
+          marketShare: '3%',
+          customerSatisfactionGap: '5/10',
+          idTeam: 2,
+          idIteration: 2,
+        },
+        kvaCurrentValue: {
+          id: '1',
+          revenuePerEmployee: '8.500.000 COP',
+          productCostRatio: '500.000.000 - 100.000.000 COP',
+          employeeSatisfaction: '4/5',
+          customerSatisfaction: '3/5',
+          customerUsageIndex: '50/180 min',
+        },
+        kvaAbilityToInnovate: {
+          id: '1',
+          featureUsageIndex: '30 min by day',
+          innovationRate: '0.33',
+          defectTrends: '+60',
+          onProductIndex: '80%',
+          installedVersionIndex: '2',
+          technicalDebt: '2 month',
+          productionIncidentTrends: '3 times by iteration',
+          activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+          timeSpentContextSwitching: '3',
+        },
+        kvaTimeToMarket: {
+          id: '1',
+          buildAndIntegrationFrequency: '10 by week',
+          releaseFrequency: 'Monthly',
+          releaseStabilizationPeriod: '3 days',
+          meanTimeToRepair: '3/5',
+          cycleTime: '1 month',
+          leadTime: '3 months',
+          timeToLearn: '1 months',
+        },
+      },
+    };
+    spyOn(iterationsService, 'getIterationById').and.returnValue(
+      of(iterationFake)
+    );
+    spyOn(iterationsService, 'save').and.returnValue(of(iterationFake));
+
+    component.validateIteration = jasmine.createSpy().and.returnValue(true);
+    // Act
+    fixture.detectChanges();
+
+    // Act
+    component.saveIteration();
+
+    // Assert
+    expect(component.iteration.name).toBe(iterationFake.name);
+  });
+
   it('should has a iteration without kva', () => {
     // Arrange
     const iterationFakewoKva = {
@@ -1220,5 +1285,21 @@ describe('IterationComponent', () => {
     );
 
     expect(iterationCard.length).toBe(1);
+  });
+
+  it('should validateIteration valid', () => {
+    fixture.detectChanges();
+
+    component.iteration.idProduct = 1;
+    component.iteration.startDate = '1';
+    component.iteration.endDate = '1';
+    component.iteration.name = '1';
+    component.iteration.goal = '1';
+    expect(component.validateIteration()).toBeTruthy();
+  });
+
+  it('should validateIteration invalid', () => {
+    fixture.detectChanges();
+    expect(component.validateIteration()).toBeFalsy();
   });
 });

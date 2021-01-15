@@ -30,6 +30,9 @@ describe('AuthService', () => {
 
     spyOn(httpClientSpy, 'post').and.returnValue(of(user));
   });
+  afterEach(() => {
+    service.logout();
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

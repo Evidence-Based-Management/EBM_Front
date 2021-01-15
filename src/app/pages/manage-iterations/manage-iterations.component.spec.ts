@@ -12,12 +12,87 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { Iteration } from 'src/app/Interfaces/iterations';
 
 describe('ManageIterationsComponent', () => {
   let component: ManageIterationsComponent;
   let fixture: ComponentFixture<ManageIterationsComponent>;
   let productService: ProductService;
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+  const fakeProduct = [
+    {
+      id: 1,
+      name: 'Kioskos',
+      startDate: '2021-01-08T22:03:00',
+      idTeam: 2,
+      idUser: 1,
+      team: {
+        id: 2,
+        name: 'Pacman',
+        dateJoin: '2020-01-01T05:00:00',
+        idUser: 1,
+      },
+    },
+  ];
+
+  const fakeIterations = {
+    id: 2,
+    name: 'Increibles',
+    dateJoin: '2020-01-01T05:00:00',
+    iterations: [
+      {
+        id: 2,
+        name: 'Iteration 1',
+        goal: 'My goal',
+        startDate: '2020-10-01T05:00:00',
+        endDate: '2020-10-21T05:00:00',
+        state: 'Completed',
+        kva: {
+          kvaUnrealizedValue: {
+            id: 1,
+            marketShare: '3%',
+            customerSatisfactionGap: '5/10',
+            idTeam: 2,
+            idIteration: 2,
+          },
+          kvaCurrentValue: {
+            id: 1,
+            revenuePerEmployee: '8.500.000 COP',
+            productCostRatio: '500.000.000 - 100.000.000 COP',
+            employeeSatisfaction: '4/5',
+            customerSatisfaction: '3/5',
+            customerUsageIndex: '50/180 min',
+          },
+          kvaAbilityToInnovate: {
+            id: 2,
+            featureUsageIndex: [
+              '30 min by day',
+              '5 min by day',
+              '60 min by day',
+            ],
+            innovationRate: '0.33',
+            defectTrends: '+60',
+            onProductIndex: '80%',
+            installedVersionIndex: '2',
+            technicalDebt: '2 month',
+            productionIncidentTrends: '3 times by iteration',
+            activeCodeBranchesTimeSpentMergingCodeBetweenBranches: '5 hours',
+            timeSpentContextSwitching: '3',
+          },
+          kvaTimeToMarket: {
+            id: 1,
+            buildAndIntegrationFrequency: '10 by week',
+            releaseFrequency: 'Monthly',
+            releaseStabilizationPeriod: '3 days',
+            meanTimeToRepair: '3/5',
+            cycleTime: '1 month',
+            leadTime: '3 months',
+            timeToLearn: '1 months',
+          },
+        },
+      },
+    ],
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,82 +109,8 @@ describe('ManageIterationsComponent', () => {
         {
           provide: ProductService,
           useValue: {
-            getIterationsByPoduct: (idTeam: number) =>
-              of({
-                id: 2,
-                name: 'Increibles',
-                dateJoin: '2020-01-01T05:00:00',
-                iterations: [
-                  {
-                    id: 2,
-                    name: 'Iteration 1',
-                    goal: 'My goal',
-                    startDate: '2020-10-01T05:00:00',
-                    endDate: '2020-10-21T05:00:00',
-                    state: 'Completed',
-                    kva: {
-                      kvaUnrealizedValue: {
-                        id: 1,
-                        marketShare: '3%',
-                        customerSatisfactionGap: '5/10',
-                        idTeam: 2,
-                        idIteration: 2,
-                      },
-                      kvaCurrentValue: {
-                        id: 1,
-                        revenuePerEmployee: '8.500.000 COP',
-                        productCostRatio: '500.000.000 - 100.000.000 COP',
-                        employeeSatisfaction: '4/5',
-                        customerSatisfaction: '3/5',
-                        customerUsageIndex: '50/180 min',
-                      },
-                      kvaAbilityToInnovate: {
-                        id: 2,
-                        featureUsageIndex: [
-                          '30 min by day',
-                          '5 min by day',
-                          '60 min by day',
-                        ],
-                        innovationRate: '0.33',
-                        defectTrends: '+60',
-                        onProductIndex: '80%',
-                        installedVersionIndex: '2',
-                        technicalDebt: '2 month',
-                        productionIncidentTrends: '3 times by iteration',
-                        activeCodeBranchesTimeSpentMergingCodeBetweenBranches:
-                          '5 hours',
-                        timeSpentContextSwitching: '3',
-                      },
-                      kvaTimeToMarket: {
-                        id: 1,
-                        buildAndIntegrationFrequency: '10 by week',
-                        releaseFrequency: 'Monthly',
-                        releaseStabilizationPeriod: '3 days',
-                        meanTimeToRepair: '3/5',
-                        cycleTime: '1 month',
-                        leadTime: '3 months',
-                        timeToLearn: '1 months',
-                      },
-                    },
-                  },
-                ],
-              }),
-            getProductByUser: () =>
-              of([
-                {
-                  id: 1,
-                  name: 'Kioskos',
-                  startDate: '2021-01-08T22:03:00',
-                  idTeam: 2,
-                  idUser: 1,
-                  team: {
-                    id: 2,
-                    name: 'Pacman',
-                    dateJoin: '2020-01-01T05:00:00',
-                    idUser: 1,
-                  },
-                },
-              ]),
+            getIterationsByPoduct: (idTeam: number) => of(fakeIterations),
+            getProductByUser: () => of(fakeProduct),
           },
         },
         { provide: Router, useValue: routerSpy },
@@ -127,13 +128,40 @@ describe('ManageIterationsComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should getTeamsByUserId', () => {
+    productService.getProductByUser = jasmine
+      .createSpy()
+      .and.returnValue(of(fakeProduct));
+    component.getTeamsByUserId();
+    expect(component.selected).toBe(1);
+    expect(component.productsSelect).toEqual(fakeProduct);
+  });
+
+  it('should getTeamsByUserId empty', () => {
+    productService.getProductByUser = jasmine
+      .createSpy()
+      .and.returnValue(of([]));
+    component.getTeamsByUserId();
+    expect(component.selected).toBe(undefined);
+    expect(component.productsSelect).toEqual(undefined);
+  });
+
+  it('should changeProduct', () => {
+    productService.getIterationsByPoduct = jasmine
+      .createSpy()
+      .and.returnValue(of());
+    component.changeProduct();
+    component.getTeamsByUserId();
+    expect(component.iterationsToHtml.iterations).toEqual(new Array<Iteration>());
+  });
+
   it('should get at least iterations', () => {
     // Arrange
     spyOn(productService, 'getIterationsByPoduct').and.callThrough();
     fixture.detectChanges();
 
     // Assert
-    expect(component.iterationsToHtml.iterations.length).toBe(1);
+    expect(component.iterationsToHtml.iterations.length).toEqual(1);
   });
 
   it('should get empty iterations', () => {

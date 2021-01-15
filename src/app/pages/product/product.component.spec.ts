@@ -69,4 +69,20 @@ describe('ProductComponent', () => {
     component.applyFilter(event);
     expect(component.dataSource.filter).toBe('12');
   });
+
+  it('should applyFilter else', () => {
+    const event = new KeyboardEvent('keyup', {
+      bubbles: true,
+      cancelable: true,
+      shiftKey: false,
+    });
+    const input = fixture.debugElement.query(By.css('input'));
+    const inputElement = input.nativeElement;
+    inputElement.value = 12;
+    inputElement.dispatchEvent(event);
+    component.dataSource.paginator = null;
+
+    component.applyFilter(event);
+    expect(component.dataSource.filter).toBe('12');
+  });
 });

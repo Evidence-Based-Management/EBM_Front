@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 
 import { ProductService } from './product.service';
+import { Product } from '../../Interfaces/product';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -64,5 +65,14 @@ describe('ProductService', () => {
       }
     );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
+
+  it('shoult save a value when call save', (done) => {
+    const product: Product = null;
+    httpClientSpy.post.and.returnValue(of(true));
+    service.save(product).subscribe((result) => {
+      expect(result).toBeTruthy();
+      done();
+    });
   });
 });

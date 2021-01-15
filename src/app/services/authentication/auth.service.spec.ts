@@ -134,4 +134,24 @@ describe('AuthService', () => {
       done();
     });
   });
+
+  it('should renewToken', (done) => {
+    const mockResponse = { jwt: 'test' };
+    httpClientSpy.get = jasmine.createSpy().and.returnValue(of(mockResponse));
+    service.renewToken().subscribe((result) => {
+      expect(result).toBeTruthy();
+      done();
+    });
+  });
+
+  it('should have an error renewToken', (done) => {
+    httpClientSpy.get = jasmine.createSpy().and.returnValue(throwError(false));
+    service.renewToken().subscribe(
+      (result) => {},
+      (err) => {
+        expect(err).toBeFalsy();
+        done();
+      }
+    );
+  });
 });

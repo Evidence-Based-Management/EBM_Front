@@ -3,6 +3,24 @@
   <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 </div>
 
+
+<div class="row">
+  <div class="col-12 mb-3 mb-sm-0">
+    <mat-form-field appearance="fill">
+      <mat-label>Select Product:</mat-label>
+      <mat-select
+        [(value)]="selected"
+        (selectionChange)="changeProduct()"
+        required
+      >
+        <mat-option *ngFor="let product of productsSelect" [value]="product.id">
+          {{ product.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
 <!-- Content Row -->
 <div class="row">
   <div class="col-12 mb-3">

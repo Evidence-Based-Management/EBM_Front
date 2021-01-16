@@ -33,10 +33,10 @@ export class IterationsService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getLastIterationByTeam(idTeam: number): Observable<any> {
+  getLastIterationByIdProduct(idProduct: number): Observable<any> {
     this.setUserAuthentication();
     return this.http
-      .get(this.jsonUrlIteration + 'last/' + idTeam, {
+      .get(this.jsonUrlIteration + 'last/' + idProduct, {
         headers: this.httpOptions,
         responseType: 'json',
       })

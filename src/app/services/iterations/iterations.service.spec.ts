@@ -253,7 +253,7 @@ describe('IterationsService', () => {
 
     httpClientSpy.get.and.returnValue(of(expectedIterations));
 
-    service.getLastIterationByTeam(1).subscribe(
+    service.getLastIterationByIdProduct(1).subscribe(
       (result: Iterations[]) => {
         expect(result).toEqual(Array<Iterations>());
       },
@@ -314,7 +314,7 @@ describe('IterationsService', () => {
     };
     httpClientSpy.get.and.returnValue(of(expectedIterations));
 
-    service.getLastIterationByTeam(1).subscribe(
+    service.getLastIterationByIdProduct(1).subscribe(
       (result: any) => {
         expect(result.iterations[0].id).toBe('0');
         expect(result.iterations[0].name).toBe('Sprint 1');

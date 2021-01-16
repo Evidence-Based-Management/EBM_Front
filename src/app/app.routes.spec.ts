@@ -1,12 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { routes } from './app.routes';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from './services/authentication/auth.service';
+import { of } from 'rxjs';
+import { AppComponent } from './app.component';
 
-xdescribe('AppRoutingModule', () => {
+describe('AppRoutingModule', () => {
   let router: Router;
   let authService: AuthService;
+  const dateMockToken = btoa(
+    new Date(new Date().getTime() + 2 * 60 * 60 * 1000).getTime().toString()
+  );
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,6 +21,12 @@ xdescribe('AppRoutingModule', () => {
           provide: AuthService,
           useValue: {
             isLogged: () => true,
+            token:
+              'eyJhbGciOiJIUzI1NiJ9.' +
+              dateMockToken +
+              '.1p4C_Wh-4UWaDx19KlhPMg5Q6b9-HSKKDxvGrupzt9I',
+            renewToken: () => of(true),
+            logout: () => {},
           },
         },
       ],

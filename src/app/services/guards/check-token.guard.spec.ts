@@ -9,6 +9,9 @@ describe('CheckTokenGuard', () => {
   let guard: CheckTokenGuard;
   let authService: AuthService;
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+  const dateMockToken = btoa(
+    new Date(new Date().getTime() + 2 * 60 * 60 * 1000).getTime().toString()
+  );
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +20,9 @@ describe('CheckTokenGuard', () => {
           provide: AuthService,
           useValue: {
             token:
-              'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJpMiIsImlhdCI6MTYxMDc0Mzg1MCwiZXhwIjoxNjEwNzc5ODUwfQ.1p4C_Wh-4UWaDx19KlhPMg5Q6b9-HSKKDxvGrupzt9I',
+              'eyJhbGciOiJIUzI1NiJ9.' +
+              dateMockToken +
+              '.1p4C_Wh-4UWaDx19KlhPMg5Q6b9-HSKKDxvGrupzt9I',
             renewToken: () => of(true),
             isLogged: () => true,
             logout: () => {},

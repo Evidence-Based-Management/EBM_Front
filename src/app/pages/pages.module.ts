@@ -24,6 +24,7 @@ import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { TeamComponent } from './team/team.component';
 import { NewProductComponent } from './product/new-product/new-product.component';
+import { NewTeamComponent } from './team/new-team/new-team.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { NewProductComponent } from './product/new-product/new-product.component
     ProfileComponent,
     TeamComponent,
     NewProductComponent,
+    NewTeamComponent,
   ],
   imports: [
     CommonModule,

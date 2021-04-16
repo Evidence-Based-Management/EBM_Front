@@ -1,0 +1,54 @@
+<form class="user card-body">
+    <h1 class="h3 mb-0 text-gray-800 pb-1">New Team</h1>
+  
+    <div class="form-group row">
+      <div class="col-sm-12 mb-3 mb-sm-0">
+        <mat-form-field appearance="fill">
+          <mat-label>Team Name:</mat-label>
+          <input
+            [formControl]="teamNameControl"
+            required
+            matInput
+            #input
+            type="text"
+            name="teamName"
+            id="teamName"
+            placeholder="Team Name"
+          />
+          <mat-error *ngIf="teamNameControl.hasError('required')"
+            >Please type a name</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <div class="col-sm-12 mb-3 mb-sm-0">
+        <mat-label>Start Date:</mat-label>
+        <mat-form-field appearance="fill">
+          <input
+            [formControl]="teamStarDateControl"
+            matInput
+            type="datetime-local"
+            name="teamStartDate"
+            id="teamStartDate"
+            placeholder="Start Date"
+          />
+          <mat-error *ngIf="teamStarDateControl.hasError('required')"
+            >Please choose a date</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  
+  <div class="col-12 pb-3">
+    <button
+      type="button"
+      class="btn btn-success btn-lg btn-block"
+      (click)="saveNewTeam()"
+    >
+      Save
+    </button>
+  </div>
+  

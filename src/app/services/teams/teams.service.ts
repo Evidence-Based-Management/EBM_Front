@@ -4,12 +4,13 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { URL_SERVICE } from 'src/app/config/config';
 import { AuthService } from '../authentication/auth.service';
+import { Team } from '../../Interfaces/team';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TeamsService {
-  jsonUrlIteration = URL_SERVICE + 'teams/';
+  jsonUrlTeam = URL_SERVICE + 'teams/';
   httpOptions: any;
 
   constructor(private http: HttpClient, private auth: AuthService) {
@@ -26,7 +27,17 @@ export class TeamsService {
   getTeamsByUserId(): Observable<any> {
     this.setUserAuthentication();
     return this.http
-      .get(this.jsonUrlIteration + 'byuserid/' + this.auth.id, {
+      .get(this.jsonUrlTeam + 'byuserid/' + this.auth.id, {
+        headers: this.httpOptions,
+        responseType: 'json',
+      })
+      .pipe(catchError(this.errorHandler));
+  }
+
+  save(team: Team): Observable<any> {
+    this.setUserAuthentication();
+    return this.http
+      .post(this.jsonUrlTeam + 'save', team, {
         headers: this.httpOptions,
         responseType: 'json',
       })

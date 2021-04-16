@@ -8,6 +8,7 @@ import { ProfileComponent } from './account/profile/profile.component';
 import { TeamComponent } from './team/team.component';
 import { CheckTokenGuard } from '../services/guards/check-token.guard';
 import { NewProductComponent } from './product/new-product/new-product.component';
+import { NewTeamComponent } from './team/new-team/new-team.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,11 @@ const routes: Routes = [
   {
     path: 'addProduct',
     component: NewProductComponent,
+    canActivate: [CheckTokenGuard],
+  },
+  {
+    path: 'addTeam',
+    component: NewTeamComponent,
     canActivate: [CheckTokenGuard],
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

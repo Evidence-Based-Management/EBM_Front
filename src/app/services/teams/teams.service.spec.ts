@@ -1,6 +1,7 @@
 import { of, throwError } from 'rxjs';
 
 import { TeamsService } from './teams.service';
+import { Team } from '../../Interfaces/team';
 
 describe('TeamsService', () => {
   let service: TeamsService;
@@ -55,5 +56,14 @@ describe('TeamsService', () => {
       }
     );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
+
+  it('shoult save a value when call save', (done) => {
+    const team: Team = null;
+    httpClientSpy.post.and.returnValue(of(true));
+    service.save(team).subscribe((result) => {
+      expect(result).toBeTruthy();
+      done();
+    });
   });
 });

@@ -17,7 +17,7 @@
     ``` docker build -t ebm-from . ```
 3. You should run the next command:
 
-    ``` docker run -it --rm -p 4200:80 angular-app ```
+    ``` docker run -it --rm -p 4200:80 ebm-from ```
 
 Waala the angular app is running now at http://localhost:4200/ 
 

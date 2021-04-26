@@ -13,9 +13,11 @@
 ## Run angular app in Docker
 1. You should install Docker
 2. You should run the next command:
-    docker build -t ebm-from .
+
+    ``` docker build -t ebm-from . ```
 3. You should run the next command:
-    docker run -it --rm -p 4200:80 angular-app
+
+    ``` docker run -it --rm -p 4200:80 angular-app ```
 
 Waala the angular app is running now at http://localhost:4200/ 
 

@@ -10,6 +10,17 @@
 [![SonarCloud Duplicated Lines](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=evidence-based-management)
 [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=evidence-based-management&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=evidence-based-management)
 
+## Run angular app in Docker
+1. You should install Docker
+2. You should run the next command:
+    docker build -t ebm-from .
+3. You should run the next command:
+    docker run -it --rm -p 4200:80 angular-app
+
+Waala the angular app is running now at http://localhost:4200/ 
+
+Note: Take care because Angular run the local apps in 4200 port so that, you should stop the local environment
+
 # EvidenceBasedManagement
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
@@ -50,5 +61,5 @@ To get more information [Deploy to GitHub Pages gh-pages](https://github.com/mar
 To view the result: [Evidence Based Management](https://evidence-based-management.github.io/EBM_Front/)
 
 Bootstrap Layout: https://startbootstrap.com/themes/sb-admin-2/
-CH
+
 

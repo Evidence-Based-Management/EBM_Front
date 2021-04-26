@@ -14,10 +14,10 @@
 1. You should install Docker
 2. You should run the next command:
 
-    ``` docker build -t ebm-front . ```
+    ``` docker build -t ebm-front:1.0 . ```
 3. You should run the next command:
 
-    ``` docker run -it --rm -p 4200:80 ebm-front ```
+    ``` docker run -it --rm -p 4200:80 ebm-front:1.0 ```
 
 Waala the angular app is running now at http://localhost:4200/ 
 

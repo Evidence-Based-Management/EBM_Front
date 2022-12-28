@@ -3,8 +3,10 @@
 
 FROM node:alpine AS evidence-based-management-build
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
-RUN npm ci && npm run build
+RUN npm run build
 
 # stage 2
 

@@ -44,7 +44,7 @@ export class NewProductComponent implements OnInit {
         id: null,
         idUser: this.auth.id,
         name: this.teamNameControl.value,
-        startDate: this.teamStarDateControl.value,
+        startDate: new Date(this.teamStarDateControl.value),
         idTeam: Number(this.teamIdControl.value),
       };
       delete product.id;

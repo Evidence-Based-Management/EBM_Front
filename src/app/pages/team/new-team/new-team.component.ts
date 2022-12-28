@@ -32,7 +32,7 @@ export class NewTeamComponent implements OnInit {
         id: null,
         idUser: this.auth.id,
         name: this.teamNameControl.value,
-        dateJoin: this.teamStarDateControl.value,
+        dateJoin: new Date(this.teamStarDateControl.value),
       };
       delete team.id;
 
